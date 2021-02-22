@@ -1,5 +1,6 @@
 <?php
 require_once("Config/config.php");
+require_once("Helpers/Helpers.php");
 //Se verifica que exista la variable en la url,
 //de no existir se asignara a la pagina home
 $url = !empty($_GET['url']) ? $_GET['url'] : 'home/home';
