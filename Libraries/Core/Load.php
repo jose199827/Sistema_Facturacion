@@ -1,6 +1,5 @@
 <?php
 //Load
-$controller = ucwords($controller);
 $controllerFile = "Controllers/" . $controller . ".php";
 //Se comprueba la existencia del controlador 
 if (file_exists($controllerFile)) {
