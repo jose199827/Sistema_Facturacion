@@ -1,5 +1,5 @@
 <?php
-const BASE_URL = "http://localhost/miSistema/";
+const BASE_URL = "http://localhost/Sistema_Fact/";
 //Conexion a la base de datos
 const DB_HOST = "localhost";
 const DB_NAME = "tienda";

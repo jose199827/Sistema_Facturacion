@@ -3,6 +3,10 @@ function Base_URL()
 {
   return BASE_URL;
 }
+function media()
+{
+  return BASE_URL . "Assets/";
+}
 //Muestra los objetos de forma formateada
 function dep($data)
 {
