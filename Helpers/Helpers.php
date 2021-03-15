@@ -3,10 +3,27 @@ function Base_URL()
 {
   return BASE_URL;
 }
+
 function media()
 {
-  return BASE_URL . "Assets/";
+  return BASE_URL . "/Assets";
 }
+function vendors()
+{
+  return BASE_URL . "/Vendors";
+}
+function headerAdmin($data = "")
+{
+  $view_header = "Views/Templante/admin_header.php";
+  require_once($view_header);
+}
+function footerAdmin($data = "")
+{
+  $view_footer = "Views/Templante/admin_footer.php";
+  require_once($view_footer);
+}
+
+
 //Muestra los objetos de forma formateada
 function dep($data)
 {
@@ -14,6 +31,11 @@ function dep($data)
   $format = print_r($data);
   $format = print_r("</pre>");
   return $format;
+}
+function getModal(string $nombreModal, $data)
+{
+  $view_modal = "Views/Templante/Modals/{$nombreModal}.php";
+  require_once($view_modal);
 }
 //Elimina el exceso de espacios entre palabras
 function strClean($strCadena)
