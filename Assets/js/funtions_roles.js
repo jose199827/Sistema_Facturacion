@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var formRol = document.querySelector("#formRol");
     formRol.onsubmit = function(e) {
         e.preventDefault();
+        var intIdRol = document.querySelector("#idRol").value;
         var strNombre = document.querySelector('#txtNombre').value;
         var strDescripcion = document.querySelector('#txtDescripcion').value;
         var intStatus = document.querySelector('#listStatus').value;
@@ -75,7 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     $('#roles-modal').modal("hide");
                     formRol.reset();
                     swal("Roles de usuario", objData.msg, "success");
-                    tableRoles.api().ajax.reload(function() {});
+                    tableRoles.api().ajax.reload(function() {
+                        fntEditRol();
+                    });
                 } else {
                     swal("Error", objData.msg, "error");
                 }
@@ -107,7 +110,6 @@ function fntEditRol() {
             document.querySelector('#formRol').reset();
             document.querySelector('#titleModal').innerHTML = "Actualizar Rol";
             document.querySelector('#btnTex').innerHTML = "Actualizar";
-
             var idrol = this.getAttribute("rl");
             var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
             var ajaxUrl = base_url + '/Roles//getRol/' + idrol;
@@ -115,11 +117,29 @@ function fntEditRol() {
             request.send();
             request.onreadystatechange = function() {
                 if (request.readyState == 4 && request.status == 200) {
-                    console.log(request.responseText);
+                    /* console.log(request.responseText); */
+                    var objData = JSON.parse(request.responseText);
+                    if (objData.status) {
+                        document.querySelector("#idRol").value = objData.data.idrol;
+                        document.querySelector("#txtNombre").value = objData.data.nombrerol;
+                        document.querySelector("#txtDescripcion").value = objData.data.descripcion;
+                        if (objData.data.status == 1) {
+                            var optionSelect = '<option value="1" selected class="notBlock">Activo</option>';
+                        } else {
+                            var optionSelect = '<option value="2" selected class="notBlock">Inactivo</option>';
+                        }
+                        var htmlSelect = `${optionSelect}
+                                                    <option value="1">Activo</option>
+                                                    <option value="2">Inactivo</option>`;
+                        document.querySelector("#listStatus").innerHTML = htmlSelect;
+                        $('#roles-modal').modal("show");
+                    } else {
+                        swal("Error", objData.msg, "error");
+                    }
+
                 }
             }
 
-            $('#roles-modal').modal("show");
         });
     });
 }
