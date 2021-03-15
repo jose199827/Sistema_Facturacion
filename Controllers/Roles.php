@@ -59,19 +59,33 @@ class Roles extends Controllers
 
     public function setRoles()
     {
+        $intIdrol = intval($_POST['idRol']);
         $strRol = strClean($_POST['txtNombre']);
         $strDescripcion = strClean($_POST['txtDescripcion']);
         $intStatus = intval($_POST['listStatus']);
-        $request_rol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
+
+        if ($intIdrol == 0) {
+            /* Crear */
+            $request_rol = $this->model->insertRol($strRol, $strDescripcion, $intStatus);
+            $option = 1;
+        } else {
+            /* Actualizar */
+            $request_rol = $this->model->updateRol($intIdrol, $strRol, $strDescripcion, $intStatus);
+            $option = 2;
+        }
 
         if ($request_rol > 0) {
-            $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+            if ($option == 1) {
+                $arrResponse = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+            } else {
+                $arrResponse = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
+            }
         } else if ($request_rol == 'exist') {
             $arrResponse = array('status' => false, 'msg' => '¡Atención! El rol ya existe.');
         } else if ($request_rol == 'sqlinjection') {
             $arrResponse = array('status' => false, 'msg' => '¡Atención! Se ha detectado una inserción de SQL Injection.');
         } else {
-            $arrResponse = array('status' => false, 'msg' => 'No es posible almacenar los datos-');
+            $arrResponse = array('status' => false, 'msg' => 'No es posible almacenar los datos.');
         }
 
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
