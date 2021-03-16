@@ -38,3 +38,70 @@
     </div>
   </div>
 </div>
+
+<!-- Modal de Permisos -->
+<div class="modal fade" id="permisos-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="titleModal">Permisos de Rol</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="formPermisos" name="formPermisos">
+          <div class="row">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Módulos</th>
+                    <th scope="col" class="text-center">Leer</th>
+                    <th scope="col" class="text-center">Escribir</th>
+                    <th scope="col" class="text-center">Actualizar</th>
+                    <th scope="col" class="text-center">Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <th scope="row">Usuario</th>
+                    <th scope="row">
+                      <div class="text-center custom-control custom-checkbox mb-5">
+                        <input type="checkbox" class="custom-control-input" id="Leer">
+                        <label class="custom-control-label" for="Leer"></label>
+                      </div>
+                    </th>
+                    <th scope="row">
+                      <div class="text-center custom-control custom-checkbox mb-5">
+                        <input type="checkbox" class="custom-control-input" id="Escribir">
+                        <label class="custom-control-label" for="Escribir"></label>
+                      </div>
+                    </th>
+                    <th scope="row">
+                      <div class=" text-center custom-control custom-checkbox mb-5">
+                        <input type="checkbox" class="custom-control-input" id="Actualizar">
+                        <label class="custom-control-label" for="Actualizar"></label>
+                      </div>
+                    </th>
+                    <th scope="row">
+                      <div class="text-center custom-control custom-checkbox mb-5">
+                        <input type="checkbox" class="custom-control-input" id="Eliminar">
+                        <label class="custom-control-label" for="Eliminar"></label>
+                      </div>
+                    </th>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+          <div class="text-right">
+            <button id="" type="submit" class="btn btn-success">Guardar</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
