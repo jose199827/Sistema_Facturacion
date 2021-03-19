@@ -4,7 +4,7 @@ getModal("modalRoles", $data);
 ?>
 
 <div class="mobile-menu-overlay"></div>
-
+<div id="contentAjax"></div>
 <div class="main-container">
   <div class="pd-ltr-20 xs-pd-20-10">
     <div class="min-height-200px">
