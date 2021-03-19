@@ -43,7 +43,7 @@
         <h3>Error 404 - Página no encontrada</h3>
         <p>Lo sentimos, no se puede acceder a la página que estás buscando.<br>O verifique la URL.</p>
         <div class="pt-20 mx-auto max-width-200">
-          <a href="<?php echo Base_URL() ?>" class="btn btn-primary btn-block btn-lg">Ir al inicio.</a>
+          <a href="<?php echo Base_URL(); ?>/dashboard" class="btn btn-primary btn-block btn-lg">Ir al inicio.</a>
         </div>
       </div>
     </div>
