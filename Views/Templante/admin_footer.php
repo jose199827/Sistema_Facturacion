@@ -2,6 +2,9 @@
 <script>
   const base_url = "<?= Base_URL(); ?>"
 </script>
+
+
+
 <script src="<?= vendors(); ?>/scripts/core.js"></script>
 <script src="<?= vendors(); ?>/scripts/script.min.js"></script>
 <script src="<?= vendors(); ?>/scripts/process.js"></script>
@@ -12,14 +15,26 @@
 <script src="<?= media(); ?>/plugins/datatables/js/dataTables.responsive.min.js"></script>
 <script src="<?= media(); ?>/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 
+<?php if ($data['page_name'] == "dashboard") { ?>
+  <script src="<?= media(); ?>/plugins/apexcharts/apexcharts.min.js"></script>
+  <script src="<?= vendors(); ?>/scripts/dashboard.js"></script>
+<?php } ?>
+
+
 
 <!-- add sweet alert js & css in footer -->
 <link rel="stylesheet" type="text/css" href="<?= media(); ?>/plugins/sweetalert2/sweetalert2.css">
 <script src="<?= media(); ?>/plugins/sweetalert2/sweetalert2.all.js"></script>
 <script src="<?= media(); ?>/plugins/sweetalert2/sweet-alert.init.js"></script>
 
-<script src="<?= media(); ?>/js/funtions_roles.js"></script>
 
+<?php if ($data['page_name'] == "Rol - Usuario") { ?>
+  <script src="<?= media(); ?>/js/funtions_roles.js"></script>
+<?php } ?>
+
+<?php if ($data['page_name'] == "usuarios") { ?>
+  <script src="<?= media(); ?>/js/funtion_usuarios.js"></script>
+<?php } ?>
 </body>
 
 </html>

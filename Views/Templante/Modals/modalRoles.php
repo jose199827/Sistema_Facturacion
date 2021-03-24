@@ -5,11 +5,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="titleModal">Registrar un Rol</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="font-16 icon-copy dw dw-cancel"></i>
+        </button>
       </div>
       <div class="modal-body">
         <form id="formRol" name="formRol">
           <input type="hidden" name="idRol" id="idRol">
+          <p class="text-red-50">Todos los campos con son obligatorios *.</p>
           <div class="row">
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
@@ -22,7 +25,7 @@
               </div>
               <div class="form-group">
                 <label>Estatus: <span class="text-red-50">*</span> </label>
-                <select class="custom-select col-12" name="listStatus" id="listStatus" required>
+                <select class="form-control selectpicker" name="listStatus" id="listStatus" required>
                   <option value="1">Activo</option>
                   <option value="2">Inactivo</option>
                 </select>
