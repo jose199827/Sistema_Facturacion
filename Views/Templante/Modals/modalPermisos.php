@@ -4,7 +4,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="titleModal">Permisos de Rol</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          <i class="font-16 icon-copy dw dw-cancel"></i>
+        </button>
       </div>
       <div class="modal-body">
         <form action="" id="formPermisos" name="formPermisos">
