@@ -74,9 +74,9 @@ class Usuarios extends Controllers
                                                   <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                  <a class="dropdown-item btnViewUsuario" href="javascript:;" us="' . $arrData[$i]['idpersona'] . '"><i class="dw dw-eye"></i> Ver</a>
-                                                  <a class="dropdown-item btnEditUsuario" href="javascript:;" us="' . $arrData[$i]['idpersona'] . '"><i class="dw dw-edit2"></i> Editar</a>
-                                                  <a class="dropdown-item btnDelUsuario" href="javascript:;" us="' . $arrData[$i]['idpersona'] . '"><i class="dw dw-delete-3"></i> Eliminar</a>
+                                                  <a class="dropdown-item btnViewUsuario" href="javascript:;" onClick="fntViewUsuario(' . $arrData[$i]['idpersona'] . ')"><i class="dw dw-eye"></i> Ver</a>
+                                                  <a class="dropdown-item btnEditUsuario" href="javascript:;" onClick="fntEditUsuario(' . $arrData[$i]['idpersona'] . ')"><i class="dw dw-edit2"></i> Editar</a>
+                                                  <a class="dropdown-item btnDelUsuario" href="javascript:;" onClick="fntDelUsuario(' . $arrData[$i]['idpersona'] . ')"><i class="dw dw-delete-3"></i> Eliminar</a>
                                                 </div>
                                               </div>';
     }
@@ -93,6 +93,20 @@ class Usuarios extends Controllers
         $arrResponse = array("status" => false, "msg" => 'Datos no encontrados.');
       } else {
         $arrResponse = array("status" => true, "data" => $arrData);
+      }
+      echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+    }
+    die();
+  }
+  public function delUsuario()
+  {
+    if ($_POST) {
+      $intIdpersona = intval($_POST['idUsuario']);
+      $requestDelete = $this->model->deleteUsuario($intIdpersona);
+      if ($requestDelete) {
+        $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el usuario.');
+      } else {
+        $arrResponse = array('status' => false, 'msg' => 'Error al eliminar el usuario.');
       }
       echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
     }

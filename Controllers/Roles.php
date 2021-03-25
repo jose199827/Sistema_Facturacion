@@ -30,9 +30,9 @@ class Roles extends Controllers
                                                   <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                  <a class="dropdown-item btnPermisosRol" href="javascript:;" rl="' . $arrData[$i]['idrol'] . '"><i class="dw dw-key1"></i> Permisos</a>
-                                                  <a class="dropdown-item btnEditRol" href="javascript:;" rl="' . $arrData[$i]['idrol'] . '"><i class="dw dw-edit2"></i> Editar</a>
-                                                  <a class="dropdown-item btnDelRol" href="javascript:;" rl="' . $arrData[$i]['idrol'] . '"><i class="dw dw-delete-3"></i> Eliminar</a>
+                                                  <a class="dropdown-item btnPermisosRol" href="javascript:;" onClick="fntPermisos(' . $arrData[$i]['idrol'] . ')"><i class="dw dw-key1"></i> Permisos</a>
+                                                  <a class="dropdown-item btnEditRol" href="javascript:;" onClick="fntEditRol(' . $arrData[$i]['idrol'] . ')"><i class="dw dw-edit2"></i> Editar</a>
+                                                  <a class="dropdown-item btnDelRol" href="javascript:;" onClick="fntDelRol(' . $arrData[$i]['idrol'] . ')"><i class="dw dw-delete-3"></i> Eliminar</a>
                                                 </div>
                                               </div>';
     }

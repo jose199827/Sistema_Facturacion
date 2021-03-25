@@ -17,31 +17,31 @@
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
                 <label>Identificación: <span class="text-red-50">*</span> </label>
-                <input type="text" id="txtIdentificacion" name="txtIdentificacion" placeholder="Identificación" class="form-control" required>
+                <input type="text" id="txtIdentificacion" name="txtIdentificacion" placeholder="Identificación" class="form-control " required>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
                 <label>Nombres: <span class="text-red-50">*</span> </label>
-                <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombres del Usuario" class="form-control" required>
+                <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombres del Usuario" class="form-control valid validText" required>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
                 <label>Apellidos: <span class="text-red-50">*</span> </label>
-                <input type="text" id="txtApellido" name="txtApellido" placeholder="Apellidos del Usuario" class="form-control" required>
+                <input type="text" id="txtApellido" name="txtApellido" placeholder="Apellidos del Usuario" class="form-control valid validText" required>
               </div>
             </div>
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
                 <label>Email: <span class="text-red-50">*</span> </label>
-                <input type="email" id="txtEmail" name="txtEmail" placeholder="Email del Usuario" class="form-control" required>
+                <input type="email" id="txtEmail" name="txtEmail" placeholder="Email del Usuario" class="form-control valid validEmail" required>
               </div>
             </div>
             <div class="col-md-6 col-sm-12">
               <div class="form-group">
                 <label>Teléfono: <span class="text-red-50">*</span> </label>
-                <input type="text" id="txtTelefono" name="txtTelefono" placeholder="Teléfono del Usuario" class="form-control" required>
+                <input type="text" id="txtTelefono" name="txtTelefono" placeholder="Teléfono del Usuario" class="form-control valid validNumber" required onkeypress="return controlTag(event);">
               </div>
             </div>
 
