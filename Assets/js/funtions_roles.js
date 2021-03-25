@@ -163,11 +163,7 @@ function fntDelRol(idRol) {
                     var objData = JSON.parse(request.responseText);
                     if (objData.status) {
                         swal("Eliminado!", objData.msg, "success");
-                        tableRoles.api().ajax.reload(function() {
-                            fntEditRol();
-                            fntDelRol();
-                            fntPermisos();
-                        });
+                        tableRoles.api().ajax.reload();
                     } else {
                         swal("Atención!", objData.msg, "error");
                     }
