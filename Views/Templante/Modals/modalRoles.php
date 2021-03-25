@@ -17,11 +17,11 @@
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
                 <label>Rol: <span class="text-red-50">*</span> </label>
-                <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre del Rol" class="form-control" required>
+                <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre del Rol" class="form-control valid validText" required>
               </div>
               <div class="form-group">
                 <label>Descripción: <span class="text-red-50">*</span> </label>
-                <textarea name="txtDescripcion" id="txtDescripcion" rows="2" placeholder="Descripción del Rol" class="form-control" required></textarea>
+                <textarea name="txtDescripcion" id="txtDescripcion" rows="2" placeholder="Descripción del Rol" class="form-control valid validText" required></textarea>
               </div>
               <div class="form-group">
                 <label>Estatus: <span class="text-red-50">*</span> </label>
