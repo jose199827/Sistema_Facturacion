@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             "sZeroRecords": "No se encontraron resultados",
             "sEmptyTable": "Ningún dato disponible en esta tabla",
             "sInfo": "_START_ al _END_ de un total de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0",
             "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
             "sSearch": "Buscar:",
             "sInfoThousands": ",",
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         },
         "ajax": {
-            "url": " " + base_url + "/roles/getRoles ",
+            "url": " " + base_url + "/Roles/getRoles",
             "dataSrc": ""
         },
         "columns": [
