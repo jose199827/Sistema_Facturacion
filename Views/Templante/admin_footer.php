@@ -17,11 +17,18 @@
 <!-- js para los botones de exportacion -->
 <script src="<?= media(); ?>/plugins/datatables/js/dataTables.buttons.min.js"></script>
 <script src="<?= media(); ?>/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="<?= media(); ?>/plugins/datatables/js/buttons.print.min.js"></script>
 <script src="<?= media(); ?>/plugins/datatables/js/buttons.html5.min.js"></script>
 <script src="<?= media(); ?>/plugins/datatables/js/buttons.flash.min.js"></script>
 <script src="<?= media(); ?>/plugins/datatables/js/pdfmake.min.js"></script>
 <script src="<?= media(); ?>/plugins/datatables/js/vfs_fonts.js"></script>
+
+
+
+
+
+
 
 <?php if ($data['page_name'] == "dashboard") { ?>
   <script src="<?= media(); ?>/plugins/apexcharts/apexcharts.min.js"></script>

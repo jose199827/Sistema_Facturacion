@@ -5,7 +5,7 @@ const DB_HOST = "localhost";
 const DB_NAME = "db_sistema";
 const DB_USER = "root";
 const DB_PASSWORD = "";
-const DB_CHARSET = "charset=utf8";
+const DB_CHARSET = "utf8";
 // Variables para las conversion de modeda
 const SPD = ".";
 const SPM = ",";
