@@ -93,7 +93,7 @@
         </li>
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon dw dw-user-11"></span><span class="mtext">Usuarios</span>
+            <span class="micon dw dw-id-card1"></span><span class="mtext">Usuarios</span>
           </a>
           <ul class="submenu">
             <li><a href="form-basic.html">Crear usuarios</a></li>
@@ -116,6 +116,14 @@
           <a href="<?= Base_URL(); ?>/clientes" class="dropdown-toggle no-arrow">
             <span class="micon dw dw-shopping-cart1"></span><span class="mtext">Pedidos</span>
           </a>
+        </li>
+        <li class="dropdown">
+          <a href="javascript:;" class="dropdown-toggle">
+            <span class="micon dw dw-settings1"></span><span class="mtext">Configuración</span>
+          </a>
+          <ul class="submenu">
+            <li><a href="<?= Base_URL(); ?>/msg">Mesajes de Bienvenida</a></li>
+          </ul>
         </li>
         <li>
           <a href="<?= Base_URL(); ?>/logout" class="dropdown-toggle no-arrow">

@@ -11,7 +11,7 @@ class Roles extends Controllers
   {
     $data['page_tag'] = "Roles de usuarios - Tienda Virtual";
     $data['page_title'] = "Roles de usuarios";
-    $data['page_name'] = "Rol - Usuario";
+    $data['page_name'] = "Listado de Roles de Usuario";
     $data['page_id'] = 3;
     $this->views->getView($this, "roles", $data);
   }
