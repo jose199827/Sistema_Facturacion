@@ -22,6 +22,11 @@ function footerAdmin($data = "")
   $view_footer = "Views/Templante/admin_footer.php";
   require_once($view_footer);
 }
+function footer($data = "")
+{
+  $view_footer = "Views/Templante/footer.php";
+  require_once($view_footer);
+}
 
 
 //Muestra los objetos de forma formateada

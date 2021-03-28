@@ -11,7 +11,7 @@ class Usuarios extends Controllers
   {
     $data['page_tag'] = "Usuarios - Tienda Virtual";
     $data['page_title'] = "Usuarios";
-    $data['page_name'] = "usuarios";
+    $data['page_name'] = "Listado de Usuarios";
     $this->views->getView($this, "usuarios", $data);
   }
   public function setUsuario()

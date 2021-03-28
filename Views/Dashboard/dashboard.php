@@ -11,10 +11,13 @@
           <img src="<?= vendors(); ?>/images/banner-img.png" alt="">
         </div>
         <div class="col-md-8">
-          <h4 class="font-20 weight-500 mb-10 text-capitalize">
+          <h4 class="font-35 weight-500 mb-10 text-capitalize">
             Bienvenido de nuevo <div class="weight-600 font-30 text-blue">Jose Pineda</div>
           </h4>
-          <p class="font-18 max-width-600">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde hic non repellendus debitis iure, doloremque assumenda. Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat mollitia animi error corporis.</p>
+          <p class="font-18" id="txtMsg">
+
+
+          </p>
         </div>
       </div>
     </div>
@@ -229,9 +232,7 @@
         </tbody>
       </table>
     </div>
-    <div class="footer-wrap pd-20 mb-20 card-box">
-      DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
-    </div>
+    <?php footer($data); ?>
   </div>
 </div>
 <!-- Se manda a llamar el footer  -->

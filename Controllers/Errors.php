@@ -9,7 +9,11 @@ class Errors extends Controllers
   //Se crea el método Home
   public function notFound()
   {
-    $this->views->getView($this, "error");
+    $data['page_tag'] = "Error - Tienda Virtual";
+    $data['page_title'] = "Error";
+    $data['page_name'] = "error";
+    $data['page_id'] = 2;
+    $this->views->getView($this, "error", $data);
   }
 }
 $notFound = new Errors();

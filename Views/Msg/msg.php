@@ -1,10 +1,10 @@
 <!-- Se manda a llamar el encabezado -->
-<?php
-headerAdmin($data);
-getModal("modalUsuarios", $data);
+<?php headerAdmin($data);
+getModal("modalMsg", $data);
 ?>
 
 <div class="mobile-menu-overlay"></div>
+
 <div class="main-container">
   <div class="pd-ltr-20 xs-pd-20-10">
     <div class="min-height-200px">
@@ -23,44 +23,21 @@ getModal("modalUsuarios", $data);
             </nav>
           </div>
           <div class="col-6 text-right">
-            <button type="button" class="btn btn-primary" onclick="openModal()" data-toggle="modal" data-target="#roles-modal">Agregar</button>
+            <button type="button" class="btn btn-primary" onclick="openModal()" data-toggle="modal" data-target="#msg-modal">Agregar</button>
           </div>
         </div>
       </div>
+
       <!-- Contenido de la pagina -->
       <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
-        <!-- Simple Datatable start -->
-        <div class="card-box mb-30">
-          <div class="pd-20">
-            <h4 class="text-blue h4">Tabla de Usuarios</h4>
-          </div>
-          <div class="pb-20">
-            <table id="tableUsuarios" class="data-table table stripe hover nowrap">
-              <thead>
-                <tr>
-                  <th class="table-plus">Id</th>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
-                  <th>Email</th>
-                  <th>Teléfono</th>
-                  <th>Rol</th>
-                  <th>Estatus</th>
-                  <th class="datatable-nosort">Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
+        <div class="row clearfix" id="contentAjax">
 
-              </tbody>
-            </table>
-          </div>
         </div>
-        <!-- Simple Datatable End -->
       </div>
       <!-- Fin contenido de la pagina -->
     </div>
     <?php footer($data); ?>
   </div>
 </div>
-
 <!-- Se manda a llamar el footer  -->
 <?php footerAdmin($data); ?>

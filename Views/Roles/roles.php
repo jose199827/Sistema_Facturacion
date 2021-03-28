@@ -18,7 +18,7 @@ getModal("modalRoles", $data);
             <nav aria-label="breadcrumb" role="navigation">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="<?= Base_URL(); ?>/dashboard">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Roles</li>
+                <li class="breadcrumb-item active" aria-current="page"><?= $data['page_name']; ?></li>
               </ol>
             </nav>
           </div>
@@ -55,9 +55,7 @@ getModal("modalRoles", $data);
       </div>
       <!-- Fin contenido de la pagina -->
     </div>
-    <div class="footer-wrap pd-20 mb-20 card-box">
-      DeskApp - Bootstrap 4 Admin Template By <a href="https://github.com/dropways" target="_blank">Ankit Hingarajiya</a>
-    </div>
+    <?php footer($data); ?>
   </div>
 </div>
 
