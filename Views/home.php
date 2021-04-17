@@ -9,6 +9,13 @@
   </title>
 </head>
 Jose
+<?php
+if (function_exists('mail')) {
+  echo "La función mail -SI- esta activada";
+} else {
+  echo "La función mail -NO- esta activada";
+}
+?>
 
 <body>
 

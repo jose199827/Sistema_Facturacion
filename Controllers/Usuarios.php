@@ -5,6 +5,10 @@ class Usuarios extends Controllers
   public function __construct()
   { //Se manda a llamar el constructor de la clase heredada de controllers de la carpeta Librares/Core
     parent::__construct();
+    session_start();
+    if (empty($_SESSION['login'])) {
+      header('location: ' . Base_URL() . '/login');
+    }
   }
   //Se crea el método Home
   public function usuarios()
@@ -12,6 +16,7 @@ class Usuarios extends Controllers
     $data['page_tag'] = "Usuarios - Tienda Virtual";
     $data['page_title'] = "Usuarios";
     $data['page_name'] = "Listado de Usuarios";
+    $data['page_funtions_js'] = "funtion_usuarios.js";
     $this->views->getView($this, "usuarios", $data);
   }
   public function setUsuario()
@@ -68,6 +73,7 @@ class Usuarios extends Controllers
       } else {
         $arrData[$i]['status'] = '<span class="badge badge-warning badge-pill">Inactivo</span>';
       }
+      $arrData[$i]['nombres']= $arrData[$i]['nombres'] ." " . $arrData[$i]['apellidos'] ;
       $arrData[$i]['options'] = '<div class="dropdown ">
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="javascript:;" role="button"
                                                   data-toggle="dropdown">

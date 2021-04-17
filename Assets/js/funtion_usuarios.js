@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function() {
         "columns": [
             { "data": "idpersona" },
             { "data": "nombres" },
-            { "data": "apellidos" },
             { "data": "email_user" },
             { "data": "telefono" },
             { "data": "nombrerol" },
@@ -66,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var formUsuario = document.querySelector("#formUsuario");
     formUsuario.onsubmit = function(e) {
         e.preventDefault();
+
         var strIdentificacion = document.querySelector('#txtIdentificacion').value;
         var strNombre = document.querySelector('#txtNombre').value;
         var strApellido = document.querySelector('#txtApellido').value;
@@ -141,8 +141,7 @@ function fntViewUsuario(idpersona) {
             if (objData.status) {
                 var estadoUsuario = objData.data.status == 1 ? '<span class="badge badge-success badge-pill">Activo</span>' : '<span class="badge badge-warning badge-pill">Inactivo</span>';
                 document.querySelector("#celIdentificacon").innerHTML = objData.data.indentificacion;
-                document.querySelector("#celNombre").innerHTML = objData.data.nombres;
-                document.querySelector("#celApellido").innerHTML = objData.data.apellidos;
+                document.querySelector("#celNombre").innerHTML = objData.data.nombres + " " + objData.data.apellidos;
                 document.querySelector("#celEmail").innerHTML = objData.data.email_user;
                 document.querySelector("#celTelefono").innerHTML = objData.data.telefono;
                 document.querySelector("#celRol").innerHTML = objData.data.nombrerol;

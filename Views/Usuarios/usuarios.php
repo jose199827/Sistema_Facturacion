@@ -39,8 +39,7 @@ getModal("modalUsuarios", $data);
               <thead>
                 <tr>
                   <th class="table-plus">Id</th>
-                  <th>Nombres</th>
-                  <th>Apellidos</th>
+                  <th>Nombre</th>
                   <th>Email</th>
                   <th>Teléfono</th>
                   <th>Rol</th>
