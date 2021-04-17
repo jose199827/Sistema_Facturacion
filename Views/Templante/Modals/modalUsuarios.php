@@ -98,12 +98,8 @@
                   <td id="celIdentificacon">123456789</td>
                 </tr>
                 <tr>
-                  <td>Nombres</th>
+                  <td>Nombre</th>
                   <td id="celNombre">Jose</td>
-                </tr>
-                <tr>
-                  <td>Apellidos</th>
-                  <td id="celApellido">Pineda</td>
                 </tr>
                 <tr>
                   <td>Email</th>
@@ -114,7 +110,7 @@
                   <td id="celTelefono">98789884</td>
                 </tr>
                 <tr>
-                  <td>Tipo Usuario</th>
+                  <td>Rol</th>
                   <td id="celRol">98789884</td>
                 </tr>
                 <tr>

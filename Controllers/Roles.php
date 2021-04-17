@@ -5,6 +5,10 @@ class Roles extends Controllers
   public function __construct()
   { //Se manda a llamar el constructor de la clase heredada de controllers de la carpeta Librares/Core
     parent::__construct();
+    session_start();
+    if (empty($_SESSION['login'])) {
+      header('location: ' . Base_URL() . '/login');
+    }
   }
   //Se crea el método Home
   public function roles()
@@ -13,6 +17,7 @@ class Roles extends Controllers
     $data['page_title'] = "Roles de usuarios";
     $data['page_name'] = "Listado de Roles de Usuario";
     $data['page_id'] = 3;
+    $data['page_funtions_js'] = "funtions_roles.js";
     $this->views->getView($this, "roles", $data);
   }
   public function getRoles()

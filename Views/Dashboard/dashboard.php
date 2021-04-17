@@ -4,6 +4,7 @@
 <div class="mobile-menu-overlay"></div>
 
 <div class="main-container">
+  <?php dep($_SESSION['userData']); ?>
   <div class="pd-ltr-20">
     <div class="card-box pd-20 height-100-p mb-30">
       <div class="row align-items-center">
@@ -12,7 +13,7 @@
         </div>
         <div class="col-md-8">
           <h4 class="font-35 weight-500 mb-10 text-capitalize">
-            Bienvenido de nuevo <div class="weight-600 font-30 text-blue">Jose Pineda</div>
+            Bienvenido de nuevo <div class="weight-600 font-30 text-blue"><?= $_SESSION['userData']['nombres'] . " " . $_SESSION['userData']['apellidos'] ?></div>
           </h4>
           <p class="font-18" id="txtMsg">
 
@@ -21,6 +22,7 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-xl-3 mb-30">
         <div class="card-box height-100-p widget-style1">
@@ -232,6 +234,7 @@
         </tbody>
       </table>
     </div>
+
     <?php footer($data); ?>
   </div>
 </div>

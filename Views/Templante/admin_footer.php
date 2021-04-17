@@ -43,19 +43,7 @@
 <script src="<?= media(); ?>/plugins/sweetalert2/sweet-alert.init.js"></script>
 <script src="<?= media(); ?>/js/funtions_admin.js"></script>
 
-<?php if ($data['page_name'] == "Listado de Roles de Usuario") { ?>
-  <script src="<?= media(); ?>/js/funtions_roles.js"></script>
-<?php } ?>
-
-<?php if ($data['page_name'] == "Listado de Usuarios") { ?>
-  <script src="<?= media(); ?>/js/funtion_usuarios.js"></script>
-<?php } ?>
-<?php if ($data['page_name'] == "Mensajes de Bienvenida") { ?>
-  <script src="<?= media(); ?>/js/funtions_msg.js"></script>
-<?php } ?>
-<?php if ($data['page_name'] == "dashboard") { ?>
-  <script src="<?= media(); ?>/js/funtions_dashoard.js"></script>
-<?php } ?>
+<script src="<?= media(); ?>/js/<?= $data['page_funtions_js']; ?>"></script>
 
 
 </body>

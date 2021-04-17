@@ -5,6 +5,10 @@ class Msg extends Controllers
   public function __construct()
   { //Se manda a llamar el constructor de la clase heredada de controllers de la carpeta Librares/Core
     parent::__construct();
+    session_start();
+    if (empty($_SESSION['login'])) {
+      header('location: ' . Base_URL() . '/login');
+    }
   }
   //Se crea el método Home
   public function msg()
@@ -13,6 +17,7 @@ class Msg extends Controllers
     $data['page_title'] = "Mensajes";
     $data['page_name'] = "Mensajes de Bienvenida";
     $data['page_id'] = 4;
+    $data['page_funtions_js'] = "funtions_msg.js";
     $this->views->getView($this, "msg", $data);
   }
   public function setMsg()

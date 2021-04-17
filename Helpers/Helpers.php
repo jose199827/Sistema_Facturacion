@@ -42,6 +42,23 @@ function getModal(string $nombreModal, $data)
   $view_modal = "Views/Templante/Modals/{$nombreModal}.php";
   require_once($view_modal);
 }
+//Envio de Correo
+function sendEmail($data, $template)
+{
+  $asunto = $data['asunto'];
+  $emailDestino = $data['email'];
+  $empresa = NOMBRE_REMITENTE;
+  $remitente = EMAIL_EMPRESA;
+  //ENVIO DE CORREO
+  $de = "MIME-Version: 1.0\r\n";
+  $de .= "Content-type: text/html; charset=UTF-8\r\n";
+  $de .= "From: {$empresa} <{$remitente}>\r\n";
+  ob_start();
+  require_once("Views/Templante/Email/{$template}.php");
+  $mensaje = ob_get_clean();
+  $send = mail($emailDestino, $asunto, $mensaje, $de);
+  return $send;
+}
 //Elimina el exceso de espacios entre palabras
 function strClean($strCadena)
 {

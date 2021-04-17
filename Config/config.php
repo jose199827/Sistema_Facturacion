@@ -10,5 +10,10 @@ const DB_CHARSET = "utf8";
 const SPD = ".";
 const SPM = ",";
 const SMONEY = "L.";
+
+const NOMBRE_REMITENTE = "Tienda Virtual";
+const NOMBRE_EMPRESA = "Tienda Virtual";
+const WEB_EMPRESA = BASE_URL;
+const EMAIL_EMPRESA = "josedesarrollop@gmail.com";
 //Variable para la Zona horaria 
-date_default_timezone_set("America/Guatemala");
+date_default_timezone_set("America/Tegucigalpa");
