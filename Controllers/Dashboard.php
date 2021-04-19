@@ -6,9 +6,11 @@ class Dashboard extends Controllers
   { //Se manda a llamar el constructor de la clase heredada de controllers de la carpeta Librares/Core
     parent::__construct();
     session_start();
+    session_regenerate_id(true);
     if (empty($_SESSION['login'])) {
       header('location: ' . Base_URL() . '/login');
     }
+    getPermisos(1);
   }
   //Se crea el método Home
   public function dashboard()

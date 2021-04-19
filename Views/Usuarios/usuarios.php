@@ -1,11 +1,10 @@
 <!-- Se manda a llamar el encabezado -->
-<?php
-headerAdmin($data);
+<?php headerAdmin($data);
 getModal("modalUsuarios", $data);
 ?>
-
 <div class="mobile-menu-overlay"></div>
 <div class="main-container">
+
   <div class="pd-ltr-20 xs-pd-20-10">
     <div class="min-height-200px">
       <div class="page-header">
@@ -22,9 +21,11 @@ getModal("modalUsuarios", $data);
               </ol>
             </nav>
           </div>
-          <div class="col-6 text-right">
-            <button type="button" class="btn btn-primary" onclick="openModal()" data-toggle="modal" data-target="#roles-modal">Agregar</button>
-          </div>
+          <?php if ($_SESSION['permisosMod']['w']) { ?>
+            <div class="col-6 text-right">
+              <button type="button" class="btn btn-primary" onclick="openModal()" data-toggle="modal" data-target="#roles-modal">Agregar</button>
+            </div>
+          <?php } ?>
         </div>
       </div>
       <!-- Contenido de la pagina -->
@@ -59,6 +60,8 @@ getModal("modalUsuarios", $data);
     </div>
     <?php footer($data); ?>
   </div>
+  <!-- Se cierra la llave del IF  -->
+
 </div>
 
 <!-- Se manda a llamar el footer  -->

@@ -22,9 +22,11 @@ getModal("modalRoles", $data);
               </ol>
             </nav>
           </div>
-          <div class="col-6 text-right">
-            <button type="button" class="btn btn-primary" onclick="openModal()" data-toggle="modal" data-target="#roles-modal">Agregar</button>
-          </div>
+          <?php if ($_SESSION['permisosMod']['w']) { ?>
+            <div class="col-6 text-right">
+              <button type="button" class="btn btn-primary" onclick="openModal()" data-toggle="modal" data-target="#roles-modal">Agregar</button>
+            </div>
+          <?php } ?>
         </div>
       </div>
       <!-- Contenido de la pagina -->

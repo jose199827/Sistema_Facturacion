@@ -13,7 +13,11 @@ class RolesModel extends Mysql
   }
   public function selectRoles()
   {
-    $sql = "SELECT * FROM `rol` WHERE  `status` !=0";
+    $whereAdmin = "";
+    if ($_SESSION['idUser'] != 1) {
+      $whereAdmin = " and idrol != 1 ";
+    }
+    $sql = "SELECT * FROM `rol` WHERE  `status` !=0" . $whereAdmin;
     $request = $this->selectAll($sql);
     return $request;
   }
@@ -30,7 +34,7 @@ class RolesModel extends Mysql
     $this->strRol = $rol;
     $this->strDescripcion = $descripcion;
     $this->intStatus = $status;
-    $sql = "SELECT * FROM `rol` WHERE  `nombrerol` ='{$this->strRol}' ";
+    $sql = "SELECT * FROM `rol` WHERE  `nombrerol` ='{$this->strRol}'  AND `status`=1";
     $request = $this->selectAll($sql);
     if ($this->strRol == "" || $this->strDescripcion == "" || $this->intStatus == "") {
       $return = "sqlinjection";
@@ -52,7 +56,7 @@ class RolesModel extends Mysql
     $this->strDescripcion = $descripcion;
     $this->intStatus = $status;
 
-    $sql = "SELECT * FROM `rol` WHERE  `nombrerol` ='$this->strRol' AND `idrol` != $this->intIdrol";
+    $sql = "SELECT * FROM `rol` WHERE  `nombrerol` ='$this->strRol' AND `idrol` != $this->intIdrol AND `status`=1";
     $request = $this->selectAll($sql);
     if ($this->strRol == "" || $this->strDescripcion == "" || $this->intStatus == "") {
       $request = "sqlinjection";

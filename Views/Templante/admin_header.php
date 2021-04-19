@@ -1,3 +1,7 @@
+<?php
+$nombre  = explode(" ", $_SESSION['userData']['nombres']);
+$apellido  = explode(" ", $_SESSION['userData']['apellidos']);
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -33,10 +37,14 @@
 </head>
 
 <body>
-
+  <div id="divLoading">
+    <div>
+      <img src="<?= media(); ?>/img/loading.svg" alt="Cargador de Tienda Virtual">
+    </div>
+  </div>
   <div class="pre-loader">
     <div class="pre-loader-box">
-      <div class="loader-logo"><img src="vendors/images/deskapp-logo.svg" alt=""></div>
+      <div class="loader-logo"><img src="<?= vendors(); ?>/images/deskapp-logo.svg" alt=""></div>
       <div class='loader-progress' id="progress_div">
         <div class='bar' id='bar1'></div>
       </div>
@@ -58,14 +66,14 @@
             <span class="user-icon">
               <img src="<?= vendors(); ?>/images/photo1.jpg" alt="">
             </span>
-            <span class="user-name"><?= $_SESSION['userData']['nombres'] . " " . $_SESSION['userData']['apellidos'] ?>
+            <span class="user-name"><?= $nombre[0]  . "  " . $apellido[0] ?>
 
             </span>
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-            <a class="dropdown-item" href="<?= Base_URL(); ?>/perfil"><i class="dw dw-user1"></i> Perfil</a>
+            <a class="dropdown-item" href="<?= Base_URL(); ?>/usuarios/perfil"><i class="dw dw-user1"></i> Perfil</a>
             <a class="dropdown-item" href="javascript:;" data-toggle="right-sidebar"><i class="dw dw-paint-palette"></i> Diseño</a>
-            <a class="dropdown-item" href="<?= Base_URL(); ?>/logout"><i class="dw dw-logout1"></i>Cerrar Seccion</a>
+            <a class="dropdown-item" href="<?= Base_URL(); ?>/Logout"><i class="dw dw-logout1"></i>Cerrar Seccion</a>
           </div>
         </div>
       </div>

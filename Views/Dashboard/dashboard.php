@@ -1,10 +1,12 @@
 <!-- Se manda a llamar el encabezado -->
-<?php headerAdmin($data); ?>
+<?php headerAdmin($data);
+$nombre  = explode(" ", $_SESSION['userData']['nombres']);
+$apellido  = explode(" ", $_SESSION['userData']['apellidos']);
+?>
 
 <div class="mobile-menu-overlay"></div>
 
 <div class="main-container">
-  <?php dep($_SESSION['userData']); ?>
   <div class="pd-ltr-20">
     <div class="card-box pd-20 height-100-p mb-30">
       <div class="row align-items-center">
@@ -13,7 +15,10 @@
         </div>
         <div class="col-md-8">
           <h4 class="font-35 weight-500 mb-10 text-capitalize">
-            Bienvenido de nuevo <div class="weight-600 font-30 text-blue"><?= $_SESSION['userData']['nombres'] . " " . $_SESSION['userData']['apellidos'] ?></div>
+            Bienvenido de nuevo
+            <div class="weight-600 font-30 text-blue">
+              <?= $_SESSION['userData']['nombres']  . "  " . $_SESSION['userData']['apellidos'] ?>
+            </div>
           </h4>
           <p class="font-18" id="txtMsg">
 

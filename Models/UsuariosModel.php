@@ -9,6 +9,9 @@ class UsuariosModel extends Mysql
   private $strTelefono;
   private $strEmail;
   private $strPassword;
+  private $strIdentificacionFiscal;
+  private $strNombreFiscal;
+  private $strDireccionFiscal;
   private $strToken;
   private $intTipoId;
   private $intStatus;
@@ -73,7 +76,11 @@ class UsuariosModel extends Mysql
   }
   public function selectUsuarios()
   {
-    $sql = "SELECT p.idpersona,p.indentificacion,p.nombres,p.apellidos,p.telefono,p.email_user,p.status, r.nombrerol FROM persona p INNER JOIN rol r ON p.rolid= r.idrol WHERE p.status!=0";
+    $whereAdmin = "";
+    if ($_SESSION['idUser'] != 1) {
+      $whereAdmin = " and p.idpersona !=1";
+    }
+    $sql = "SELECT p.idpersona,p.indentificacion,p.nombres,p.apellidos,p.telefono,p.email_user,p.status,r.idrol ,r.nombrerol FROM persona p INNER JOIN rol r ON p.rolid= r.idrol WHERE p.status!=0" . $whereAdmin;
     $request = $this->selectAll($sql);
     return $request;
   }
@@ -91,5 +98,45 @@ class UsuariosModel extends Mysql
     $arrData = array(0);
     $request = $this->update($sql, $arrData);
     return $request;
+  }
+  public function updatePerfil(int $idUsuario, string $identificacion, string $nombre, string $apellido, string $telefono, string $password)
+  {
+    $this->intIdUsuario = $idUsuario;
+    $this->strIdentificacion = $identificacion;
+    $this->strNombre = $nombre;
+    $this->strApellido = $apellido;
+    $this->strTelefono = $telefono;
+    $this->strPassword = $password;
+
+    if ($this->intIdUsuario == "" || $this->strIdentificacion == "" || $this->strNombre == "" || $this->strApellido == "" || $this->strTelefono == "") {
+      $return = "sqlinjection";
+      exit();
+    }
+    if ($this->strPassword != "") {
+      $sql = "UPDATE `persona` SET`indentificacion`=?,`nombres`=?,`apellidos`=?,`telefono`=?, `password`=? WHERE `idpersona`=$this->intIdUsuario";
+      $arrData = array($this->strIdentificacion, $this->strNombre, $this->strApellido, $this->strTelefono, $this->strPassword);
+    } else {
+      $sql = "UPDATE `persona` SET`indentificacion`=?,`nombres`=?,`apellidos`=?,`telefono`=?WHERE `idpersona`=$this->intIdUsuario";
+      $arrData = array($this->strIdentificacion, $this->strNombre, $this->strApellido, $this->strTelefono);
+    }
+    $request = $this->update($sql, $arrData);
+    $return = $request;
+    return $return;
+  }
+  public function updateDatosFiscales(int $intIdUsuario, string $strIdentificacionFiscal, string $strNombreFiscal, string $strDireccionFiscal)
+  {
+    $this->intIdUsuario = $intIdUsuario;
+    $this->strIdentificacionFiscal = $strIdentificacionFiscal;
+    $this->strNombreFiscal = $strNombreFiscal;
+    $this->strDireccionFiscal = $strDireccionFiscal;
+    if ($this->intIdUsuario == "" || $this->strIdentificacionFiscal == "" || $this->strNombreFiscal == "" || $this->strDireccionFiscal == "") {
+      $return = "sqlinjection";
+      exit();
+    }
+    $sql = "UPDATE `persona` SET `nit`=?,`nombrefical`=?,`direccionfiscal`=? WHERE `idpersona`=$this->intIdUsuario";
+    $arrData = array($this->strIdentificacionFiscal, $this->strNombreFiscal, $this->strDireccionFiscal);
+    $request = $this->update($sql, $arrData);
+    $return = $request;
+    return $return;
   }
 }
