@@ -38,7 +38,7 @@
             <div class="login-title">
               <h2 class="text-center text-primary">Has olvidado tu contraseña</h2>
             </div>
-            <h6 class="mb-20">Introduzca su dirección de correo electrónico para restablecer su contraseña</h6>
+            <h6 class="mb-20">Introduzce tu dirección de correo electrónico para restablecer tu contraseña</h6>
             <form id="formResetPass" name="formResetPass" action="">
               <div class="input-group custom">
                 <input type="email" class="form-control form-control-lg" id="txtEmailReset" name="txtEmailReset" placeholder="Email">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-7">
                   <div class="input-group mb-0">
-                    <a class="btn btn-outline-primary btn-lg btn-block" href="<?= Base_URL(); ?>/login">Inicio de Sección</a>
+                    <a class="btn btn-outline-primary btn-lg btn-block" href="<?= Base_URL(); ?>/login">Inicio de Sesión</a>
                   </div>
                 </div>
               </div>

@@ -23,6 +23,7 @@ class LoginModel extends Mysql
     $this->intIdUsuario = $idUsuario;
     $sql = "SELECT p.idpersona, p.indentificacion, p.nombres, p.apellidos, p.telefono, p.email_user, p.nit, p.nombrefical, p.direccionfiscal, r.idrol, r.nombrerol, p.status FROM persona p INNER JOIN rol r ON p.rolid= r.idrol WHERE p.idpersona=$this->intIdUsuario";
     $request = $this->select($sql);
+    $_SESSION['userData'] = $request;
     return $request;
   }
   public function getUserEmail(string $email)

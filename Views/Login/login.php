@@ -39,8 +39,20 @@
         <div class="col-md-6 col-lg-5">
           <div class="login-box bg-white box-shadow border-radius-10">
             <div class="login-title">
-              <h2 class="text-center text-primary">Inicio de Sección</h2>
+              <h2 class="text-center text-primary">Inicio de Sesión</h2>
             </div>
+            <!-- <div class="pre-loader">
+              <div class="pre-loader-box">
+                <div class="loader-logo"><img src="vendors/images/deskapp-logo.svg" alt=""></div>
+                <div class='loader-progress' id="progress_div">
+                  <div class='bar' id='bar1'></div>
+                </div>
+                <div class='percent' id='percent1'>0%</div>
+                <div class="loading-text">
+                  Cargando...
+                </div>
+              </div>
+            </div> -->
             <form class="login-form" id="formLogin" name="formLogin" action="">
               <!-- <div class="select-role">
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -71,14 +83,9 @@
                 </div>
               </div>
               <div class="row pb-30">
-                <div class="col-6">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                    <label class="custom-control-label" for="customCheck1">Recordarme</label>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="forgot-password"><a href="<?= Base_URL(); ?>/forgotPass">¿Has olvidado tu contraseña?</a></div>
+
+                <div class="col">
+                  <div class="forgot-password text-left"><a href="<?= Base_URL(); ?>/forgotPass">¿Has olvidado tu contraseña?</a></div>
                 </div>
               </div>
               <!-- <div id="alertLogin" class="text-center"></div> -->

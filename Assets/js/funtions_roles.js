@@ -1,5 +1,5 @@
 var tableRoles;
-
+var divLoading = document.querySelector('#divLoading');
 document.addEventListener('DOMContentLoaded', function() {
     tableRoles = $('#tableRoles').dataTable({
         scrollCollapse: true,
@@ -81,6 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     swal("Error", objData.msg, "error");
                 }
             } /* Un final */
+            divLoading.style.display = "none";
+            return false;
         }
     }
 });

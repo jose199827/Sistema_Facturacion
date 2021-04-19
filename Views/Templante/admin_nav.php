@@ -86,37 +86,53 @@
   <div class="menu-block customscroll">
     <div class="sidebar-menu">
       <ul id="accordion-menu">
-        <li>
-          <a href="<?= Base_URL(); ?>/dashboard" class="dropdown-toggle no-arrow">
-            <span class="micon dw dw-house1"></span><span class="mtext">Inicio</span>
-          </a>
-        </li>
-        <li class="dropdown">
-          <a href="javascript:;" class="dropdown-toggle">
-            <span class="micon dw dw-id-card1"></span><span class="mtext">Usuarios</span>
-          </a>
-          <ul class="submenu">
-            <li><a href="form-basic.html">Crear usuarios</a></li>
-            <li><a href="<?= Base_URL(); ?>/usuarios">Usuarios</a></li>
-            <li><a href="<?= Base_URL(); ?>/roles">Roles</a></li>
-            <li><a href="<?= Base_URL(); ?>/permisos">Permisos</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="<?= Base_URL(); ?>/clientes" class="dropdown-toggle no-arrow">
-            <span class="micon dw dw-group"></span><span class="mtext">Clientes</span>
-          </a>
-        </li>
-        <li>
-          <a href="<?= Base_URL(); ?>/clientes" class="dropdown-toggle no-arrow">
-            <span class="micon dw dw-price-tag"></span><span class="mtext">Productos</span>
-          </a>
-        </li>
-        <li>
-          <a href="<?= Base_URL(); ?>/clientes" class="dropdown-toggle no-arrow">
-            <span class="micon dw dw-shopping-cart1"></span><span class="mtext">Pedidos</span>
-          </a>
-        </li>
+        <?php if (!empty($_SESSION['permisos'][1]['r'])) { ?>
+          <li>
+            <a href="<?= Base_URL(); ?>/dashboard" class="dropdown-toggle no-arrow">
+              <span class="micon dw dw-house1"></span><span class="mtext">Inicio</span>
+            </a>
+          </li>
+        <?php } ?>
+        <?php if (!empty($_SESSION['permisos'][2]['r'])) { ?>
+          <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+              <span class="micon dw dw-id-card1"></span><span class="mtext">Usuarios</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="<?= Base_URL(); ?>/usuarios">Usuarios</a></li>
+              <li><a href="<?= Base_URL(); ?>/roles">Roles</a></li>
+            </ul>
+          </li>
+        <?php } ?>
+        <?php if (!empty($_SESSION['permisos'][3]['r'])) { ?>
+          <li>
+            <a href="<?= Base_URL(); ?>/clientes" class="dropdown-toggle no-arrow">
+              <span class="micon dw dw-group"></span><span class="mtext">Clientes</span>
+            </a>
+          </li>
+        <?php } ?>
+        <?php if (!empty($_SESSION['permisos'][4]['r']) || !empty($_SESSION['permisos'][6]['r'])) { ?>
+          <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+              <span class="micon dw dw-price-tag"></span><span class="mtext">Productos</span>
+            </a>
+            <ul class="submenu">
+              <?php if (!empty($_SESSION['permisos'][4]['r'])) { ?>
+                <li><a href="<?= Base_URL(); ?>/Productos">Productos</a></li>
+              <?php } ?>
+              <?php if (!empty($_SESSION['permisos'][6]['r'])) { ?>
+                <li><a href="<?= Base_URL(); ?>/Categorias">Categorias</a></li>
+              <?php } ?>
+            </ul>
+          </li>
+        <?php } ?>
+        <?php if (!empty($_SESSION['permisos'][5]['r'])) { ?>
+          <li>
+            <a href="<?= Base_URL(); ?>/clientes" class="dropdown-toggle no-arrow">
+              <span class="micon dw dw-shopping-cart1"></span><span class="mtext">Pedidos</span>
+            </a>
+          </li>
+        <?php } ?>
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle">
             <span class="micon dw dw-settings1"></span><span class="mtext">Configuración</span>

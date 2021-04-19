@@ -28,7 +28,6 @@ function footer($data = "")
   require_once($view_footer);
 }
 
-
 //Muestra los objetos de forma formateada
 function dep($data)
 {
@@ -58,6 +57,21 @@ function sendEmail($data, $template)
   $mensaje = ob_get_clean();
   $send = mail($emailDestino, $asunto, $mensaje, $de);
   return $send;
+}
+function getPermisos(int $idModulo)
+{
+  require_once("Models/PermisosModel.php");
+  $objPermisos = new PermisosModel();
+  $idrol = $_SESSION['userData']['idrol'];
+  $arrPermisos = $objPermisos->permisosModulo($idrol);
+  $permisos = '';
+  $permisosMod = '';
+  if (count($arrPermisos) > 0) {
+    $permisos = $arrPermisos;
+    $permisosMod =  isset($arrPermisos[$idModulo]) ? $arrPermisos[$idModulo] : "";
+  }
+  $_SESSION['permisos'] = $permisos;
+  $_SESSION['permisosMod'] = $permisosMod;
 }
 //Elimina el exceso de espacios entre palabras
 function strClean($strCadena)
@@ -122,4 +136,11 @@ function formatMoney($cantidad)
 {
   $cantidad = number_format($cantidad, 2, SPD, SPM);
   return $cantidad;
+}
+function sessionUser($idpersona)
+{
+  require_once("Models/LoginModel.php");
+  $objLogin = new LoginModel();
+  $request = $objLogin->sessionLogin($idpersona);
+  return $request;
 }
