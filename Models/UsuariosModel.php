@@ -36,7 +36,16 @@ class UsuariosModel extends Mysql
       $return = "sqlinjection";
     } else if (empty($request)) {
       $query_insert = "INSERT INTO `persona` (`indentificacion`,`nombres`,`apellidos`,`telefono`, `email_user`, `password`, `rolid`, `status`) VALUES (?,?,?,?,?,?,?,?)";
-      $arrData = array($this->strIdentificacion, $this->strNombre, $this->strApellido, $this->strTelefono, $this->strEmail, $this->strPassword, $this->intTipoId, $this->intStatus);
+      $arrData = array(
+        $this->strIdentificacion,
+        $this->strNombre,
+        $this->strApellido,
+        $this->strTelefono,
+        $this->strEmail,
+        $this->strPassword,
+        $this->intTipoId,
+        $this->intStatus
+      );
       $request_insert = $this->insert($query_insert, $arrData);
       $return = $request_insert;
     } else {

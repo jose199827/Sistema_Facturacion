@@ -64,7 +64,7 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
         <div class="dropdown">
           <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown">
             <span class="user-icon">
-              <img src="<?= vendors(); ?>/images/photo1.jpg" alt="">
+              <img src="<?= media(); ?>/img/avatar.png" alt="">
             </span>
             <span class="user-name"><?= $nombre[0]  . "  " . $apellido[0] ?>
 
@@ -73,7 +73,7 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
           <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
             <a class="dropdown-item" href="<?= Base_URL(); ?>/usuarios/perfil"><i class="dw dw-user1"></i> Perfil</a>
             <a class="dropdown-item" href="javascript:;" data-toggle="right-sidebar"><i class="dw dw-paint-palette"></i> Diseño</a>
-            <a class="dropdown-item" href="<?= Base_URL(); ?>/Logout"><i class="dw dw-logout1"></i>Cerrar Seccion</a>
+            <a class="dropdown-item" href="<?= Base_URL(); ?>/Logout"><i class="dw dw-logout1"></i>Cerrar Sesion</a>
           </div>
         </div>
       </div>

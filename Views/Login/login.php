@@ -29,7 +29,11 @@
 </head>
 
 <body class="login-page">
-
+  <div id="divLoading">
+    <div>
+      <img src="<?= media(); ?>/img/loading.svg" alt="Cargador de Tienda Virtual">
+    </div>
+  </div>
   <div class="login-wrap d-flex align-items-center flex-wrap justify-content-center">
     <div class="container">
       <div class="row align-items-center">
