@@ -380,7 +380,7 @@
                               <tr style="border-collapse:collapse">
                                 <td align="center" style="padding:0;Margin:0;padding-left:40px;padding-right:40px">
                                   <p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:24px;color:#031E23;font-size:16px">
-                                    <strong>HOLA,&nbsp<?= $data['nombreUsuario']; ?></strong>
+                                    <strong>HOLA, <?= $data['nombreUsuario']; ?></strong>
                                   </p>
                                 </td>
                               </tr>

@@ -45,7 +45,16 @@ class Usuarios extends Controllers
           $option = 1;
           $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
           if ($_SESSION['permisosMod']['w']) {
-            $request_user = $this->model->insertUsuario($strIdentificacion, $strNombre, $strApellido, $strTelefono, $strEmail, $intTipousuario, $intStatus, $strPassword);
+            $request_user = $this->model->insertUsuario(
+              $strIdentificacion,
+              $strNombre,
+              $strApellido,
+              $strTelefono,
+              $strEmail,
+              $intTipousuario,
+              $intStatus,
+              $strPassword
+            );
           }
         } else {
           $option = 2;
