@@ -64,6 +64,15 @@ document.addEventListener('DOMContentLoaded', function() {
             swal("Atención", "Todos los campos son obligatorios.", "error");
             return false;
         }
+        let elemtedValid = document.getElementsByClassName("valid");
+        for (let i = 0; i < elemtedValid.length; i++) {
+            if (elemtedValid[i].classList.contains('form-control-danger')) {
+                swal("Atención", "Por favor verifique los campos en rojo.", "error");
+                return false;
+            }
+        }
+
+        divLoading.style.display = "flex";
         var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
         var ajaxUrl = base_url + '/Roles/setRoles';
         var formData = new FormData(formRol);

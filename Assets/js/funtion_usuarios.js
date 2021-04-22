@@ -111,6 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             rowTable.cells[3].textContent = intTelefono;
                             rowTable.cells[4].textContent = document.querySelector('#listRolid').selectedOptions[0].text;
                             rowTable.cells[5].innerHTML = htmlStatus;
+                            $rowTable = "";
                         }
                         $('#usuarios-modal').modal('hide');
                         formUsuario.reset();
