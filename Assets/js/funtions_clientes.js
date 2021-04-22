@@ -11,7 +11,7 @@ let divLoading = document.querySelector('#divLoading');
 /* Cuando el documento ya este cargado*/
 /*############################# */
 document.addEventListener('DOMContentLoaded', function() {
-    var buttonCommon = {
+    let buttonCommon = {
         exportOptions: {
             columns: function(column, data, node) {
                 if (column > 4) {

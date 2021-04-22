@@ -167,12 +167,12 @@ class Clientes extends Controllers
       if ($_SESSION['permisosMod']['d']) {
         $intIdpersona = intval($_POST['idUsuario']);
         $requestDelete = "";
-        $requestDelete = $this->model->deleteCliente($intIdpersona);
+        $requestDelete = $this->model->deleteCategoria($intIdpersona);
 
         if ($requestDelete) {
-          $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el cliente.');
+          $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado la categoría.');
         } else {
-          $arrResponse = array('status' => false, 'msg' => 'Error al eliminar el cliente.');
+          $arrResponse = array('status' => false, 'msg' => 'Error al eliminar la categoría.');
         }
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
       }

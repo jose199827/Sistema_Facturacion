@@ -144,3 +144,14 @@ function sessionUser($idpersona)
   $request = $objLogin->sessionLogin($idpersona);
   return $request;
 }
+function uploadImage(array $data, string $carpeta, string $name)
+{
+  $url_temp = $data['tmp_name'];
+  $destino = 'Assets/img/imgUploads/' . $carpeta . '/' . $name;
+  $mover = move_uploaded_file($url_temp, $destino);
+  return $mover;
+}
+function deleteFile(string $carpeta, string $name)
+{
+  unlink('Assets/img/imgUploads/' . $carpeta . '/' . $name);
+}
