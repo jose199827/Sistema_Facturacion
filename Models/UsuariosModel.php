@@ -32,6 +32,7 @@ class UsuariosModel extends Mysql
     $return = 0;
     $sql = "SELECT * FROM `persona` WHERE `email_user`= '{$this->strEmail}' OR `indentificacion`='{$this->strIdentificacion}'";
     $request = $this->selectAll($sql);
+
     if ($this->strIdentificacion == "" || $this->strNombre == "" || $this->strApellido == "" || $this->strTelefono == "" || $this->strEmail == "" || $this->strPassword == "" || $this->intTipoId == "" || $this->intStatus == "") {
       $return = "sqlinjection";
     } else if (empty($request)) {
