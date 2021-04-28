@@ -15,9 +15,14 @@
 
 
 <p>
-    Este es el ejemplo más mínimo de Dropzone. La carga en este ejemplo no funciona, porque no hay un servidor real para manejar la carga del archivo.
+  Este es el ejemplo más mínimo de Dropzone. La carga en este ejemplo no funciona, porque no hay un servidor real para manejar la carga del archivo.
 </p>
 
 <!-- Change /upload-target to your upload address -->
-<form action="/upload-target" class="dropzone dz-clickable" id="my-awesome-dropzone">
+<form action="upload.php" class="dropzone dropzone-single dz-clickable" id="my-awesome-dropzone">
 </form>
+<p>
+  Solo un div
+</p>
+<div url="upload.php" class="dropzone dz-clickable" id="my-awesome-dropzone">
+</div>

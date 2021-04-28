@@ -327,12 +327,12 @@ var Dropzone = /*#__PURE__*/ function(_Emitter) {
                      * The `options.transformFile` function uses these options, so if the `transformFile` function
                      * is overridden, these options don't do anything.
                      */
-                    resizeWidth: null,
+                    resizeWidth: 500,
 
                     /**
                      * See `resizeWidth`.
                      */
-                    resizeHeight: null,
+                    resizeHeight: 500,
 
                     /**
                      * The mime type of the resized image (before it gets uploaded to the server).

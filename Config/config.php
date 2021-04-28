@@ -9,7 +9,7 @@ const DB_CHARSET = "utf8";
 // Variables para las conversion de modeda
 const SPD = ".";
 const SPM = ",";
-const SMONEY = "L.";
+const SMONEY = "L. ";
 
 const NOMBRE_REMITENTE = "Tienda Virtual";
 const NOMBRE_EMPRESA = "Tienda Virtual";

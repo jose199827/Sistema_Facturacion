@@ -1,6 +1,7 @@
 <!-- js -->
 <script>
-  const base_url = "<?= Base_URL(); ?>"
+  const base_url = "<?= Base_URL(); ?>";
+  const smony = "<?= SMONEY; ?>";
 </script>
 
 
@@ -23,10 +24,8 @@
 <script src="<?= media(); ?>/plugins/datatables/js/buttons.flash.min.js"></script>
 <script src="<?= media(); ?>/plugins/datatables/js/pdfmake.min.js"></script>
 <script src="<?= media(); ?>/plugins/datatables/js/vfs_fonts.js"></script>
-
-
-
-
+<script src="<?= media(); ?>/js/tinymce/tinymce.min.js"></script>
+<script src="<?= media(); ?>/plugins/BarCode/JsBarcode.all.min.js"></script>
 
 
 
