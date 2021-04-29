@@ -17,3 +17,5 @@ const WEB_EMPRESA = BASE_URL;
 const EMAIL_EMPRESA = "josedesarrollop@gmail.com";
 //Variable para la Zona horaria 
 date_default_timezone_set("America/Tegucigalpa");
+const CAT_SLIDER = "1,2,3";
+const CAT_BANNER = "1,4,5";
