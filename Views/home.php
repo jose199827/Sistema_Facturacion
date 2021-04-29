@@ -1,24 +1,161 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    <?php echo ($data['page_tag']); ?>
-  </title>
-</head>
-Jose
-<?php
-if (function_exists('mail')) {
-  echo "La función mail -SI- esta activada";
-} else {
-  echo "La función mail -NO- esta activada";
-}
+<?php headerTienda($data);
+getModal("modalCarrito", $data);
+$arrSlider = $data['slider'];
+$arrBanner = $data['banner'];
+$arrProductos = $data['productos'];
+/* dep($arrProductos); */
 ?>
 
-<body>
+<!-- Slider -->
+<section class="section-slide">
+  <div class="wrap-slick1">
+    <div class="slick1">
+      <?php
+      for ($i = 0; $i < count($arrSlider); $i++) {
+        if ($i == 0) {
+          $animateDescription = "fadeInDown";
+          $animateName = "fadeInUp";
+          $animateButton = "zoomIn";
+        } elseif ($i == 1) {
+          $animateDescription = "rollIn";
+          $animateName = "lightSpeedIn";
+          $animateButton = "slideInUp";
+        } elseif ($i == 2) {
+          $animateDescription = "rotateInDownLeft";
+          $animateName = "rotateInUpRight";
+          $animateButton = "rotateIn";
+        } else {
+          $animateDescription = "fadeInDown";
+          $animateName = "fadeInUp";
+          $animateButton = "zoomIn";
+        }
 
-</body>
+      ?>
+        <div class="item-slick1" style="background-image: url(<?= $arrSlider[$i]['portada']; ?>);">
+          <div class="container h-full">
+            <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
+              <div class="layer-slick1 animated visible-false" data-appear="<?= $animateDescription; ?>" data-delay="0">
+                <span class="ltext-101 cl2 respon2">
+                  <?= $arrSlider[$i]['descripcion']; ?>
+                </span>
+              </div>
 
-</html>
+              <div class="layer-slick1 animated visible-false" data-appear="<?= $animateName; ?>" data-delay="800">
+                <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
+                  <?= $arrSlider[$i]['nombre']; ?>
+                </h2>
+              </div>
+
+              <div class="layer-slick1 animated visible-false" data-appear="<?= $animateButton; ?>" data-delay="1600">
+                <a href="<?= base_url() . '/Tienda/Categoria/' . $arrSlider[$i]['nombre']; ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                  Compra ahora
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php
+      }
+      ?>
+    </div>
+  </div>
+</section>
+
+
+<!-- Banner -->
+<div class="sec-banner bg0 p-t-80 p-b-50">
+  <div class="container">
+    <div class="row">
+      <?php
+      for ($i = 0; $i < count($arrBanner); $i++) {
+      ?>
+        <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
+          <!-- Block1 -->
+          <div class="block1 wrap-pic-w">
+            <img src="<?= $arrBanner[$i]['portada']; ?>" alt="<?= $arrBanner[$i]['nombre'] . " " . $arrBanner[$i]['descripcion']; ?>">
+
+            <a href="<?= base_url() . '/Tienda/Categoria/' . $arrBanner[$i]['nombre']; ?>" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+              <div class="block1-txt-child1 flex-col-l">
+                <span class="block1-name ltext-102 trans-04 p-b-8">
+                  <?= $arrBanner[$i]['nombre']; ?>
+                </span>
+
+                <span class="block1-info stext-102 trans-04">
+                  <?= $arrBanner[$i]['descripcion']; ?>
+                </span>
+              </div>
+
+              <div class="block1-txt-child2 p-b-4 trans-05">
+                <div class="block1-link stext-101 cl0 trans-09">
+                  Ver Productos
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      <?php
+      }
+      ?>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Product -->
+<section class="bg0 p-t-23 p-b-140">
+  <div class="container">
+    <div class="p-b-10">
+      <h3 class="ltext-103 cl5">
+        Nuevos Productos
+      </h3>
+    </div>
+    <hr>
+    <div class="row isotope-grid">
+      <?php
+      for ($i = 0; $i < count($arrProductos); $i++) {
+        if (count($arrProductos[$i]['images']) > 0) {
+          $portada = $arrProductos[$i]['images'][0]['url_img'];
+        } else {
+          $portada = media() . '/img/imgUploads/imgProductos/Producto_Default.png';
+        }
+
+      ?>
+        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+          <!-- Block2 -->
+          <div class="block2">
+            <div class="block2-pic hov-img0">
+              <img src="<?= $portada; ?>" alt="<?= $arrProductos[$i]['nombre']; ?>">
+              <a href="<?= base_url() . '/Tienda/Producto/' . $arrProductos[$i]['nombre']; ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                Ver Producto
+              </a>
+            </div>
+            <div class="block2-txt flex-w flex-t p-t-14">
+              <div class="block2-txt-child1 flex-col-l ">
+                <a href="<?= base_url() . '/Tienda/Producto/' . $arrProductos[$i]['nombre']; ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                  <?= $arrProductos[$i]['nombre']; ?>
+                </a>
+                <span class="stext-105 cl3">
+                  <?= SMONEY . formatMoney($arrProductos[$i]['precio']); ?>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php
+      }
+      ?>
+    </div>
+
+    <!-- Load more -->
+    <div class="flex-c-m flex-w w-full p-t-45">
+      <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+        Load More
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<?php footerTienda($data); ?>

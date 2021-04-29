@@ -171,19 +171,16 @@ document.addEventListener('DOMContentLoaded', function() {
             fntInputFile();
         }
     }
-
-
 }, false);
 
 /* $(document).ready(function() {
     $('#tableProductos').DataTable();
 }); */
+
 window.addEventListener('load', function() {
     fntInputFile();
     fntCategoria();
 }, false);
-
-
 
 if (document.querySelector("#txtCodigo")) {
     let inputCodigo = document.querySelector("#txtCodigo");
@@ -196,7 +193,6 @@ if (document.querySelector("#txtCodigo")) {
         }
     };
 }
-
 
 tinymce.init({
     selector: '#txtDescripcion',
@@ -211,9 +207,6 @@ tinymce.init({
     ],
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
 });
-
-
-
 
 function fntCategoria() {
     if (document.querySelector('#listCategoria')) {
@@ -247,8 +240,6 @@ function openModal() {
     $('#productos-modal').modal('show');
 }
 
-
-
 function fntBarcode() {
     let codigo = document.querySelector("#txtCodigo").value;
     JsBarcode("#barcode", codigo, {
@@ -280,7 +271,6 @@ tinymce.init({
     ],
     toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
 });
-
 
 function fntInputFile() {
     let inputUploadfile = document.querySelectorAll(".inputUploadfile");
@@ -455,8 +445,8 @@ function fntDelProducto(idProducto) {
         text: "¿Realmente quieres eliminar este Producto?",
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#1B00FF',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#1b00ff',
+        cancelButtonColor: '#dc3545',
         confirmButtonText: "Si, eliminar!",
         cancelButtonText: "No, cancelar!",
         preConfirm: false

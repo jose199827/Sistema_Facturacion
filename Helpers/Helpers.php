@@ -22,6 +22,16 @@ function footerAdmin($data = "")
   $view_footer = "Views/Templante/admin_footer.php";
   require_once($view_footer);
 }
+function headerTienda($data = "")
+{
+  $view_header = "Views/Templante/tienda_header.php";
+  require_once($view_header);
+}
+function footerTienda($data = "")
+{
+  $view_footer = "Views/Templante/tienda_footer.php";
+  require_once($view_footer);
+}
 function footer($data = "")
 {
   $view_footer = "Views/Templante/footer.php";
