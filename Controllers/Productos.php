@@ -38,16 +38,18 @@ class Productos extends Controllers
             $strPrecio = strtolower(strClean($_POST['txtPrecio']));
             $intStock = strtolower(strClean($_POST['txtStock']));
             $intStatus = intval($_POST['listStatus']);
+            $ruta = strtolower(cleanCadena($strNombre));
+            $ruta = str_replace(" ", "-", $ruta);
             $request_producto = "";
             if ($idProducto == 0) {
                $option = 1;
                if ($_SESSION['permisosMod']['w']) {
-                  $request_producto = $this->model->insertProducto($strNombre, $strDescripcion, $strCodigo, $intCategoriaid, $strPrecio, $intStock, $intStatus);
+                  $request_producto = $this->model->insertProducto($strNombre, $strDescripcion, $strCodigo, $intCategoriaid, $strPrecio, $intStock, $ruta, $intStatus);
                }
             } else {
                $option = 2;
                if ($_SESSION['permisosMod']['u']) {
-                  $request_producto = $this->model->updateProducto($idProducto, $strNombre, $strDescripcion, $strCodigo, $intCategoriaid, $strPrecio, $intStock, $intStatus);
+                  $request_producto = $this->model->updateProducto($idProducto, $strNombre, $strDescripcion, $strCodigo, $intCategoriaid, $strPrecio, $intStock, $ruta, $intStatus);
                }
             }
             if ($request_producto > 0) {

@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             rowTable.cells[2].textContent = strNombre + " " + strApellido;
                             rowTable.cells[3].textContent = strEmail;
                             rowTable.cells[4].textContent = intTelefono;
-                            $rowTable = "";
+                            rowTable = "";
                         }
                         $('#clientes-modal').modal('hide');
                         formCliente.reset();

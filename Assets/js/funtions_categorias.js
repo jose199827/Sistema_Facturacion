@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             rowTable.cells[1].textContent = strNombre;
                             rowTable.cells[2].textContent = strDescripcion;
                             rowTable.cells[3].innerHTML = htmlStatus;
-                            $rowTable = "";
+                            rowTable = "";
                         }
                         $('#categorias-modal').modal("hide");
                         formCategoria.reset();
@@ -191,7 +191,7 @@ function removePhoto() {
 }
 
 function openModal() {
-    $rowTable = "";
+    rowTable = "";
     document.querySelector("#txtNombre").classList.remove('form-control-danger');
     document.querySelector("#txtDescripcion").classList.remove('form-control-danger');
     document.querySelector('#idCategoria').value = "";

@@ -24,11 +24,14 @@ class Tienda extends Controllers
       if (empty($params)) {
          header('Location: ' . Base_URL());
       } else {
-         $categoria = strClean($params);
-         $data['page_tag'] =  NOMBRE_EMPRESA . " - " . $categoria;
-         $data['page_title'] = $categoria;
+         $arrParras = explode(",", $params);
+         $idcategoria = intval($arrParras[0]);
+         $ruta = strClean($arrParras[1]);
+         $infoCategoria = $this->getProductosCategodiaT($idcategoria, $ruta);
+         $data['page_tag'] =  NOMBRE_EMPRESA . " - " . $infoCategoria['categoria'];
+         $data['page_title'] = $infoCategoria['categoria'];
          $data['page_name'] = "categoría";
-         $data['productos'] = $this->getProductosCategodiaT($categoria);
+         $data['productos'] = $infoCategoria['productos'];
          $this->views->getView($this, "categoria", $data);
       }
    }
@@ -37,13 +40,18 @@ class Tienda extends Controllers
       if (empty($params)) {
          header('Location: ' . Base_URL());
       } else {
-         $producto = strClean($params);
-         $arrProducto = $this->getProductoT($params);
-         $data['page_tag'] =  NOMBRE_EMPRESA . " - " . $producto;
-         $data['page_title'] = $producto;
+         $arrParras = explode(",", $params);
+         $idproducto = intval($arrParras[0]);
+         $ruta = strClean($arrParras[1]);
+         $infoProducto = $this->getProductoT($idproducto, $ruta);
+         if (empty($infoProducto)) {
+            header('Location: ' . Base_URL() . '/Tienda');
+         }
+         $data['page_tag'] =  NOMBRE_EMPRESA . " - " . $infoProducto['nombre'];
+         $data['page_title'] = $infoProducto['nombre'];
          $data['page_name'] = "producto";
-         $data['producto'] = $arrProducto;
-         $data['productos'] = $this->getProductosRandom($arrProducto['categoriaid'], 8, "r");
+         $data['producto'] = $infoProducto;
+         $data['productos'] = $this->getProductosRandom($infoProducto['categoriaid'], 8, "r");
          $this->views->getView($this, "producto", $data);
       }
    }

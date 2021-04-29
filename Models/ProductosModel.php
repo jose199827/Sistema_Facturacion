@@ -10,6 +10,7 @@ class ProductosModel extends Mysql
   private $precio;
   private $stock;
   private $status;
+  private $ruta;
   private $imgNombre;
   public function __construct()
   {
@@ -35,7 +36,7 @@ class ProductosModel extends Mysql
     $request = $this->selectAll($sql);
     return $request;
   }
-  public function insertProducto($strNombre, $strDescripcion, $strCodigo, $intCategoriaid, $strPrecio, $intStock, $intStatus)
+  public function insertProducto($strNombre, $strDescripcion, $strCodigo, $intCategoriaid, $strPrecio, $intStock, $ruta, $intStatus)
   {
     $this->nombre = $strNombre;
     $this->descripcion = $strDescripcion;
@@ -43,6 +44,7 @@ class ProductosModel extends Mysql
     $this->categoriaid = $intCategoriaid;
     $this->precio = $strPrecio;
     $this->stock = $intStock;
+    $this->ruta = $ruta;
     $this->status = $intStatus;
     $return = 0;
     $sql = "SELECT * FROM `producto` WHERE `codigo`= '{$this->codigo}'";
@@ -50,7 +52,7 @@ class ProductosModel extends Mysql
     if ($this->nombre == "" || $this->descripcion == "" || $this->codigo == "" || $this->categoriaid == "" || $this->precio == "" || $this->stock == "" || $this->status == "") {
       $return = "sqlinjection";
     } else if (empty($request)) {
-      $query_insert = "INSERT INTO `producto` (`categoriaid`, `codigo`, `nombre`, `descripcion`, `precio`, `stock`,`status`) VALUES (?, ?, ?, ?, ?, ?,?)";
+      $query_insert = "INSERT INTO `producto` (`categoriaid`, `codigo`, `nombre`, `descripcion`, `precio`, `stock`,`ruta`,`status`) VALUES (?, ?, ?, ?, ?, ?,?,?)";
       $arrData = array(
         $this->categoriaid,
         $this->codigo,
@@ -58,6 +60,7 @@ class ProductosModel extends Mysql
         $this->descripcion,
         $this->precio,
         $this->stock,
+        $this->ruta,
         $this->status
       );
       $request_insert = $this->insert($query_insert, $arrData);
@@ -67,7 +70,7 @@ class ProductosModel extends Mysql
     }
     return $return;
   }
-  public function updateProducto($idProducto, $strNombre, $strDescripcion, $strCodigo, $intCategoriaid, $strPrecio, $intStock, $intStatus)
+  public function updateProducto($idProducto, $strNombre, $strDescripcion, $strCodigo, $intCategoriaid, $strPrecio, $intStock, $ruta, $intStatus)
   {
     $this->idproducto = $idProducto;
     $this->nombre = $strNombre;
@@ -76,6 +79,7 @@ class ProductosModel extends Mysql
     $this->categoriaid = $intCategoriaid;
     $this->precio = $strPrecio;
     $this->stock = $intStock;
+    $this->ruta = $ruta;
     $this->status = $intStatus;
     $return = 0;
     $sql = "SELECT * FROM `producto` WHERE `codigo`= '{$this->codigo}' AND idproducto != $this->idproducto";
@@ -83,7 +87,7 @@ class ProductosModel extends Mysql
     if ($this->nombre == "" || $this->descripcion == "" || $this->codigo == "" || $this->categoriaid == "" || $this->precio == "" || $this->stock == "" || $this->status == "") {
       $return = "sqlinjection";
     } else if (empty($request)) {
-      $query_insert = "UPDATE producto SET categoriaid=?, codigo=?,nombre=?,descripcion=?,precio=?,stock=?,`status`=? WHERE idproducto= $this->idproducto";
+      $query_insert = "UPDATE producto SET categoriaid=?, codigo=?,nombre=?,descripcion=?,precio=?,stock=?,`ruta`=?,`status`=? WHERE idproducto= $this->idproducto";
       $arrData = array(
         $this->categoriaid,
         $this->codigo,
@@ -91,6 +95,7 @@ class ProductosModel extends Mysql
         $this->descripcion,
         $this->precio,
         $this->stock,
+        $this->ruta,
         $this->status
       );
       $request = $this->update($query_insert, $arrData);
