@@ -16,7 +16,7 @@
 					<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 				</a>
 
-				<a href="<?= Base_URL() . '/Tienda/Categoria/' . $arrProducto['categoria']; ?>" class="stext-109 cl8 hov-cl1 trans-04">
+				<a href="<?= Base_URL() . '/Tienda/Categoria/' . $arrProducto['categoriaid'] . '/' . $arrProducto['categoriaRuta']; ?>" class="stext-109 cl8 hov-cl1 trans-04">
 					<?= $arrProducto['categoria']; ?>
 					<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 				</a>
@@ -42,16 +42,11 @@
 
 									<?php
 									for ($i = 0; $i < count($arrImages); $i++) {
-										if (!empty($arrImages)) {
-											$portada = $arrImages[$i]['url_img'];
-										} else {
-											$portada = media() . '/img/imgUploads/imgProductos/Producto_Default.png';
-										}
 									?>
-										<div class="item-slick3" data-thumb="<?= $portada; ?>">
+										<div class="item-slick3" data-thumb="<?= $arrImages[$i]['url_img']; ?>">
 											<div class="wrap-pic-w pos-relative">
-												<img src="<?= $portada; ?>" alt="<?= $arrProducto['nombre']; ?>">
-												<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="<?= $portada; ?>">
+												<img src="<?= $arrImages[$i]['url_img']; ?>" alt="<?= $arrProducto['nombre']; ?>">
+												<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="<?= $arrImages[$i]['url_img']; ?>">
 													<i class="fa fa-expand"></i>
 												</a>
 											</div>
@@ -177,6 +172,7 @@
 						<?php
 						if (!empty($arrProductos)) {
 							for ($i = 0; $i < count($arrProductos); $i++) {
+								$ruta = $arrProductos[$i]['ruta'];
 								if (count($arrProductos[$i]['images']) > 0) {
 									$portada = $arrProductos[$i]['images'][0]['url_img'];
 								} else {
@@ -189,14 +185,14 @@
 										<div class="block2-pic hov-img0">
 											<img src="<?= $portada; ?>" alt="<?= $arrProductos[$i]['nombre']; ?>">
 
-											<a href="<?= base_url() . '/Tienda/Producto/' . $arrProductos[$i]['nombre']; ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+											<a href="<?= base_url() . '/Tienda/Producto/' . $arrProductos[$i]['idproducto'] . '/' . $ruta; ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
 												Ver Producto
 											</a>
 										</div>
 
 										<div class="block2-txt flex-w flex-t p-t-14">
 											<div class="block2-txt-child1 flex-col-l ">
-												<a href="<?= base_url() . '/Tienda/Producto/' . $arrProductos[$i]['nombre']; ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+												<a href="<?= base_url() . '/Tienda/Producto/' . $arrProductos[$i]['idproducto'] . '/' . $ruta; ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 													<?= $arrProductos[$i]['nombre']; ?>
 												</a>
 

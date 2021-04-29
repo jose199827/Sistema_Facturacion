@@ -7,24 +7,31 @@ class CategoriasModel extends Mysql
   public $strDescripcion;
   public $intStatus;
   public $strPorta;
+  private $ruta;
   public function __construct()
   {
     parent::__construct();
   }
-  public function insertCategoria(string $strCategoria, string $strDescripcion, int $intStatus, string $imgPortada)
-  {
+  public function insertCategoria(
+    string $strCategoria,
+    string $strDescripcion,
+    int $intStatus,
+    string $imgPortada,
+    string $ruta
+  ) {
     $this->strCategoria = $strCategoria;
     $this->strDescripcion = $strDescripcion;
     $this->intStatus = $intStatus;
     $this->strPorta = $imgPortada;
+    $this->ruta = $ruta;
     $sql = "SELECT * FROM `categoria` WHERE  `nombre` ='{$this->strCategoria}'  AND `status`=1";
     $request = $this->selectAll($sql);
     if ($this->strCategoria == "" || $this->strDescripcion == "" || $this->intStatus == "" || $this->strPorta == "") {
       $return = "sqlinjection";
     } else if (empty($request)) {
 
-      $sql = "INSERT INTO `categoria` (`nombre`, `descripcion`, `portada`,`status`) VALUES (?,?,?,?)";
-      $arrData = array($this->strCategoria, $this->strDescripcion, $this->strPorta, $this->intStatus);
+      $sql = "INSERT INTO `categoria` (`nombre`, `descripcion`, `portada`,`ruta`,`status`) VALUES (?,?,?,?,?)";
+      $arrData = array($this->strCategoria, $this->strDescripcion, $this->strPorta, $this->ruta, $this->intStatus);
       $request_insert = $this->insert($sql, $arrData);
       $return = $request_insert;
     } else {
@@ -32,13 +39,14 @@ class CategoriasModel extends Mysql
     }
     return $return;
   }
-  public function updateCategoria($intidCategoria, $strCategoria, $strDescripcion, $intStatus, $imgPortada)
+  public function updateCategoria($intidCategoria, $strCategoria, $strDescripcion, $intStatus, $imgPortada, string $ruta)
   {
     $this->idCategoria = $intidCategoria;
     $this->strCategoria = $strCategoria;
     $this->strDescripcion = $strDescripcion;
     $this->intStatus = $intStatus;
     $this->strPorta = $imgPortada;
+    $this->ruta = $ruta;
     $sql = "SELECT * FROM `categoria` WHERE  `nombre` ='{$this->strCategoria}'  AND `idcategoria` !=$this->idCategoria   AND `status`=1 ";
     $request = $this->selectAll($sql);
 
@@ -48,12 +56,14 @@ class CategoriasModel extends Mysql
       $sql = "UPDATE `categoria` SET `nombre`=?,
         `descripcion`=?,
         `portada`=?,
+        `ruta`=?,
         `status`=?
         WHERE `idcategoria`=$this->idCategoria";
       $arrData = array(
         $this->strCategoria,
         $this->strDescripcion,
         $this->strPorta,
+        $this->ruta,
         $this->intStatus
       );
       $request = $this->update($sql, $arrData);
