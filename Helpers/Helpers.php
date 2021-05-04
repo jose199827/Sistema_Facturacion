@@ -57,6 +57,13 @@ function cleanCadena(string $cadena)
   );
   return $cadena;
 }
+function  getFile(string $url, $data)
+{
+  ob_start();
+  require_once("Views/{$url}.php");
+  $file = ob_get_clean();
+  return $file;
+}
 function headerAdmin($data = "")
 {
   $view_header = "Views/Templante/admin_header.php";

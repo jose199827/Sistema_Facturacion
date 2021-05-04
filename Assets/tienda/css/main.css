@@ -46,37 +46,37 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 @font-face {
     font-family: Poppins-Regular;
-    src: url('../fonts/Poppins/Poppins-Regular.ttf');
+    src: url("../fonts/Poppins/Poppins-Regular.ttf");
 }
 
 @font-face {
     font-family: Poppins-Light;
-    src: url('../fonts/Poppins/Poppins-Light.ttf');
+    src: url("../fonts/Poppins/Poppins-Light.ttf");
 }
 
 @font-face {
     font-family: Poppins-ExtraLight;
-    src: url('../fonts/Poppins/Poppins-ExtraLight.ttf');
+    src: url("../fonts/Poppins/Poppins-ExtraLight.ttf");
 }
 
 @font-face {
     font-family: Poppins-Medium;
-    src: url('../fonts/Poppins/Poppins-Medium.ttf');
+    src: url("../fonts/Poppins/Poppins-Medium.ttf");
 }
 
 @font-face {
     font-family: Poppins-Italic;
-    src: url('../fonts/Poppins/Poppins-Italic.ttf');
+    src: url("../fonts/Poppins/Poppins-Italic.ttf");
 }
 
 @font-face {
     font-family: Poppins-Bold;
-    src: url('../fonts/Poppins/Poppins-Bold.ttf');
+    src: url("../fonts/Poppins/Poppins-Bold.ttf");
 }
 
 @font-face {
     font-family: Poppins-SemiBold;
-    src: url('../fonts/Poppins/Poppins-SemiBold.ttf');
+    src: url("../fonts/Poppins/Poppins-SemiBold.ttf");
 }
 
 
@@ -84,12 +84,12 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 @font-face {
     font-family: PlayfairDisplay-Regular;
-    src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf');
+    src: url("../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf");
 }
 
 @font-face {
     font-family: PlayfairDisplay-Bold;
-    src: url('../fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf');
+    src: url("../fonts/PlayfairDisplay/PlayfairDisplay-Bold.ttf");
 }
 
 
@@ -97,12 +97,12 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 @font-face {
     font-family: Montserrat-Regular;
-    src: url('../fonts/Montserrat/Montserrat-Regular.ttf');
+    src: url("../fonts/Montserrat/Montserrat-Regular.ttf");
 }
 
 @font-face {
     font-family: Montserrat-Bold;
-    src: url('../fonts/Montserrat/Montserrat-Bold.ttf');
+    src: url("../fonts/Montserrat/Montserrat-Bold.ttf");
 }
 
 
@@ -856,7 +856,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     height: 100vh;
     top: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: rgba(0, 0, 0, 0);
     visibility: hidden;
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
@@ -953,7 +953,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
     height: 100vh;
     top: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: rgba(0, 0, 0, 0);
     visibility: hidden;
     -webkit-transition: all 0.4s;
     -o-transition: all 0.4s;
@@ -1033,7 +1033,7 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 }
 
 .header-cart-item-img::after {
-    content: '\e870';
+    content: "\e870";
     font-family: Linearicons-Free;
     font-size: 16px;
     display: -webkit-box;
@@ -2022,11 +2022,12 @@ input.num-product::-webkit-inner-spin-button {
 .table-shopping-cart .column-3 {
     width: 120px;
     font-size: 16px;
+    text-align: center;
 }
 
 .table-shopping-cart .column-4 {
     width: 145px;
-    text-align: right;
+    text-align: center;
 }
 
 .table-shopping-cart .column-5 {
@@ -2037,16 +2038,17 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .table-shopping-cart .table_row {
-    height: 185px;
+    height: 120px;
 }
 
-.table-shopping-cart .table_row td {
-    padding-bottom: 20px;
+
+/* .table-shopping-cart .table_row td {
+  padding-bottom: 20px;
 }
 
 .table-shopping-cart .table_row td.column-1 {
-    padding-bottom: 30px;
-}
+  padding-bottom: 30px;
+} */
 
 .table-shopping-cart .table_head th {
     font-family: Poppins-Bold;
@@ -2074,7 +2076,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .block1-txt {
-    background-color: rgba(103, 117, 214, 0.0);
+    background-color: rgba(103, 117, 214, 0);
 }
 
 
@@ -3230,7 +3232,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .how-itemcart1::after {
-    content: '\e870';
+    content: "\e870";
     font-family: Linearicons-Free;
     font-size: 16px;
     display: -webkit-box;

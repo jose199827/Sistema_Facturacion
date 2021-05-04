@@ -155,4 +155,40 @@ trait TProducto
 
       return $request;
    }
+
+   public  function getProductoIdT($idproducto)
+   {
+      $this->con = new Mysql();
+      $this->intIdProducto = $idproducto;
+      $sql = "SELECT p.idproducto, 
+                               p.codigo, 
+                               p.nombre, 
+                              p.descripcion, 
+                              p.categoriaid, 
+                              c.nombre AS categoria, 
+                              c.ruta AS categoriaRuta, 
+                              p.precio, 
+                              p.ruta,
+                              p.stock 
+                              FROM producto p 
+                              INNER JOIN categoria c 
+                              ON p.categoriaid = c.idcategoria 
+                              WHERE p.status !=0 AND  p.idproducto=$this->intIdProducto";
+      $request = $this->con->select($sql);
+
+      if (!empty($request)) {
+         $intIdProducto = $request['idproducto'];
+         $sqlImg = "SELECT productoid, img FROM `imagen` WHERE productoid=  $intIdProducto";
+         $arrImg = $this->con->selectAll($sqlImg);
+         if (count($arrImg) > 0) {
+            for ($j = 0; $j < count($arrImg); $j++) {
+               $arrImg[$j]['url_img'] = media() . '/img/imgUploads/imgProductos/' . $arrImg[$j]['img'];
+            }
+         } else {
+            $arrImg[0]['url_img'] = media() . '/img/imgUploads/imgProductos/Producto_Default.png';
+         }
+         $request['images'] = $arrImg;
+      }
+      return $request;
+   }
 }
