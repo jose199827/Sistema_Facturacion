@@ -1,3 +1,11 @@
+<?php
+$cantCarrito = "0";
+if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
+  foreach ($_SESSION['arrCarrito'] as $product) {
+    $cantCarrito += $product['cantidad'];
+  }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +13,7 @@
   <title><?= $data['page_tag']; ?></title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
   <!--===============================================================================================-->
   <link rel="icon" type="image/png" href="<?= media(); ?>/tienda/images/icons/favicon.png" />
   <!--===============================================================================================-->
@@ -34,11 +43,16 @@
   <!--===============================================================================================-->
   <link rel="stylesheet" type="text/css" href="<?= media(); ?>/tienda/css/util.css">
   <link rel="stylesheet" type="text/css" href="<?= media(); ?>/tienda/css/main.css">
+  <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/estilos.css">
   <!--===============================================================================================-->
 </head>
 
 <body class="animsition">
-
+  <div id="divLoading">
+    <div>
+      <img src="<?= media(); ?>/img/loading.svg" alt="Cargador de Tienda Virtual">
+    </div>
+  </div>
   <!-- Header -->
   <header>
     <!-- Header desktop -->
@@ -83,7 +97,7 @@
               </li>
 
               <li class="label1" data-label1="calentito">
-                <a href="shoping-cart.html">Compras</a>
+                <a href="<?= Base_URL(); ?>/Carrito">Compras</a>
               </li>
 
               <li>
@@ -101,11 +115,13 @@
             <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
               <i class="zmdi zmdi-search"></i>
             </div>
-
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
-              <i class="zmdi zmdi-shopping-cart"></i>
-            </div>
-
+            <?php if (($data['page_name'] != "carrito" && $data['page_name'] != "Procesar Pago")) {
+            ?>
+              <div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito   ?>">
+                <i class="zmdi zmdi-shopping-cart"></i>
+              </div>
+            <?php }
+            ?>
           </div>
         </nav>
       </div>
@@ -123,10 +139,13 @@
         <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
           <i class="zmdi zmdi-search"></i>
         </div>
-
-        <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
-          <i class="zmdi zmdi-shopping-cart"></i>
-        </div>
+        <?php if ($data['page_name'] != "carrito") {
+        ?>
+          <div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito   ?>">
+            <i class="zmdi zmdi-shopping-cart"></i>
+          </div>
+        <?php }
+        ?>
 
       </div>
 
@@ -175,7 +194,7 @@
         </li>
 
         <li>
-          <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Features</a>
+          <a href="<?= Base_URL(); ?>/Carrito" class="label1 rs1" data-label1="CALENTITO">Compras</a>
         </li>
 
         <li>
@@ -204,3 +223,22 @@
       </div>
     </div>
   </header>
+
+  <!-- Cart -->
+  <div class="wrap-header-cart js-panel-cart">
+    <div class="s-full js-hide-cart"></div>
+    <div class="header-cart flex-col-l p-l-65 p-r-25">
+      <div class="header-cart-title flex-w flex-sb-m p-b-8">
+        <span class="mtext-103 cl2">
+          Tu Carrito
+        </span>
+        <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+          <i class="zmdi zmdi-close"></i>
+        </div>
+      </div>
+
+      <div id="productosCarrito" class="header-cart-content flex-w js-pscroll">
+        <?php getModal('modalCarrito', $data); ?>
+      </div>
+    </div>
+  </div>

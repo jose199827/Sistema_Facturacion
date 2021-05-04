@@ -1,5 +1,4 @@
 		<?php headerTienda($data);
-		getModal("modalCarrito", $data);
 		/* dep($arrProductos); */
 		$arrProductos = $data['productos'];
 		$arrProducto = $data['producto'];
@@ -13,6 +12,11 @@
 			<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
 				<a href="<?= Base_URL(); ?>" class="stext-109 cl8 hov-cl1 trans-04">
 					Inicio
+					<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+				</a>
+
+				<a href="<?= Base_URL() . '/Tienda'; ?>" class="stext-109 cl8 hov-cl1 trans-04">
+					Tienda
 					<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
 				</a>
 
@@ -84,14 +88,14 @@
 												<i class="fs-16 zmdi zmdi-minus"></i>
 											</div>
 
-											<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+											<input id="cant-product" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1" min="1">
 
 											<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
 										<div class="p-t-30">
-											<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+											<button id="<?= openssl_encrypt($arrProducto['idproducto'], METHODENCRIPT, KEY); ?>" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
 												Agregar al Carrito
 											</button>
 										</div>

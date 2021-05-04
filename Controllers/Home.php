@@ -8,6 +8,7 @@ class Home extends Controllers
   public function __construct()
   { //Se manda a llamar el constructor de la clase heredada de controllers de la carpeta Librares/Core
     parent::__construct();
+    session_start();
   }
   //Se crea el método Home
   public function home()

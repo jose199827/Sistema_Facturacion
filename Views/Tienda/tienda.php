@@ -1,5 +1,4 @@
 	<?php headerTienda($data);
-	getModal("modalCarrito", $data);
 	/* dep($arrProductos); */
 	$arrProductos = $data['productos'];
 	/* dep($arrProductos); */
