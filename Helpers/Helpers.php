@@ -110,10 +110,12 @@ function sendEmail($data, $template)
   $emailDestino = $data['email'];
   $empresa = NOMBRE_REMITENTE;
   $remitente = EMAIL_EMPRESA;
+  $emailCopia = !empty($data['emailCopia']) ? $data['emailCopia'] : "";
   //ENVIO DE CORREO
   $de = "MIME-Version: 1.0\r\n";
   $de .= "Content-type: text/html; charset=UTF-8\r\n";
   $de .= "From: {$empresa} <{$remitente}>\r\n";
+  $de .= "Bcc: $emailCopia\r\n";
   ob_start();
   require_once("Views/Templante/Email/{$template}.php");
   $mensaje = ob_get_clean();
@@ -216,4 +218,84 @@ function uploadImage(array $data, string $carpeta, string $name)
 function deleteFile(string $carpeta, string $name)
 {
   unlink('Assets/img/imgUploads/' . $carpeta . '/' . $name);
+}
+
+function getTokenPaypal()
+{
+  $payLogin = curl_init(URLPAYPAL . "/v1/oauth2/token");
+  curl_setopt($payLogin, CURLOPT_SSL_VERIFYPEER, FALSE);
+  curl_setopt($payLogin, CURLOPT_RETURNTRANSFER, TRUE);
+  curl_setopt($payLogin, CURLOPT_USERPWD, PAYPALCLIENTE . ":" . SECRET);
+  curl_setopt($payLogin, CURLOPT_POSTFIELDS, "grant_type=client_credentials");
+  $result = curl_exec($payLogin);
+  $err = curl_error($payLogin);
+  curl_close($payLogin);
+  if ($err) {
+    $request = "CURL Error #:" . $err;
+  } else {
+    $objData = json_decode($result);
+    $request = $objData->access_token;
+  }
+  return $request;
+}
+
+function curlConnectionGet(string $ruta, string $contentType = null, string $token)
+{
+  $content_Type = ($contentType != null) ? $contentType : "application/x-www-form-urlencoded";
+  if ($token != null) {
+    $arrHeader = array(
+      'Content-Type: ' . $content_Type,
+      'Authorization: Bearer ' . $token
+    );
+  } else {
+    $arrHeader = array(
+      'Content-Type: ' . $content_Type
+    );
+  }
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL,  $ruta);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+  $result = curl_exec($ch);
+  $err = curl_error($ch);
+  curl_close($ch);
+  if ($err) {
+    $request = "CURL Error #:" . $err;
+  } else {
+    $objData = json_decode($result);
+    $request =  $objData;
+  }
+  return $request;
+}
+
+function curlConnectionPost(string $ruta, string $contentType = null, string $token)
+{
+  $content_Type = ($contentType != null) ? $contentType : "application/x-www-form-urlencoded";
+  if ($token != null) {
+    $arrHeader = array(
+      'Content-Type: ' . $content_Type,
+      'Authorization: Bearer ' . $token
+    );
+  } else {
+    $arrHeader = array(
+      'Content-Type: ' . $content_Type
+    );
+  }
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_URL,  $ruta);
+  curl_setopt($ch, CURLOPT_POST, TRUE);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+  $result = curl_exec($ch);
+  $err = curl_error($ch);
+  curl_close($ch);
+  if ($err) {
+    $request = "CURL Error #:" . $err;
+  } else {
+    $objData = json_decode($result);
+    $request =  $objData;
+  }
+  return $request;
 }

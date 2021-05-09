@@ -27,7 +27,13 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
         </div>
       </div>
     </div>
+    <?php echo getTokenPaypal();
 
+    $requestApiGet = curlConnectionGet(URLPAYPAL . "v2/checkout/orders/98A45056771623619", "application/json", getTokenPaypal());
+    dep($requestApiGet);
+    /* $requestApi = curlConnectionPost(URLPAYPAL . "/v2/payments/captures/91E075079T722911M/refund", "application/json", getTokenPaypal());
+    dep($requestApi); */
+    ?>
     <div class="row">
       <div class="col-xl-3 mb-30">
         <div class="card-box height-100-p widget-style1">
