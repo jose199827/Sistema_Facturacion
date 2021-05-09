@@ -139,7 +139,7 @@ if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
         <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 js-show-modal-search">
           <i class="zmdi zmdi-search"></i>
         </div>
-        <?php if ($data['page_name'] != "carrito") {
+        <?php if (($data['page_name'] != "carrito" && $data['page_name'] != "Procesar Pago")) {
         ?>
           <div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito   ?>">
             <i class="zmdi zmdi-shopping-cart"></i>

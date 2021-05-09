@@ -250,7 +250,8 @@ class Tienda extends Controllers
     }
     public function procesarVenta()
     {
-        /* dep($_POST); */
+        /* dep($_POST);
+        exit(); */
         if ($_POST) {
             $idtransaccionpaypal = NULL;
             $datospaypal = NULL;
@@ -260,14 +261,53 @@ class Tienda extends Controllers
             $direccionenvio = strClean($_POST['direccion'] . ', ' . strClean($_POST['ciudad']));
             $status = "Pendiente";
             $subtotal = 0;
-
+            $costoEnvio = COSTOENVIO;
+            $transaccion = "";
             if (!empty($_SESSION['arrCarrito'])) {
                 foreach ($_SESSION['arrCarrito'] as $pro) {
                     $subtotal += $pro['cantidad'] * $pro['precio'];
                 }
-                $monto = formatMoney($subtotal + COSTOENVIO);
+                $monto = ($subtotal + COSTOENVIO);
                 if (empty($_POST['datapay'])) {
-                    # code...
+                    $request_pedido = $this->insertPedido(
+                        $idtransaccionpaypal,
+                        $datospaypal,
+                        $personaid,
+                        $costoEnvio,
+                        $monto,
+                        $tipopagoid,
+                        $direccionenvio,
+                        $status
+                    );
+                    if ($request_pedido > 0) {
+                        foreach ($_SESSION['arrCarrito'] as $producto) {
+                            $productoid = $producto['idproducto'];
+                            $precio = $producto['precio'];
+                            $cantidad = $producto['cantidad'];
+                            $this->insertDetalle($request_pedido, $productoid, $precio, $cantidad);
+                        }
+                        $infoOrden = $this->getPedido($request_pedido);
+                        $dataEmailOrden = array(
+                            'asunto' => "Se ha creado la orden de Compra Nº. " . $request_pedido,
+                            'email' => $_SESSION['userData']['email_user'],
+                            'emailCopia' => EMAIL_PEDIDO,
+                            'pedido' => $infoOrden
+                        );
+                        sendEmail($dataEmailOrden, 'email_confirmarOrden');
+                        $orden = openssl_encrypt($request_pedido, METHODENCRIPT, KEY);
+                        /* $transaccion = openssl_encrypt($idtransaccionpaypal, METHODENCRIPT, KEY); */
+                        $arrResponse = array(
+                            "status" => true,
+                            "orden" =>   $orden,
+                            "transaccion" => $transaccion,
+                            "msg" => 'Se ha realizado el pedido.',
+                        );
+                        $_SESSION['dataorden'] =  $arrResponse;
+                        unset($_SESSION['arrCarrito']);
+                        session_regenerate_id(true);
+                    } else {
+                        $arrResponse = array("status" => false, "msg" => 'No es posible procesar el pedido.');
+                    }
                 } else {
                     $jsonPaypal = $_POST['datapay'];
                     $objPaypal = json_decode($jsonPaypal);
@@ -277,13 +317,15 @@ class Tienda extends Controllers
                         $idtransaccionpaypal = $objPaypal->purchase_units[0]->payments->captures[0]->id;
                         if ($objPaypal->status == "COMPLETED") {
                             $totalPaypal = formatMoney($objPaypal->purchase_units[0]->amount->value);
-                            if ($monto ==  $totalPaypal) {
+                            $paypalmonto = formatMoney($monto);
+                            if ($paypalmonto ==  $totalPaypal) {
                                 $status = "Completo";
                             }
                             $request_pedido = $this->insertPedido(
                                 $idtransaccionpaypal,
                                 $datospaypal,
                                 $personaid,
+                                $costoEnvio,
                                 $monto,
                                 $tipopagoid,
                                 $direccionenvio,
@@ -296,6 +338,14 @@ class Tienda extends Controllers
                                     $cantidad = $producto['cantidad'];
                                     $this->insertDetalle($request_pedido, $productoid, $precio, $cantidad);
                                 }
+                                $infoOrden = $this->getPedido($request_pedido);
+                                $dataEmailOrden = array(
+                                    'asunto' => "Se ha creado la orden de Compra Nº. " . $request_pedido,
+                                    'email' => $_SESSION['userData']['email_user'],
+                                    'emailCopia' => EMAIL_PEDIDO,
+                                    'pedido' => $infoOrden
+                                );
+                                sendEmail($dataEmailOrden, 'email_confirmarOrden');
                                 $orden = openssl_encrypt($request_pedido, METHODENCRIPT, KEY);
                                 $transaccion = openssl_encrypt($idtransaccionpaypal, METHODENCRIPT, KEY);
                                 $arrResponse = array(

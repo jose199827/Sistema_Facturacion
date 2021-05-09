@@ -99,17 +99,19 @@ trait TCliente
       $idtransaccionpaypal,
       $datospaypal,
       $personaid,
+      $costoEnvio,
       $monto,
       $tipopagoid,
       $direccionenvio,
       $status
    ) {
       $this->con = new Mysql();
-      $query_insert = "INSERT INTO `pedido`(`idtransaccionpaypal`, `datospaypal`, `personaid`, `monto`, `tipopagoid`, `Direccion_envio`, `status`) VALUES (?,?,?,?,?,?,?)";
+      $query_insert = "INSERT INTO `pedido`(`idtransaccionpaypal`, `datospaypal`, `personaid`,`costo_envio`, `monto`, `tipopagoid`, `Direccion_envio`, `status`) VALUES (?,?,?,?,?,?,?,?)";
       $arrData = array(
          $idtransaccionpaypal,
          $datospaypal,
          $personaid,
+         $costoEnvio,
          $monto,
          $tipopagoid,
          $direccionenvio,
@@ -125,5 +127,21 @@ trait TCliente
       $arrData = array($pedido, $productoid, $precio, $cantidad);
       $request_insert = $this->con->insert($query_insert, $arrData);
       return $request_insert;
+   }
+   public function getPedido($idpedido)
+   {
+      $this->con = new Mysql();
+      $request = array();
+      $sql = "SELECT p.idpedido, p.referenciacobro, p.idtransaccionpaypal,p.personaid,p.fecha,p.costo_envio,p.monto,p.tipopagoid,t.tipopago,p.Direccion_envio,p.status FROM pedido p INNER JOIN tipopago t ON p.tipopagoid= t.idtipopago WHERE p.idpedido=$idpedido";
+      $requestpedido = $this->con->select($sql);
+      if (count($requestpedido) > 0) {
+         $sql_detalle = "SELECT p.idproducto,p.nombre AS producto, d.precio,d.cantidad FROM detalle_pedido d INNER JOIN producto p ON d.productoid=p.idproducto WHERE d.pedidoid=$idpedido ";
+         $request_producto = $this->con->selectAll($sql_detalle);
+         $request = array(
+            'orden' => $requestpedido,
+            'detalle' => $request_producto
+         );
+      }
+      return $request;
    }
 }

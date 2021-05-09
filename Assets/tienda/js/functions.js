@@ -214,7 +214,6 @@
       }
   }
 
-
   if (document.querySelector("#formRegister")) {
       let formRegister = document.querySelector("#formRegister");
       formRegister.onsubmit = function(e) {
@@ -284,6 +283,7 @@
           fntViewPago();
       });
   }
+
   if (document.querySelector("#txtDireccion")) {
       let direccion = document.querySelector("#txtDireccion");
       direccion.addEventListener('keyup', function() {
@@ -300,4 +300,52 @@
       } else {
           document.querySelector("#divmetodpago").classList.remove("notblock");
       }
+  }
+
+  if (document.querySelector("#btnComprar")) {
+      let btnPago = document.querySelector("#btnComprar");
+      btnPago.addEventListener('click', function() {
+          let direccion = document.querySelector("#txtDireccion").value;
+          let ciudad = document.querySelector("#txtCiudad").value;
+          let inttipopago = document.querySelector("#listtipopago").value;
+          if (direccion == "" || ciudad == "" || inttipopago == "") {
+              swal("Error de Datos", "Complete los datos de envío o tipo de pago", "error");
+              return;
+          }
+          divLoading.style.display = "flex";
+          let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+          let ajaxUrl = base_url + '/Tienda/procesarVenta';
+          let formData = new FormData();
+          formData.append('direccion', direccion);
+          formData.append('ciudad', ciudad);
+          formData.append('inttipopago', inttipopago);
+          request.open("POST", ajaxUrl, true);
+          request.send(formData);
+          request.onreadystatechange = function() {
+              if (request.readyState != 4) return;
+              if (request.status == 200) {
+                  let objData = JSON.parse(request.responseText);
+                  if (objData.status) {
+                      window.location = base_url + "/Tienda/confirmarPedido"
+                          /* swal("Proceso", objData.msg, "success"); */
+                  } else {
+                      swal("Error", objData.msg, "error");
+                  }
+              }
+              divLoading.style.display = "none";
+
+          }
+      }, false);
+  }
+
+  if (document.querySelector("#condiciones")) {
+      let condiciones = document.querySelector("#condiciones");
+      condiciones.addEventListener('click', function() {
+          let condiciones = this.checked;
+          if (condiciones) {
+              document.querySelector('#optMetodoPago').classList.remove("notblock");
+          } else {
+              document.querySelector('#optMetodoPago').classList.add("notblock");
+          }
+      });
   }
