@@ -65,4 +65,4 @@ getModal("modalUsuarios", $data);
 </div>
 
 <!-- Se manda a llamar el footer  -->
-<?php footerTienda($data); ?>
+<?php footerAdmin($data); ?>
