@@ -42,7 +42,7 @@ getModal("modalClientes", $data);
         echo ("The formatted number is $result."); */
         ?>
         <!-- Simple Datatable start -->
-        <div class="card-box mb-30">
+        <div class="card-box">
           <div class="pd-20">
             <h4 class="text-blue h4">Tabla de Clientes</h4>
           </div>

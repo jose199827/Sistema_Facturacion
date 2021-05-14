@@ -276,3 +276,7 @@ textarea.form-control {
 #divCondiciones a {
     margin-left: 5px;
 }
+
+#body {
+    padding-right: 0px !important;
+}

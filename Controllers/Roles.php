@@ -10,7 +10,7 @@ class Roles extends Controllers
     if (empty($_SESSION['login'])) {
       header('location: ' . Base_URL() . '/login');
     }
-    getPermisos(2);
+    getPermisos(7);
   }
   //Se crea el método Home
   public function roles()

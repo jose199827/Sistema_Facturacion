@@ -12,6 +12,14 @@ const SPM = ",";
 const SMONEY = "$";
 const CURRENCY = "USD";
 
+//Modulos
+const MPEDIDOS = 5;
+const MCLIENTES = 3;
+
+//Roles
+const RADMINISTRADOR = 1;
+const RCLIENTES = 2;
+
 const NOMBRE_REMITENTE = "Tienda Virtual";
 const NOMBRE_EMPRESA = "Tienda Virtual";
 const WEB_EMPRESA = BASE_URL;
@@ -19,7 +27,7 @@ const EMAIL_EMPRESA = "josedesarrollop@gmail.com";
 
 // Variables para las conversion de modeda
 const DIRECCION = "Honduras, Tegucigalpa";
-const TELEFONO = "(504) 98748587";
+const TELEFONO = "(504) 9874-8587";
 const EMAIL_PEDIDO = "josedesarrollop@gmail.com";
 
 //Variable para la Zona horaria 

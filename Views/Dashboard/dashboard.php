@@ -27,65 +27,75 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
         </div>
       </div>
     </div>
-    <?php echo getTokenPaypal();
+    <?php
+
+    /* echo getTokenPaypal();
 
     $requestApiGet = curlConnectionGet(URLPAYPAL . "v2/checkout/orders/98A45056771623619", "application/json", getTokenPaypal());
-    dep($requestApiGet);
+    dep($requestApiGet); */
     /* $requestApi = curlConnectionPost(URLPAYPAL . "/v2/payments/captures/91E075079T722911M/refund", "application/json", getTokenPaypal());
     dep($requestApi); */
     ?>
-    <div class="row">
-      <div class="col-xl-3 mb-30">
-        <div class="card-box height-100-p widget-style1">
-          <div class="d-flex flex-wrap align-items-center">
-            <div class="progress-data">
-              <div id="chart"></div>
-            </div>
-            <div class="widget-data">
-              <div class="h4 mb-0">2020</div>
-              <div class="weight-600 font-14">Contact</div>
+    <div class="row pb-20">
+      <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+        <a href="<?= Base_URL(); ?>/Usuarios">
+          <div class="card-box height-100-p widget-style3">
+            <div class="d-flex flex-wrap">
+              <div class="widget-data">
+                <div class="weight-700 font-24 text-dark">75</div>
+                <div class="font-14 text-secondary weight-500">Usuarios</div>
+              </div>
+              <div class="widget-icon">
+                <div class="icon" data-color="#00eccf" style="color: rgb(0, 236, 207);"><i class="micon dw dw-id-card1"></i></div>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
-      <div class="col-xl-3 mb-30">
-        <div class="card-box height-100-p widget-style1">
-          <div class="d-flex flex-wrap align-items-center">
-            <div class="progress-data">
-              <div id="chart2"></div>
-            </div>
-            <div class="widget-data">
-              <div class="h4 mb-0">400</div>
-              <div class="weight-600 font-14">Deals</div>
+      <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+        <a href="<?= Base_URL(); ?>/Clientes">
+          <div class="card-box height-100-p widget-style3">
+            <div class="d-flex flex-wrap">
+              <div class="widget-data">
+                <div class="weight-700 font-24 text-dark">124,551</div>
+                <div class="font-14 text-secondary weight-500">Clientes</div>
+              </div>
+              <div class="widget-icon">
+                <div class="icon" data-color="#ff5b5b" style="color: rgb(255, 91, 91);"><span class="micon dw dw-group"></span></div>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
-      <div class="col-xl-3 mb-30">
-        <div class="card-box height-100-p widget-style1">
-          <div class="d-flex flex-wrap align-items-center">
-            <div class="progress-data">
-              <div id="chart3"></div>
-            </div>
-            <div class="widget-data">
-              <div class="h4 mb-0">350</div>
-              <div class="weight-600 font-14">Campaign</div>
+      <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+        <a href="<?= Base_URL(); ?>/Pedidos">
+          <div class="card-box height-100-p widget-style3">
+            <div class="d-flex flex-wrap">
+              <div class="widget-data">
+                <div class="weight-700 font-24 text-dark">400+</div>
+                <div class="font-14 text-secondary weight-500">Pedidos</div>
+              </div>
+              <div class="widget-icon">
+                <div class="icon"><i class="micon dw dw-shopping-cart1" aria-hidden="true"></i></div>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
-      <div class="col-xl-3 mb-30">
-        <div class="card-box height-100-p widget-style1">
-          <div class="d-flex flex-wrap align-items-center">
-            <div class="progress-data">
-              <div id="chart4"></div>
-            </div>
-            <div class="widget-data">
-              <div class="h4 mb-0">$6060</div>
-              <div class="weight-600 font-14">Worth</div>
+      <div class="col-xl-3 col-lg-3 col-md-6 mb-20">
+        <a href="<?= Base_URL(); ?>/Productos">
+          <div class="card-box height-100-p widget-style3">
+            <div class="d-flex flex-wrap">
+              <div class="widget-data">
+                <div class="weight-700 font-24 text-dark">$50,000</div>
+                <div class="font-14 text-secondary weight-500">Productos</div>
+              </div>
+              <div class="widget-icon">
+                <div class="icon" data-color="#09cc06" style="color: rgb(9, 204, 6);"><i class="micon dw dw-price-tag" aria-hidden="true"></i></div>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
     <div class="row">
@@ -102,7 +112,7 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
         </div>
       </div>
     </div>
-    <div class="card-box mb-30">
+    <div class="card-box">
       <h2 class="h4 pd-20">Best Selling Products</h2>
       <table class="data-table table nowrap">
         <thead>
