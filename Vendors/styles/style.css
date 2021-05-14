@@ -3990,7 +3990,7 @@ body.IE .register-page-wrap .container {
 
 .invoice-box {
     background: #fff;
-    width: 800px;
+    /* width: 800px; */
     margin: 0 auto;
     padding: 20px;
 }

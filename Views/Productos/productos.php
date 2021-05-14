@@ -32,7 +32,7 @@ getModal("modalProductos", $data);
       <!-- Contenido de la pagina -->
       <div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
         <!-- Simple Datatable start -->
-        <div class="card-box mb-30">
+        <div class="card-box">
           <div class="pd-20">
             <h4 class="text-blue h4">Tabla de Productos</h4>
           </div>

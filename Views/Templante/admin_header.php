@@ -36,7 +36,7 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
 
 </head>
 
-<body>
+<body id="body" class="">
   <div id="divLoading">
     <div>
       <img src="<?= media(); ?>/img/loading.svg" alt="Cargador de Tienda Virtual">

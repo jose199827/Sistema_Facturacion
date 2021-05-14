@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
             orderable: false,
         }],
         "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "Todos"]
+            [5, 10, 15, -1],
+            [5, 10, 15, "Todos"]
         ],
         "language": {
             "sProcessing": "Procesando...",
