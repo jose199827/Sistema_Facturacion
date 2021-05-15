@@ -118,4 +118,24 @@ class Pedidos extends Controllers
       $data['page_funtions_js'] = "funtions_pedidos.js";
       $this->views->getView($this, "transaccion", $data);
    }
+   public function getTransaccion($idTransaccion)
+   {
+      if ($_SESSION['permisosMod']['r'] && $_SESSION['userData']['idrol'] != RCLIENTES) {
+         if ($idTransaccion == "") {
+            $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
+         } else {
+            $transaccion = strClean($idTransaccion);
+            $requestTransaccion = $this->model->selectTransaccionPaypal($transaccion);
+
+            if (empty($requestTransaccion)) {
+               $arrResponse = array("status" => false, "msg" => "Datos no disponibles.");
+            } else {
+               $htmlModal = getFile("Templante/Modals/modalReembolso", $requestTransaccion);
+               $arrResponse = array("status" => true, "html" => $htmlModal);
+            }
+         }
+         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+      }
+      die();
+   }
 }
