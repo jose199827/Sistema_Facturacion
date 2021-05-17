@@ -1,6 +1,8 @@
 <?php
+require_once("Models/TTiposPagos.php");
 class Pedidos extends Controllers
 {
+   use TTiposPagos;
    public function __construct()
    { //Se manda a llamar el constructor de la clase heredada de controllers de la carpeta Librares/Core
       parent::__construct();
@@ -44,21 +46,21 @@ class Pedidos extends Controllers
 
             if ($_SESSION['permisosMod']['r']) {
                $btnView = '
-               <a class="dropdown-item btnViewProducto" href="javascript:;" onClick="fntViewPedido(' . $arrData[$i]['idpedido'] . ')"><i class="dw dw-file2"></i> Generar PDF</a>
+               <a class="dropdown-item" href="javascript:;" onClick="fntViewPedido(' . $arrData[$i]['idpedido'] . ')"><i class="dw dw-file2"></i> Generar PDF</a>
 
                <a class="dropdown-item btnViewPedido" href="' . base_url() . '/pedidos/orden/' . $arrData[$i]['idpedido'] .
                   '" target="_blanck" ><i class="dw dw-eye"></i> Ver Orden </a>';
 
 
                if ($arrData[$i]['tipopagoid'] == 1) {
-                  $btnView .= '<a class="dropdown-item btnViewProducto" href="' . base_url() . '/pedidos/transaccion/' . $arrData[$i]['idtransaccionpaypal'] . '" target="_blanck" ><i class="fa fa-paypal"></i> Ver Transacción</a>';
+                  $btnView .= '<a class="dropdown-item" href="' . base_url() . '/pedidos/transaccion/' . $arrData[$i]['idtransaccionpaypal'] . '" target="_blanck" ><i class="fa fa-paypal"></i> Ver Transacción</a>';
                }
             }
             if ($_SESSION['permisosMod']['u']) {
-               $btnEdit = '<a class="dropdown-item btnEditProducto" href="javascript:;" onClick="fntEditProducto(this,' . $arrData[$i]['idpedido'] . ')"><i class="dw dw-edit2"></i> Editar</a>';
+               $btnEdit = '<a class="dropdown-item" href="javascript:;" onClick="fntEditPedido(this,' . $arrData[$i]['idpedido'] . ')"><i class="dw dw-edit2"></i> Editar</a>';
             }
             if ($_SESSION['permisosMod']['d']) {
-               $btnDel = '<a class="dropdown-item btnDelProducto" href="javascript:;" onClick="fntDelProducto(' . $arrData[$i]['idpedido'] . ')"><i class="dw dw-delete-3"></i> Eliminar</a>';
+               $btnDel = '<a class="dropdown-item" href="javascript:;" onClick="fntDelPedido(' . $arrData[$i]['idpedido'] . ')"><i class="dw dw-delete-3"></i> Eliminar</a>';
             }
 
             $arrData[$i]['options'] = '<div class="dropdown ">
@@ -131,6 +133,47 @@ class Pedidos extends Controllers
                $arrResponse = array("status" => false, "msg" => "Datos no disponibles.");
             } else {
                $htmlModal = getFile("Templante/Modals/modalReembolso", $requestTransaccion);
+               $arrResponse = array("status" => true, "html" => $htmlModal);
+            }
+         }
+         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+      }
+      die();
+   }
+   public function setReembolso()
+   {
+      if ($_POST) {
+         $arrResponse = array();
+         if ($_SESSION['permisosMod']['u'] && $_SESSION['userData']['idrol'] != RCLIENTES) {
+            /* dep($_POST); */
+            $transaccion = strClean($_POST['idtransaccion']);
+            $observacion = strClean($_POST['observacion']);
+            $requestTransaccion = $this->model->reembolsoPaypal($transaccion, $observacion);
+            if ($requestTransaccion) {
+               $arrResponse = array("status" => true, "msg" => "Se ha proceso el Reembolso.");
+            } else {
+               $arrResponse = array("status" => false, "msg" => "No es posible procesar el Reembolso.");
+            }
+         } else {
+            $arrResponse = array("status" => false, "msg" => "No es posible realizar el proceso, consulte al administrador.");
+         }
+         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+      }
+      die();
+   }
+   public function getPedido($pedido)
+   {
+      if ($_SESSION['permisosMod']['u'] && $_SESSION['userData']['idrol'] != RCLIENTES) {
+         if ($pedido == "") {
+            $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
+         } else {
+            $idpedido = intval($pedido);
+            $requestPedido = $this->model->selectPedido($idpedido, "");
+            if (empty($requestPedido)) {
+               $arrResponse = array("status" => false, "msg" => "Datos no Encontrados.");
+            } else {
+               $requestPedido['tiposPago'] = $this->getTiposPagoT();
+               $htmlModal = getFile("Templante/Modals/modalPedido", $requestPedido);
                $arrResponse = array("status" => true, "html" => $htmlModal);
             }
          }

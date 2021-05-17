@@ -36,9 +36,7 @@ if (isset($transaccion->payments->refunds)) {
 }
 ?>
 
-<div id="divModal">
-
-</div>
+<div id="divModal"></div>
 <div class="mobile-menu-overlay"></div>
 
 <div class="main-container">

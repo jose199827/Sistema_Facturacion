@@ -83,4 +83,32 @@ class PedidosModel extends Mysql
       }
       return $objTransaccion;
    }
+   public function reembolsoPaypal($transaccion, $observacion)
+   {
+      $response = false;
+      $sql = "SELECT `idpedido`,`datospaypal` FROM `pedido` WHERE `idtransaccionpaypal`='{$transaccion}';";
+      $requestData = $this->select($sql);
+      if (!empty($requestData)) {
+         $objData = json_decode($requestData['datospaypal']);
+         $urlReembolso = $objData->purchase_units[0]->payments->captures[0]->links[1]->href;
+         $objTransaccion = curlConnectionPost($urlReembolso, "application/json", getTokenPaypal());
+         if (isset($objTransaccion->status) && $objTransaccion->status == "COMPLETED") {
+            $idpedido = $requestData['idpedido'];
+            $idtransaccion = $objTransaccion->id;
+            $status = $objTransaccion->status;
+            $json = json_encode($objTransaccion);
+            $observacion = $observacion;
+            $query_insert = "INSERT INTO `reembolso`(`pedidoid`, `idtransaccion`, `datosreemboolso`, `observacion`, `status`) VALUES (?,?,?,?,?)";
+            $arrData = array($idpedido, $idtransaccion, $json, $observacion, $status);
+            $request_insert = $this->insert($query_insert, $arrData);
+            if ($request_insert > 0) {
+               $updatePedido = "UPDATE `pedido` SET `status`=? WHERE `idpedido`= $idpedido";
+               $arrPedido = array("Reembolsado");
+               $request = $this->update($updatePedido, $arrPedido);
+               $response = true;
+            }
+         }
+      }
+      return  $response;
+   }
 }

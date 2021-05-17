@@ -12,7 +12,7 @@
       <div class="modal-body">
         <form id="formRol" name="formRol">
           <input type="hidden" name="idRol" id="idRol">
-          <p class="text-red-50">Todos los campos con son obligatorios *.</p>
+          <p class="text-primary">Los campos con asterisco (<span class="text-red-50">*</span>) son obligatorios.</p>
           <div class="row">
             <div class="col-md-12 col-sm-12">
               <div class="form-group">
