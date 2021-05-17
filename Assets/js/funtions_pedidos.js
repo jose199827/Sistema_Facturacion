@@ -1,4 +1,5 @@
 let tablePedidos;
+let rowTable;
 let divLoading = document.querySelector('#divLoading');
 let buttonCommon = {
     exportOptions: {
@@ -147,6 +148,7 @@ function fntReembolsar() {
 }
 
 function fntEditPedido(element, idpedido) {
+    rowTable = element.parentNode.parentNode.parentNode.parentNode;
     let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxUrl = base_url + '/Pedidos/getPedido/' + idpedido;
     divLoading.style.display = "flex";
@@ -190,13 +192,23 @@ function fntUpdateInfo() {
         request.send(formData);
         request.onreadystatechange = function() {
             if (request.readyState == 4 && request.status == 200) {
-                console.log(request.responseText);
+                let objData = JSON.parse(request.responseText);
+                if (objData.status) {
+                    if (document.querySelector('#txttrans')) {
+                        rowTable.cells[1].textContent = document.querySelector('#txttrans').value;
+                        rowTable.cells[4].textContent = document.querySelector('#listTipoPago').selectedOptions[0].innerHTML;
+                        rowTable.cells[5].textContent = document.querySelector('#listStatus').value;
+                    } else {
+                        rowTable.cells[5].textContent = document.querySelector('#listStatus').value;
+                    }
+                    swal("Pedidos", objData.msg, "success");
+                    $('#pedido-modal').modal('hide');
+                } else {
+                    swal("Error", objData.msg, "error");
+                }
+                divLoading.style.display = "none";
+                return false;
             }
-            /* else {
-                           swal("Error", objData.msg, "error");
-                       } */
-            divLoading.style.display = "none";
-            return false;
         }
     }
 }
