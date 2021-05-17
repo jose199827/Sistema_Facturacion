@@ -2,7 +2,7 @@
 <?php headerAdmin($data);
 /* getModal("modalProductos", $data); */
 ?>
-
+<div id="divModal"></div>
 <div class="mobile-menu-overlay"></div>
 <div id="contentAjax"></div>
 <div class="main-container">

@@ -101,6 +101,74 @@ function fntTransaccion(idTransaccion) {
     }
 }
 
+function fntReembolsar() {
+    let idtransaccion = document.querySelector('#idtransaccion').value;
+    let observacion = document.querySelector('#txtObservacion').value;
+    if (idtransaccion == '' || observacion == "") {
+        swal("Reembolso", "Complete los datos para continuar.", "error");
+        return false;
+    }
+    swal({
+        title: 'Hacer Reembolso',
+        text: "¿Realmente quieres realizar el Reembolso?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: "Si, Reembolsar!",
+        cancelButtonText: "No, cancelar!",
+        preConfirm: false
+    }).then((result) => {
+        if (result.value) {
+            $('#reembolso-modal').modal('hide');
+            divLoading.style.display = "flex";
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url + '/Pedidos/setReembolso';
+            let formData = new FormData();
+            formData.append('idtransaccion', idtransaccion);
+            formData.append('observacion', observacion);
+            request.open("POST", ajaxUrl, true);
+            request.send(formData);
+            request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200) {
+                    /* console.log(request.responseText); */
+                    let objData = JSON.parse(request.responseText);
+                    if (objData.status) {
+                        window.location.reload();
+                    } else {
+                        swal("Atención!", objData.msg, "error");
+                    }
+                    divLoading.style.display = "none";
+                    return false;
+                }
+            }
+        }
+    })
+}
+
+function fntEditPedido(element, idpedido) {
+    let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+    let ajaxUrl = base_url + '/Pedidos/getPedido/' + idpedido;
+    divLoading.style.display = "flex";
+    request.open("GET", ajaxUrl, true);
+    request.send();
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            console.log(request.responseText);
+            let objData = JSON.parse(request.responseText);
+            if (objData.status) {
+                document.querySelector('#divModal').innerHTML = objData.html;
+                $('#pedido-modal').modal('show');
+                $('select').selectpicker();
+            } else {
+                swal("Error", objData.msg, "error");
+            }
+            divLoading.style.display = "none";
+            return false;
+
+        }
+    }
+}
 
 
 

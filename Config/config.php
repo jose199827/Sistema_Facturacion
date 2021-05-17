@@ -38,6 +38,7 @@ const CAT_BANNER = "1,4,5";
 const KEY = "desarrollo";
 const METHODENCRIPT = "AES-128-ECB";
 const COSTOENVIO = 10;
+const STATUS = array('Completo', 'Aprobado', 'Cancelado', 'Reembolsado', 'Pendiente', 'Entregado');
 //Pruebas
 const URLPAYPAL = "https://api-m.sandbox.paypal.com";
 const PAYPALCLIENTE = "AR5-kYH92_DsmJAk1AbL5B3pFBbF_Hjc0B4sgO_tpBb1S43raFzt0vWkvYAIqHplGuIVHrNEjHK4Ft9k";
