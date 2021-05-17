@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">
         <form id="formPedido" name="formPedido">
-          <input type="hidden" name="idPedido" id="idPedido">
+          <input type="hidden" name="idPedido" id="idPedido" value="<?= $data['orden']['idpedido'] ?>">
           <p class="text-primary">Los campos con asterisco (<span class="text-red-50">*</span>) son obligatorios.</p>
 
           <div class="row">
@@ -74,7 +74,7 @@
                 <div class="col-md-6 col-sm-6">
                   <div class="form-group">
                     <label>Estado:<span class="text-red-50">*</span></label>
-                    <select class="form-control selectpicker" name="listStatus" id="listStatus" required>
+                    <select class="form-control selectpicker" data-live-search="true" name="listStatus" id="listStatus" required>
                       <?php
                       for ($i = 0; $i < count(STATUS); $i++) {
                         $select = "";

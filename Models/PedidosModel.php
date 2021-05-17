@@ -111,4 +111,16 @@ class PedidosModel extends Mysql
       }
       return  $response;
    }
+   public function updatePedido($idpedido, $txttrans = NULL, $listTipoPago = NULL, $listStatus)
+   {
+      if ($txttrans == NULL) {
+         $query_update = "UPDATE `pedido` SET `status`=? WHERE `idpedido`= $idpedido;";
+         $arrData = array($listStatus);
+      } else {
+         $query_update = "UPDATE `pedido` SET `referenciacobro`=?, `tipopagoid`=?,`status`=? WHERE `idpedido`= $idpedido;";
+         $arrData = array($txttrans, $listTipoPago, $listStatus);
+      }
+      $request_update = $this->update($query_update, $arrData);
+      return $request_update;
+   }
 }

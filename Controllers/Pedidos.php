@@ -181,4 +181,44 @@ class Pedidos extends Controllers
       }
       die();
    }
+   public function setPedido()
+   {
+      if ($_POST) {
+         if ($_SESSION['permisosMod']['u'] && $_SESSION['userData']['idrol'] != RCLIENTES) {
+            $idpedido = !empty($_POST['idPedido']) ? intval($_POST['idPedido']) : "";
+            $txttrans = !empty($_POST['txttrans']) ? strClean($_POST['txttrans']) : "";
+            $listTipoPago = !empty($_POST['listTipoPago']) ? intval($_POST['listTipoPago']) : "";
+            $listStatus = !empty($_POST['listStatus']) ? strClean($_POST['listStatus']) : "";
+            if ($idpedido == "") {
+               $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
+            } else {
+               if ($listTipoPago == "") {
+                  if ($listStatus == "") {
+                     $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
+                  } else {
+                     $requestPedido = $this->model->updatePedido($idpedido, "", "", $listStatus);
+                     if ($requestPedido) {
+                        $arrResponse = array("status" => true, "msg" => "Datos actualizados correctamente.");
+                     } else {
+                        $arrResponse = array("status" => false, "msg" => "No es posible actualizar la información.");
+                     }
+                  }
+               } else {
+                  if ($listStatus == "" || $txttrans == "" || $listTipoPago == "") {
+                     $arrResponse = array("status" => false, "msg" => "Datos incorrectos.");
+                  } else {
+                     $requestPedido = $this->model->updatePedido($idpedido, $txttrans, $listTipoPago, $listStatus);
+                     if ($requestPedido) {
+                        $arrResponse = array("status" => true, "msg" => "Datos actualizados correctamente.");
+                     } else {
+                        $arrResponse = array("status" => false, "msg" => "No es posible actualizar la información.");
+                     }
+                  }
+               }
+            }
+         }
+         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+      }
+      die();
+   }
 }
