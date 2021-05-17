@@ -154,18 +154,49 @@ function fntEditPedido(element, idpedido) {
     request.send();
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
-            console.log(request.responseText);
             let objData = JSON.parse(request.responseText);
             if (objData.status) {
                 document.querySelector('#divModal').innerHTML = objData.html;
                 $('#pedido-modal').modal('show');
                 $('select').selectpicker();
+                fntUpdateInfo();
             } else {
                 swal("Error", objData.msg, "error");
             }
             divLoading.style.display = "none";
             return false;
 
+        }
+    }
+}
+
+function fntUpdateInfo() {
+    let formPedido = document.querySelector('#formPedido');
+    formPedido.onsubmit = function(e) {
+        e.preventDefault();
+        let transaccion;
+        if (document.querySelector('#txttrans')) {
+            transaccion = document.querySelector('#txttrans').value;
+            if (transaccion == "") {
+                swal("Datos", "Complete los datos para continuar.", "error");
+                return false;
+            }
+        }
+        let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        let ajaxUrl = base_url + '/Pedidos/setPedido/';
+        divLoading.style.display = "flex";
+        let formData = new FormData(formPedido);
+        request.open("POST", ajaxUrl, true);
+        request.send(formData);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                console.log(request.responseText);
+            }
+            /* else {
+                           swal("Error", objData.msg, "error");
+                       } */
+            divLoading.style.display = "none";
+            return false;
         }
     }
 }
