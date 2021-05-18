@@ -43,7 +43,7 @@
                     <?php if ($data['orden']['tipopagoid'] == 1) {
                       echo "<p>" . $data['orden']['idtransaccionpaypal'] . "</p>";
                     } else { ?>
-                      <input type="text" name="txttrans" id="txttrans" class="form-control" value="" required>
+                      <input type="text" name="txttrans" id="txttrans" class="form-control" value="<?= $data['orden']['referenciacobro'] ?>" required>
                     <?php } ?>
                   </div>
                 </div>
