@@ -46,7 +46,8 @@ class Pedidos extends Controllers
 
             if ($_SESSION['permisosMod']['r']) {
                $btnView = '
-               <a class="dropdown-item" href="javascript:;" onClick="fntViewPedido(' . $arrData[$i]['idpedido'] . ')"><i class="dw dw-file2"></i> Generar PDF</a>
+               <a class="dropdown-item btnViewPedido" href="' . base_url() . '/Factura/generarFactura/' . $arrData[$i]['idpedido'] .
+                  '" target="_blanck" ><i class="dw dw-file2"></i>Generar PDF</a>
 
                <a class="dropdown-item btnViewPedido" href="' . base_url() . '/pedidos/orden/' . $arrData[$i]['idpedido'] .
                   '" target="_blanck" ><i class="dw dw-eye"></i> Ver Orden </a>';
@@ -59,9 +60,9 @@ class Pedidos extends Controllers
             if ($_SESSION['permisosMod']['u']) {
                $btnEdit = '<a class="dropdown-item" href="javascript:;" onClick="fntEditPedido(this,' . $arrData[$i]['idpedido'] . ')"><i class="dw dw-edit2"></i> Editar</a>';
             }
-            if ($_SESSION['permisosMod']['d']) {
+            /* if ($_SESSION['permisosMod']['d']) {
                $btnDel = '<a class="dropdown-item" href="javascript:;" onClick="fntDelPedido(' . $arrData[$i]['idpedido'] . ')"><i class="dw dw-delete-3"></i> Eliminar</a>';
-            }
+            } */
 
             $arrData[$i]['options'] = '<div class="dropdown ">
                                                 <a class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle" href="javascript:;" role="button"
