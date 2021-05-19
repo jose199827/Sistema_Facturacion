@@ -19,6 +19,18 @@ class Dashboard extends Controllers
     $data['page_title'] = "Dashboard";
     $data['page_name'] = "dashboard";
     $data['page_id'] = 2;
+    $data['usuarios'] = $this->model->cantidadUsuarios();
+    $data['clientes'] = $this->model->cantidadClientes();
+    $data['pedidos'] = $this->model->cantidadPedidos();
+    $data['productos'] = $this->model->cantidadProductos();
+    $data['ultimosPedidos'] = $this->model->ultimosPedidos();
+    $anio = date('Y');
+    $mes = date('m');
+    $data['pagosMes'] = $this->model->selectPagosMes($anio, $mes);
+    $data['ventasMesDia'] = $this->model->selectventasMesDia($anio, $mes);
+    $data['ventasAnio'] = $this->model->selectventasAnio($anio);
+    /* dep($data['ventasAnio']);
+    exit(); */
     $data['page_funtions_js'] = "funtions_dashoard.js";
     $this->views->getView($this, "dashboard", $data);
   }
