@@ -26,6 +26,13 @@
 <script src="<?= media(); ?>/plugins/datatables/js/vfs_fonts.js"></script>
 <script src="<?= media(); ?>/js/tinymce/tinymce.min.js"></script>
 <script src="<?= media(); ?>/plugins/BarCode/JsBarcode.all.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script src="https://cdnjs.com/libraries/Chart.js"></script>
+<script src="https://www.jsdelivr.com/package/npm/chart.js?path=dist"></script>
 
 
 
