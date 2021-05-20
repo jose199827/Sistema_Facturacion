@@ -34,4 +34,42 @@ class Dashboard extends Controllers
     $data['page_funtions_js'] = "funtions_dashoard.js";
     $this->views->getView($this, "dashboard", $data);
   }
+  public function tipoPagoMes()
+  {
+    if (($_POST)) {
+      $grafica = "pagosMesAnio";
+      $arraFecha = explode(" ", $_POST["fecha"]);
+      $months = months();
+      for ($i = 0; $i < 12; $i++) {
+        if ($arraFecha[0] == $months[$i]) {
+          $arraFecha[0] = $i + 1;
+        }
+      }
+      $anio = $arraFecha[1];
+      $mes = $arraFecha[0];
+      $pagos = $this->model->selectPagosMes($anio, $mes);
+      $script = getFile("Templante/Modals/graficas", $pagos);
+      echo $script;
+    }
+    die();
+  }
+  public function ventasMes()
+  {
+    if (($_POST)) {
+      $grafica = "VentaMes";
+      $arraFecha = explode(" ", $_POST["fecha"]);
+      $months = months();
+      for ($i = 0; $i < 12; $i++) {
+        if ($arraFecha[0] == $months[$i]) {
+          $arraFecha[0] = $i + 1;
+        }
+      }
+      $anio = $arraFecha[1];
+      $mes = $arraFecha[0];
+      $pagos = $this->model->selectventasMesDia($anio, $mes);
+      $script = getFile("Templante/Modals/graficas", $pagos);
+      echo $script;
+    }
+    die();
+  }
 }
