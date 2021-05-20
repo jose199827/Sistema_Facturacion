@@ -21,7 +21,13 @@ class DashboardModel extends Mysql
    }
    public function cantidadPedidos()
    {
-      $sql = "SELECT COUNT(*) AS total FROM `pedido`";
+      $rolid = $_SESSION['userData']['idrol'];
+      $idUser = $_SESSION['userData']['idpersona'];
+      $where = "";
+      if ($rolid == RCLIENTES) {
+         $where = "WHERE personaid= " . $idUser;
+      }
+      $sql = "SELECT COUNT(*) AS total FROM `pedido`" . $where;
       $result = $this->select($sql);
       $total = $result['total'];
       return $total;
@@ -35,7 +41,19 @@ class DashboardModel extends Mysql
    }
    public function ultimosPedidos()
    {
-      $sql = "SELECT p.idpedido, CONCAT(pr.nombres,' ',pr.apellidos) AS nombre, p.monto,p.status FROM pedido p INNER JOIN persona pr ON p.personaid = pr.idpersona ORDER BY p.idpedido DESC LIMIT 5";
+      $rolid = $_SESSION['userData']['idrol'];
+      $idUser = $_SESSION['userData']['idpersona'];
+      $where = "";
+      if ($rolid == RCLIENTES) {
+         $where = " WHERE p.personaid= " . $idUser;
+      }
+      $sql = "SELECT p.idpedido, CONCAT(pr.nombres,' ',pr.apellidos) AS nombre, p.monto,p.status FROM pedido p INNER JOIN persona pr ON p.personaid = pr.idpersona $where ORDER BY p.idpedido DESC LIMIT 6 ";
+      $result = $this->selectAll($sql);
+      return $result;
+   }
+   public function ultimosProductos()
+   {
+      $sql = "SELECT * FROM `producto` WHERE `status`=1 ORDER BY `idproducto` DESC LIMIT 6  ";
       $result = $this->selectAll($sql);
       return $result;
    }
@@ -49,6 +67,12 @@ class DashboardModel extends Mysql
    }
    public function selectventasMesDia($anio, $mes)
    {
+      $rolid = $_SESSION['userData']['idrol'];
+      $idUser = $_SESSION['userData']['idpersona'];
+      $buscar = "";
+      if ($rolid == RCLIENTES) {
+         $buscar = " AND personaid= " . $idUser;
+      }
       $totalVentasMes = 0;
       $arrVentasDias = array();
       $dias = cal_days_in_month(CAL_GREGORIAN, $mes,  $anio);
@@ -56,7 +80,7 @@ class DashboardModel extends Mysql
       for ($i = 0; $i < $dias; $i++) {
          $date = date_create($anio . '-' . $mes . '-' . $nDia);
          $fechaVenta = date_format($date, "Y-m-d");
-         $sql = "SELECT DAY(fecha) AS dia, COUNT(idpedido) AS cantidad, SUM(monto) AS total FROM `pedido` WHERE DATE(fecha)='{$fechaVenta}' AND status= 'Completo'";
+         $sql = "SELECT DAY(fecha) AS dia, COUNT(idpedido) AS cantidad, SUM(monto) AS total FROM `pedido` WHERE DATE(fecha)='{$fechaVenta}' AND status= 'Completo'" . $buscar;
          $ventaDia = $this->select($sql);
          $ventaDia['dia'] = $nDia;
          $ventaDia['total'] = ($ventaDia['total'] == "") ? 0 : $ventaDia['total'];

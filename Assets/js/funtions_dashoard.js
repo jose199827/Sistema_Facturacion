@@ -65,3 +65,26 @@ function fntSearchVentasMes() {
         }
     }
 }
+
+function fntSearchVentasAnio() {
+    let anio = document.querySelector(".ventasAnio").value;
+    if (anio == "") {
+        swal("Datos", "Seleccione un Año", "error");
+        return false;
+    } else {
+        var request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        var ajaxUrl = base_url + '/Dashboard/ventasAnio';
+        divLoading.style.display = "flex";
+        let formData = new FormData();
+        formData.append('anio', anio);
+        request.open("POST", ajaxUrl, true);
+        request.send(formData);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                $("#VentaAnio").html(request.responseText);
+                divLoading.style.display = "none";
+                return false;
+            }
+        }
+    }
+}
