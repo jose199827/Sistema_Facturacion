@@ -24,6 +24,7 @@ class Dashboard extends Controllers
     $data['pedidos'] = $this->model->cantidadPedidos();
     $data['productos'] = $this->model->cantidadProductos();
     $data['ultimosPedidos'] = $this->model->ultimosPedidos();
+    $data['ultimosProductos'] = $this->model->ultimosProductos();
     $anio = date('Y');
     $mes = date('m');
     $data['pagosMes'] = $this->model->selectPagosMes($anio, $mes);
@@ -32,7 +33,11 @@ class Dashboard extends Controllers
     /* dep($data['ventasAnio']);
     exit(); */
     $data['page_funtions_js'] = "funtions_dashoard.js";
-    $this->views->getView($this, "dashboard", $data);
+    if ($_SESSION['userData']['idrol'] == RCLIENTES) {
+      $this->views->getView($this, "dashboardCliente", $data);
+    } else {
+      $this->views->getView($this, "dashboard", $data);
+    }
   }
   public function tipoPagoMes()
   {
@@ -67,6 +72,17 @@ class Dashboard extends Controllers
       $anio = $arraFecha[1];
       $mes = $arraFecha[0];
       $pagos = $this->model->selectventasMesDia($anio, $mes);
+      $script = getFile("Templante/Modals/graficas", $pagos);
+      echo $script;
+    }
+    die();
+  }
+  public function ventasAnio()
+  {
+    if (($_POST)) {
+      $grafica = "VentaAnio";
+      $anio = intval($_POST["anio"]);
+      $pagos = $this->model->selectventasAnio($anio);
       $script = getFile("Templante/Modals/graficas", $pagos);
       echo $script;
     }

@@ -103,8 +103,6 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
       <?php } ?>
     </div>
 
-
-
     <div class="row">
       <?php if (!empty($_SESSION['permisos'][5]['r'])) { ?>
         <div class="col-xl-7 mb-30">
@@ -153,6 +151,7 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-xl-12 mb-30">
         <div class="card-box height-100-p pd-20">
@@ -167,21 +166,23 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="col-xl-12 mb-30">
         <div class="card-box height-100-p pd-20">
           <div class="contenedor">
             <h4 class="text-blue h4 mb-20">Ventas por Año</h4>
             <div class="dflex">
-              <input class="form-control ventasMes" name="ventasMes" placeholder="Año" type="text" minlength="4" maxlength="4" onkeypress="return controlTag(event);">
-              <button type="button" class="btn btn-primary btnVentasAnio"><i class="font-18 dw dw-search1"></i></button>
+              <input class="form-control ventasAnio" name="ventasAnio" placeholder="Año" type="text" minlength="4" maxlength="4" onkeypress="return controlTag(event);">
+              <button type="button" class="btn btn-primary btnVentasAnio" onClick="fntSearchVentasAnio()"><i class="font-18 dw dw-search1"></i></button>
             </div>
           </div>
           <div id="VentaAnio"></div>
         </div>
       </div>
     </div>
-    <div class="row">
+
+    <!-- <div class="row">
       <div class="col-xl-8 mb-30">
         <div class="card-box height-100-p pd-20">
           <h2 class="h4 mb-20">Activity</h2>
@@ -337,7 +338,7 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
 
     <?php footer($data); ?>
   </div>

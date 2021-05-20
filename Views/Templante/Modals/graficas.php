@@ -89,3 +89,64 @@
    </script>
 <?php
 } ?>
+
+<?php if ($grafica = "VentaAnio") {
+   $ventasAnio = $data;
+?>
+   <script>
+      Highcharts.chart('VentaAnio', {
+         chart: {
+            type: 'column'
+         },
+         title: {
+            text: 'Ventas del Año <?= $ventasAnio['anio']  ?>'
+         },
+         subtitle: {
+            text: 'Estadística de Ventas por Mes'
+         },
+         xAxis: {
+            type: 'category',
+            labels: {
+               rotation: -45,
+               style: {
+                  fontSize: '13px',
+                  fontFamily: 'Verdana, sans-serif'
+               }
+            }
+         },
+         yAxis: {
+            min: 0,
+            title: {
+               text: ''
+            }
+         },
+         legend: {
+            enabled: false
+         },
+         tooltip: {
+            pointFormat: 'Total de las Ventas en el Mes : <b>{point.y:.1f} </b>'
+         },
+         series: [{
+            name: 'Population',
+            data: [
+               <?php foreach ($ventasAnio['mesesVenta'] as $mesesVenta) {
+                  echo "['" . $mesesVenta['mes'] . "'," . $mesesVenta['venta'] . "],";
+               } ?>
+            ],
+            dataLabels: {
+               enabled: true,
+               rotation: -90,
+               color: '#EBEFF3',
+               align: 'right',
+               format: '{point.y:.2f}', // one decimal
+               y: 10, // 10 pixels down from the top
+               style: {
+                  fontSize: '13px',
+                  fontFamily: 'Verdana, sans-serif'
+               }
+            }
+         }]
+      });
+   </script>
+<?php
+} ?>
