@@ -102,6 +102,9 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
         </div>
       <?php } ?>
     </div>
+
+
+
     <div class="row">
       <?php if (!empty($_SESSION['permisos'][5]['r'])) { ?>
         <div class="col-xl-7 mb-30">
@@ -139,7 +142,13 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
       <?php } ?>
       <div class="col-xl-5 mb-30">
         <div class="card-box height-100-p pd-20">
-          <h4 class="text-blue h4 mb-20">Tipos de Pagos por Mes</h4>
+          <div class="contenedor">
+            <h4 class="text-blue h4 mb-20">Pagos por Mes</h4>
+            <div class="dflex">
+              <input class="form-control month-picker pagosMes" name="pagosMes" placeholder="Selecione un Mes" type="text">
+              <button type="button" class="btn btn-primary" onClick="fntSearchPagos()"><i class="font-18 dw dw-search1"></i></button>
+            </div>
+          </div>
           <div id="pagosMesAnio"></div>
         </div>
       </div>
@@ -147,7 +156,13 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
     <div class="row">
       <div class="col-xl-12 mb-30">
         <div class="card-box height-100-p pd-20">
-          <h4 class="text-blue h4 mb-20">Ventas por Mes</h4>
+          <div class="contenedor">
+            <h4 class="text-blue h4 mb-20">Ventas por Mes</h4>
+            <div class="dflex">
+              <input class="form-control month-picker ventasMes" name="ventasMes" placeholder="Selecione un Mes" type="text">
+              <button type="button" class="btn btn-primary" onClick="fntSearchVentasMes()"><i class="font-18 dw dw-search1"></i></button>
+            </div>
+          </div>
           <div id="VentaMes"></div>
         </div>
       </div>
@@ -155,7 +170,13 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
     <div class="row">
       <div class="col-xl-12 mb-30">
         <div class="card-box height-100-p pd-20">
-          <h4 class="text-blue h4 mb-20">Ventas por Año</h4>
+          <div class="contenedor">
+            <h4 class="text-blue h4 mb-20">Ventas por Año</h4>
+            <div class="dflex">
+              <input class="form-control ventasMes" name="ventasMes" placeholder="Año" type="text" minlength="4" maxlength="4" onkeypress="return controlTag(event);">
+              <button type="button" class="btn btn-primary btnVentasAnio"><i class="font-18 dw dw-search1"></i></button>
+            </div>
+          </div>
           <div id="VentaAnio"></div>
         </div>
       </div>
@@ -323,6 +344,9 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
 </div>
 <!-- Se manda a llamar el footer  -->
 <?php footerAdmin($data); ?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 <script>
   Highcharts.chart('pagosMesAnio', {
     chart: {
@@ -444,9 +468,9 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
       dataLabels: {
         enabled: true,
         rotation: -90,
-        color: '#FFFFFF',
+        color: '#EBEFF3',
         align: 'right',
-        format: '{point.y:.1f}', // one decimal
+        format: '{point.y:.2f}', // one decimal
         y: 10, // 10 pixels down from the top
         style: {
           fontSize: '13px',

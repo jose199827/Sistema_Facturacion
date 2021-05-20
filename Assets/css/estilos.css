@@ -280,3 +280,20 @@ textarea.form-control {
 #body {
     padding-right: 0px !important;
 }
+
+.contenedor {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.dflex input {
+    margin-right: 10px;
+}
+
+.dflex {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

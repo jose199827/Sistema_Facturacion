@@ -19,3 +19,223 @@ PassWord: 5*uu:tY1
 ********************************************
 Email Cliente: sb-tgja41252052@personal.example.com
 PassWord: H]A{x3.^
+
+
+
+    <!-- fin de pruebas  -->
+    <!--     <div class="row">
+      <?php if (!empty($_SESSION['permisos'][5]['r'])) { ?>
+        <div class="col-xl-7 mb-30">
+          <div class="card-box height-100-p pd-20">
+            <h4 class="text-blue h4 mb-20">Ultimos Pedidos</h4>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Cliente</th>
+                    <th scope="col" class="text-right">Monto</th>
+                    <th scope="col" class="text-center">Estado</th>
+                    <th scope="col" class="text-center">Ver</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php if (count($data['ultimosPedidos']) > 0) {
+                    foreach ($data['ultimosPedidos'] as $pedido) {
+                  ?>
+                      <tr>
+                        <td><?= $pedido['idpedido'] ?></td>
+                        <td><?= $pedido['nombre'] ?></td>
+                        <td class="text-right"><?= SMONEY . formatMoney($pedido['monto']) ?></td>
+                        <td class="text-center"><?= $pedido['status'] ?></td>
+                        <td class="text-center"><a href="<?= base_url() ?>/pedidos/orden/<?= $pedido['idpedido'] ?>" target="_blank"><i class="font-18 dw dw-eye"></i></a></td>
+                      </tr>
+                  <?php }
+                  } ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      <?php } ?>
+      <div class="col-xl-5 mb-30">
+        <div class="card-box height-100-p pd-20">
+          <div class="contenedor">
+            <h4 class="text-blue h4 mb-20">Pagos por Mes</h4>
+            <div class="dflex">
+              <input class="form-control month-picker pagosMes" name="pagosMes" placeholder="Selecione un Mes" type="text">
+              <button type="button" class="btn btn-primary" onClick="fntSearchPagos()"><i class="font-18 dw dw-search1"></i></button>
+            </div>
+          </div>
+          <canvas id="myChart3" width="400" height="180"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-12 mb-30">
+        <div class="card-box height-100-p pd-20">
+          <div class="contenedor">
+            <h4 class="text-blue h4 mb-20">Venta s por Mes</h4>
+            <div class="dflex">
+              <input class="form-control month-picker ventasMes" name="ventasMes" placeholder="Selecione un Mes" type="text">
+              <button type="button" class="btn btn-primary" onClick="fntSearchVentasMes()"><i class="font-18 dw dw-search1"></i></button>
+            </div>
+          </div>
+          <canvas id="myChart" width="400" height="180"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-12 mb-30">
+        <div class="card-box height-100-p pd-20">
+          <div class="contenedor">
+            <h4 class="text-blue h4 mb-20">Ventas dsfds por Año</h4>
+            <div class="dflex">
+              <input class="form-control ventasMes" name="ventasMes" placeholder="Año" type="text" minlength="4" maxlength="4" onkeypress="return controlTag(event);">
+              <button type="button" class="btn btn-primary btnVentasAnio"><i class="font-18 dw dw-search1"></i></button>
+            </div>
+          </div>
+          <canvas id="myChart2" width="400" height="180"></canvas>
+        </div>
+      </div>
+    </div> -->
+    <!-- fin de pruebas  -->
+
+
+
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [<?php foreach ($data['ventasMesDia']['ventas'] as $ventasDia) {
+                  echo $ventasDia['dia'] . ",";
+                } ?>],
+      datasets: [{
+        label: 'Ventas',
+        data: [<?php foreach ($data['ventasMesDia']['ventas'] as $ventasDia) {
+                  echo $ventasDia['total'] . ",";
+                } ?>],
+        backgroundColor: [
+          'rgba(27, 0, 255, 0.2)',
+        ],
+        borderColor: [
+          'rgba(27, 0, 255, 1)',
+        ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Ventas de <?= $data['ventasMesDia']['mes'] . ' del ' . $data['ventasMesDia']['anio'] ?>',
+          font: {
+            size: 20
+          }
+        }
+      },
+
+    },
+  });
+  var ctx2 = document.getElementById('myChart2').getContext('2d');
+  var myChart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: [
+        <?php foreach ($data['ventasAnio']['mesesVenta'] as $mesesVenta) {
+          echo "'" . $mesesVenta['mes'] . "',";
+        } ?>
+      ],
+      datasets: [{
+        label: 'Ventas del Mes',
+        data: [
+          <?php foreach ($data['ventasAnio']['mesesVenta'] as $mesesVenta) {
+            echo $mesesVenta['venta'] . ",";
+          } ?>
+        ],
+        backgroundColor: [
+          'rgba(27, 0, 255, 0.2)',
+        ],
+        borderColor: [
+          'rgba(27, 0, 255, 1)',
+        ],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Ventas de <?= $data['ventasMesDia']['mes'] . ' del ' . $data['ventasMesDia']['anio'] ?>',
+          font: {
+            size: 20
+          }
+        }
+      },
+
+    },
+  });
+  var ctx3 = document.getElementById('myChart3').getContext('2d');
+  var myChart3 = new Chart(ctx3, {
+    type: 'pie',
+    data: {
+      labels: [
+        <?php foreach ($data['pagosMes']['tipospagos'] as $pago) {
+          echo "'" . $pago['tipopago'] . "',";
+        } ?>
+      ],
+      datasets: [{
+        label: 'Ventas del Mes',
+        data: [
+          <?php foreach ($data['pagosMes']['tipospagos'] as $pago) {
+            echo $pago['total'] . ",";
+          } ?>
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: 'Ventas de <?= $data['ventasMesDia']['mes'] . ' del ' . $data['ventasMesDia']['anio'] ?>',
+          font: {
+            size: 20
+          }
+        }
+      },
+
+    },
+  });
+</script>
