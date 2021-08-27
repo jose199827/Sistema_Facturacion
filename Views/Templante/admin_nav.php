@@ -86,6 +86,7 @@
   <div class="menu-block customscroll">
     <div class="sidebar-menu">
       <ul id="accordion-menu">
+
         <?php if (!empty($_SESSION['permisos'][1]['r'])) { ?>
           <li>
             <a href="<?= Base_URL(); ?>/dashboard" class="dropdown-toggle no-arrow">
@@ -93,6 +94,11 @@
             </a>
           </li>
         <?php } ?>
+        <li>
+          <a href="<?= Base_URL(); ?>" target="_blanck" class="dropdown-toggle no-arrow">
+            <span class="micon dw dw-worldwide"></span><span class="mtext">Ver Sitio Web</span>
+          </a>
+        </li>
         <?php if (!empty($_SESSION['permisos'][2]['r']) || !empty($_SESSION['permisos'][7]['r'])) { ?>
           <li class="dropdown">
             <a href="javascript:;" class="dropdown-toggle">

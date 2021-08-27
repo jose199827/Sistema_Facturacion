@@ -20,8 +20,17 @@ class Tienda extends Controllers
         $data['page_tag'] = NOMBRE_EMPRESA;
         $data['page_title'] = NOMBRE_EMPRESA;
         $data['page_name'] = "tienda";
-        $data['productos'] = $this->getProductosT();
-        /* $data['page_funtions_js'] = "funtions_login.js"; */
+        /* $data['productos'] = $this->getProductosT(); */
+        $pagina = 1;
+        $cantidadProductos = $this->cantProductos();
+        $total_registro = $cantidadProductos['total'];
+        $desde = ($pagina - 1) * PORPAGINA;
+        $total_pagina = ceil($total_registro / PORPAGINA);
+        $data['productos'] = $this->getProductosPageT($desde, PORPAGINA);
+        $data['pagina'] = $pagina;
+        $data['total_pagina'] = $total_pagina;
+        /* dep($data['productos']);
+        exit(); */
         $this->views->getView($this, "tienda", $data);
     }
     public function Categoria($params)
@@ -30,9 +39,23 @@ class Tienda extends Controllers
             header('Location: ' . Base_URL());
         } else {
             $arrParras = explode(",", $params);
+            /* dep($arrParras);
+            exit(); */
             $idcategoria = intval($arrParras[0]);
             $ruta = strClean($arrParras[1]);
-            $infoCategoria = $this->getProductosCategodiaT($idcategoria, $ruta);
+            $pagina = 1;
+            if (count($arrParras) > 2 && is_numeric($arrParras[2])) {
+                $pagina = intval($arrParras[2]);
+            }
+            $cantidadProductos = $this->cantProductos($idcategoria);
+            $totalRegistro = $cantidadProductos['total'];
+            $desde = ($pagina - 1) * PORCATEGORIA;
+            $total_pagina = ceil($totalRegistro / PORCATEGORIA);
+            $data['productos'] = $this->getProductosPageT($desde, PORCATEGORIA);
+            $infoCategoria = $this->getProductosCategodiaT($idcategoria, $ruta, $desde, PORCATEGORIA);
+            dep($infoCategoria);
+            exit();
+
             $data['page_tag'] =  NOMBRE_EMPRESA . " - " . $infoCategoria['categoria'];
             $data['page_title'] = $infoCategoria['categoria'];
             $data['page_name'] = "categoría";
@@ -392,5 +415,30 @@ class Tienda extends Controllers
             $this->views->getView($this, "confirmarpedido", $data);
         }
         unset($_SESSION['dataorden']);
+    }
+    public function page($pagina = null)
+    {
+        $pagina = ($pagina != null) ? $pagina : 1;
+        $pagina = intval($pagina);
+        if (empty($pagina)) {
+            header('location: ' . Base_URL() . '/Tienda/Page/1');
+        }
+        /* $data['productos'] = $this->getProductosT(); */
+        $cantidadProductos = $this->cantProductos();
+        $total_registro = $cantidadProductos['total'];
+        $desde = ($pagina - 1) * PORPAGINA;
+        $total_pagina = ceil($total_registro / PORPAGINA);
+        $data['productos'] = $this->getProductosPageT($desde, PORPAGINA);
+        if (empty($data['productos'])) {
+            header('location: ' . Base_URL() . '/Tienda/Page/1');
+        }
+        $data['page_tag'] = NOMBRE_EMPRESA;
+        $data['page_title'] = NOMBRE_EMPRESA;
+        $data['page_name'] = "tienda";
+        $data['pagina'] = $pagina;
+        $data['total_pagina'] = $total_pagina;
+        /* dep($data['productos']);
+        exit(); */
+        $this->views->getView($this, "tienda", $data);
     }
 }
