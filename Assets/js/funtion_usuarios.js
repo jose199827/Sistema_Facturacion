@@ -250,7 +250,6 @@ $(document).ready(function() {
     $('#tableUsuarios').DataTable();
 });
 window.addEventListener('load', function() {
-
     fntRolesUsurios();
 }, false);
 

@@ -254,11 +254,25 @@
 			</div>
 
 			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Mostrar Más
-				</a>
-			</div>
+			<?php if (count($data['productos']) > 0) {
+				$prevPagina = $data['pagina'] - 1;
+				$nextPagina = $data['pagina'] + 1;
+			?>
+				<div class="flex-c-m flex-w w-full p-t-45">
+					<?php if ($data['pagina'] > 1) {
+					?>
+						<a href="<?= Base_URL(); ?>/Tienda/Page/<?= $prevPagina; ?>" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+							Anterior
+						</a>
+						&nbsp;&nbsp; &nbsp;&nbsp;
+					<?php  	}
+					if ($data['pagina'] != $data['total_pagina']) { ?>
+						<a href="<?= Base_URL(); ?>/Tienda/Page/<?= $nextPagina; ?>" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+							Siguiente
+						</a>
+					<?php  	} ?>
+				</div>
+			<?php  	} ?>
 		</div>
 	</div>
 	<!-- Footer -->

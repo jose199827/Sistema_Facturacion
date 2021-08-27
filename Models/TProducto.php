@@ -14,7 +14,7 @@ trait TProducto
    public function getProductosT()
    {
       $this->con = new Mysql();
-      $sql = "SELECT p.idproducto, p.codigo, p.nombre, p.descripcion, p.categoriaid, c.nombre AS categoria, p.precio, p.stock, p.ruta FROM producto p INNER JOIN categoria c ON p.categoriaid = c.idcategoria WHERE p.status !=0 ORDER BY p.idproducto DESC";
+      $sql = "SELECT p.idproducto, p.codigo, p.nombre, p.descripcion, p.categoriaid, c.nombre AS categoria, p.precio, p.stock, p.ruta FROM producto p INNER JOIN categoria c ON p.categoriaid = c.idcategoria WHERE p.status !=0 ORDER BY p.idproducto DESC LIMIT " . CANTIDADPRODUCTOSHOME;
       $request = $this->con->selectAll($sql);
 
       if (count($request) > 0) {
@@ -33,11 +33,38 @@ trait TProducto
       }
       return $request;
    }
-   public function getProductosCategodiaT($idcategoria, $ruta)
+   public function getProductosPageT($desde, $porpagina)
+   {
+      $this->con = new Mysql();
+      $sql = "SELECT p.idproducto, p.codigo, p.nombre, p.descripcion, p.categoriaid, c.nombre AS categoria, p.precio, p.stock, p.ruta FROM producto p INNER JOIN categoria c ON p.categoriaid = c.idcategoria WHERE p.status =1 ORDER BY p.idproducto DESC LIMIT $desde, $porpagina";
+      $request = $this->con->selectAll($sql);
+
+      if (count($request) > 0) {
+
+         for ($i = 0; $i < count($request); $i++) {
+            $intIdProducto = $request[$i]['idproducto'];
+            $sqlImg = "SELECT productoid, img FROM `imagen` WHERE productoid=  $intIdProducto";
+            $arrImg = $this->con->selectAll($sqlImg);
+            if (count($arrImg) > 0) {
+               for ($j = 0; $j < count($arrImg); $j++) {
+                  $arrImg[$j]['url_img'] = media() . '/img/imgUploads/imgProductos/' . $arrImg[$j]['img'];
+               }
+            }
+            $request[$i]['images'] = $arrImg;
+         }
+      }
+      return $request;
+   }
+   public function getProductosCategodiaT($idcategoria, $ruta, $desde = null, $porcategoria = null)
    {
       $this->con = new Mysql();
       $this->strRuta = $ruta;
       $this->intIdCategoria = $idcategoria;
+      $where = "";
+      if ($desde != null && $porcategoria != null) {
+         $where = " LIMIT " . $desde . ", " . $porcategoria;
+      }
+
       $sql = "SELECT `idcategoria`,`nombre` FROM `categoria` WHERE `idcategoria`= $this->intIdCategoria;";
       $request = $this->con->select($sql);
 
@@ -58,7 +85,7 @@ trait TProducto
            p.categoriaid= $this->intIdCategoria AND 
            p.status !=0 
            AND c.ruta= '{$this->strRuta}'  
-           ORDER BY p.idproducto DESC";
+           ORDER BY p.idproducto DESC " . $where;
          $request = $this->con->selectAll($sql);
 
          if (count($request) > 0) {
@@ -190,5 +217,17 @@ trait TProducto
          $request['images'] = $arrImg;
       }
       return $request;
+   }
+   public  function cantProductos($idcategoria = null)
+   {
+      $where = "";
+      if ($idcategoria != null) {
+         $where = " AND `categoriaid` = " . $idcategoria;
+      }
+      $this->con = new Mysql();
+      $sql = "SELECT COUNT(*) AS total FROM `producto` WHERE `status` =1 " . $where;
+      $result = $this->con->select($sql);
+      $total = $result;
+      return $total;
    }
 }

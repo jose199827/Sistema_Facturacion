@@ -53,11 +53,11 @@ class Roles extends Controllers
                                                   <i class="dw dw-more"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
-                                                  
+
                                                   ' . $btnView . '
                                                   ' . $btnEdit . '
-                                                  ' . $btnDel . '    
-                                                  
+                                                  ' . $btnDel . '
+
                                                 </div>
                                               </div>';
       }

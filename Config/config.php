@@ -47,3 +47,9 @@ const SECRET = "EJ2z5_ySYqZ74RxsVUQQh6tQSgaYjAyKHFQyojpdhbxNifhxq8WhGdamWdZsnYB1
 const URLPAYPAL = "https://api-m.paypal.com";
  const PAYPALCLIENTE = "AeqrzT3b0HMQJqxLGZrhwTOgEJ2nRHo1UkFHjwqpoP6ZwAKdm1uIT2GPLTfgUY9Io_WNQw4EPKJu1nl3"; 
  const SECRET = "EOk9bc8eMEQEyrkIQrDI4b8Pnaav24boiHLdye5na8VoAJxuEM_7u5SBwBNNBSt7NCjsEn-IiDpzZFbz";*/
+
+//Productos
+
+const CANTIDADPRODUCTOSHOME = 12;
+const PORPAGINA = 8;
+const PORCATEGORIA = 4;
