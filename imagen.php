@@ -24,5 +24,5 @@
 <p>
   Solo un div
 </p>
-<div url="upload.php" class="dropzone dz-clickable" id="my-awesome-dropzone">
+<div url="upload.php" class="dropzone dropzone-single dz-clickable" id="my-awesome-dropzone">
 </div>

@@ -51,15 +51,19 @@ class Tienda extends Controllers
             $totalRegistro = $cantidadProductos['total'];
             $desde = ($pagina - 1) * PORCATEGORIA;
             $total_pagina = ceil($totalRegistro / PORCATEGORIA);
-            $data['productos'] = $this->getProductosPageT($desde, PORCATEGORIA);
             $infoCategoria = $this->getProductosCategodiaT($idcategoria, $ruta, $desde, PORCATEGORIA);
+            $categoria = strClean($params);
+            /* $data['productos'] = $this->getProductosPageT($desde, PORCATEGORIA);
             dep($infoCategoria);
-            exit();
-
+            exit(); */
             $data['page_tag'] =  NOMBRE_EMPRESA . " - " . $infoCategoria['categoria'];
             $data['page_title'] = $infoCategoria['categoria'];
             $data['page_name'] = "categoría";
             $data['productos'] = $infoCategoria['productos'];
+            $data['infoCategoria'] = $infoCategoria;
+            $data['pagina'] = $pagina;
+            $data['totalPaginas'] =  $total_pagina;
+            $data['categorias'] =  $this->getCategorias();
             $this->views->getView($this, "categoria", $data);
         }
     }
@@ -440,5 +444,33 @@ class Tienda extends Controllers
         /* dep($data['productos']);
         exit(); */
         $this->views->getView($this, "tienda", $data);
+    }
+
+    public function search()
+    {
+        if (empty($_REQUEST['s'])) {
+            header('location: ' . Base_URL());
+        } else {
+            $busqueda = strClean($_REQUEST['s']);
+        }
+        $pagina = empty($_REQUEST['p']) ? 1 : intval($_REQUEST['p']);
+        $cantidadProductosBusqueda = $this->cantidadProductosSearch($busqueda);
+        /* dep($cantidadProductosBusqueda);
+        exit(); */
+        $total_registro = $cantidadProductosBusqueda['total'];
+        $desde = ($pagina - 1) * PORBUSQUEDA;
+        $total_pagina = ceil($total_registro / PORBUSQUEDA);
+        $data['productos'] = $this->getProductosSearch($desde, PORBUSQUEDA, $busqueda);
+        /* dep($data['productos']);
+        exit(); */
+        $data['page_tag'] = NOMBRE_EMPRESA;
+        $data['page_title'] = "Resultado de busqueda <strong>" . $busqueda . "</strong>";
+        $data['page_name'] = "tienda";
+        $data['pagina'] = $pagina;
+        $data['totalPaginas'] = $total_pagina;
+        $data['busqueda'] = $busqueda;
+        /* dep($data);
+        exit(); */
+        $this->views->getView($this, "search", $data);
     }
 }

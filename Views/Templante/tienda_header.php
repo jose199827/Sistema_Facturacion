@@ -1,9 +1,9 @@
 <?php
 $cantCarrito = "0";
 if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
-  foreach ($_SESSION['arrCarrito'] as $product) {
-    $cantCarrito += $product['cantidad'];
-  }
+   foreach ($_SESSION['arrCarrito'] as $product) {
+      $cantCarrito += $product['cantidad'];
+   }
 }
 /* dep($_SESSION['userData']); */
 ?>
@@ -20,11 +20,9 @@ if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
    <!--===============================================================================================-->
    <link rel="stylesheet" type="text/css" href="<?= media(); ?>/tienda/vendor/bootstrap/css/bootstrap.min.css">
    <!--===============================================================================================-->
-   <link rel="stylesheet" type="text/css"
-      href="<?= media(); ?>/tienda/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" type="text/css" href="<?= media(); ?>/tienda/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
    <!--===============================================================================================-->
-   <link rel="stylesheet" type="text/css"
-      href="<?= media(); ?>/tienda/fonts/iconic/css/material-design-iconic-font.min.css">
+   <link rel="stylesheet" type="text/css" href="<?= media(); ?>/tienda/fonts/iconic/css/material-design-iconic-font.min.css">
    <!--===============================================================================================-->
    <link rel="stylesheet" type="text/css" href="<?= media(); ?>/tienda/fonts/linearicons-v1.0.0/icon-font.min.css">
    <!--===============================================================================================-->
@@ -95,26 +93,26 @@ if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
             <div class="content-topbar flex-sb-m h-full container">
                <div class="left-top-bar">
                   <?php if (isset($_SESSION['login'])) { ?>
-                  Bienvenido:
-                  <?= $_SESSION['userData']['nombres'] . " " . $_SESSION['userData']['apellidos'] ?>
+                     Bienvenido:
+                     <?= $_SESSION['userData']['nombres'] . " " . $_SESSION['userData']['apellidos'] ?>
                   <?php } ?>
                </div>
                <div class="right-top-bar flex-w h-full">
                   <a href="#" class="flex-c-m trans-04 p-lr-25" data-toggle="modal" data-target="#modalAyuda">Ayuda y
                      preguntas frecuentes</a>
                   <?php if (isset($_SESSION['login'])) { ?>
-                  <a href="<?= base_url(); ?>/Dashboard" class="flex-c-m trans-04 p-lr-25">
-                     Mi cuenta
-                  </a>
+                     <a href="<?= base_url(); ?>/Dashboard" class="flex-c-m trans-04 p-lr-25">
+                        Mi cuenta
+                     </a>
                   <?php } ?>
                   <?php if (isset($_SESSION['login'])) { ?>
-                  <a href="<?= base_url(); ?>/Logout" class="flex-c-m trans-04 p-lr-25">
-                     Salir
-                  </a>
+                     <a href="<?= base_url(); ?>/Logout" class="flex-c-m trans-04 p-lr-25">
+                        Salir
+                     </a>
                   <?php } else { ?>
-                  <a href="<?= base_url(); ?>/Login" class="flex-c-m trans-04 p-lr-25">
-                     Iniciar Sesión
-                  </a>
+                     <a href="<?= base_url(); ?>/Login" class="flex-c-m trans-04 p-lr-25">
+                        Iniciar Sesión
+                     </a>
                   <?php } ?>
                </div>
             </div>
@@ -159,14 +157,12 @@ if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
                      <i class="zmdi zmdi-search"></i>
                   </div>
                   <?php if (($data['page_name'] != "carrito" && $data['page_name'] != "Procesar Pago")) {
-            ?>
-                  <div
-                     class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart"
-                     data-notify="<?= $cantCarrito   ?>">
-                     <i class="zmdi zmdi-shopping-cart"></i>
-                  </div>
+                  ?>
+                     <div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito   ?>">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                     </div>
                   <?php }
-            ?>
+                  ?>
                </div>
             </nav>
          </div>
@@ -176,8 +172,7 @@ if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
       <div class="wrap-header-mobile">
          <!-- Logo moblie -->
          <div class="logo-mobile">
-            <a href="<?= Base_URL(); ?>"><img src="<?= media(); ?>/tienda/images/icons/logo-01.png"
-                  alt="Tienda Virtual"></a>
+            <a href="<?= Base_URL(); ?>"><img src="<?= media(); ?>/tienda/images/icons/logo-01.png" alt="Tienda Virtual"></a>
          </div>
 
          <!-- Icon header -->
@@ -186,13 +181,12 @@ if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
                <i class="zmdi zmdi-search"></i>
             </div>
             <?php if (($data['page_name'] != "carrito" && $data['page_name'] != "Procesar Pago")) {
-        ?>
-            <div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart"
-               data-notify="<?= $cantCarrito   ?>">
-               <i class="zmdi zmdi-shopping-cart"></i>
-            </div>
+            ?>
+               <div class="cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="<?= $cantCarrito   ?>">
+                  <i class="zmdi zmdi-shopping-cart"></i>
+               </div>
             <?php }
-        ?>
+            ?>
 
          </div>
 
@@ -211,8 +205,8 @@ if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
             <li>
                <div class="left-top-bar">
                   <?php if (isset($_SESSION['login'])) { ?>
-                  Bienvenido de Nuevo:
-                  <?= $_SESSION['userData']['nombres'] . " " . $_SESSION['userData']['apellidos'] ?>
+                     Bienvenido de Nuevo:
+                     <?= $_SESSION['userData']['nombres'] . " " . $_SESSION['userData']['apellidos'] ?>
                   <?php } ?>
                </div>
             </li>
@@ -222,18 +216,18 @@ if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
                   <a href="#" class="flex-c-m trans-04 p-lr-25" data-toggle="modal" data-target="#modalAyuda">Ayuda y
                      preguntas frecuentes</a>
                   <?php if (isset($_SESSION['login'])) { ?>
-                  <a href="<?= base_url(); ?>/Dashboard" class="flex-c-m trans-04 p-lr-25">
-                     Mi cuenta
-                  </a>
+                     <a href="<?= base_url(); ?>/Dashboard" class="flex-c-m trans-04 p-lr-25">
+                        Mi cuenta
+                     </a>
                   <?php } ?>
                   <?php if (isset($_SESSION['login'])) { ?>
-                  <a href="<?= base_url(); ?>/Logout" class="flex-c-m trans-04 p-lr-25">
-                     Salir
-                  </a>
+                     <a href="<?= base_url(); ?>/Logout" class="flex-c-m trans-04 p-lr-25">
+                        Salir
+                     </a>
                   <?php } else { ?>
-                  <a href="<?= base_url(); ?>/Login" class="flex-c-m trans-04 p-lr-25">
-                     Iniciar Sesión
-                  </a>
+                     <a href="<?= base_url(); ?>/Login" class="flex-c-m trans-04 p-lr-25">
+                        Iniciar Sesión
+                     </a>
                   <?php } ?>
                </div>
             </li>
@@ -269,11 +263,12 @@ if (isset($_SESSION['arrCarrito']) && count($_SESSION['arrCarrito']) > 0) {
                <img src="<?= media(); ?>/tienda/images/icons/icon-close2.png" alt="CLOSE">
             </button>
 
-            <form class="wrap-search-header flex-w p-l-15">
+            <form class="wrap-search-header flex-w p-l-15" method="get" action="<?= base_url() ?>/Tienda/search">
                <button class="flex-c-m trans-04">
                   <i class="zmdi zmdi-search"></i>
                </button>
-               <input class="plh3" type="text" name="search" placeholder="Buscar...">
+               <input type="hidden" name="p" value="1">
+               <input class="plh3" type="text" name="s" placeholder="Buscar...">
             </form>
          </div>
       </div>

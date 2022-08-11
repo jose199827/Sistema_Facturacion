@@ -250,20 +250,37 @@
 								</div>
 							</div>
 						</div>
-				<?php
+					<?php
 					}
 				} else {
-					echo "No tenemos productos relacionados a esta Categoría " . $data['page_title'];
+					?>
+					<p>No hay productos para mostrar <a href="<?= base_url() . '/Tienda' ?>">Ver Productos</a></p>
+				<?php
+					/* echo "No tenemos productos relacionados a esta Categoría " . $data['page_title']; */
 				}
 				?>
 			</div>
 
 			<!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Mostrar Más
-				</a>
-			</div>
+			<?php if (count($data['productos']) > 0) {
+				$prevPagina = $data['pagina'] - 1;
+				$nextPagina = $data['pagina'] + 1;
+			?>
+				<div class="flex-c-m flex-w w-full p-t-45">
+					<?php if ($data['pagina'] > 1) {
+					?>
+						<a href="<?= Base_URL(); ?>/Tienda/Categoria/<?= $data['infoCategoria']['idcategoria'] . '/' . $data['infoCategoria']['ruta'] . '/' . $prevPagina; ?>" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+							Anterior
+						</a>
+						&nbsp;&nbsp; &nbsp;&nbsp;
+					<?php  	}
+					if ($data['pagina'] != $data['totalPaginas']) { ?>
+						<a href="<?= Base_URL(); ?>/Tienda/Categoria/<?= $data['infoCategoria']['idcategoria'] . '/' . $data['infoCategoria']['ruta'] . '/' . $nextPagina ?>" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+							Siguiente
+						</a>
+					<?php  	} ?>
+				</div>
+			<?php  	} ?>
 		</div>
 	</div>
 	<!-- Footer -->

@@ -33,7 +33,7 @@ $apellido  = explode(" ", $_SESSION['userData']['apellidos']);
 
 
   <link rel="stylesheet" type="text/css" href="<?= media(); ?>/css/estilos.css">
-
+  
 </head>
 
 <body id="body" class="">

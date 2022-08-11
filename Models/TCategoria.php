@@ -16,4 +16,22 @@ trait TCategoria
     }
     return $request;
   }
+  public function getCategorias()
+  {
+    $this->con = new Mysql();
+    $sql = "SELECT c.idcategoria,c.nombre,c.descripcion,c.portada, c.ruta, COUNT(p.categoriaid) AS cantidadProducto
+            FROM producto p 
+            INNER JOIN categoria c
+            ON p.categoriaid = c.idcategoria
+            WHERE c.status = 1
+            GROUP BY p.categoriaid, c.idcategoria;";
+    $request = $this->con->selectAll($sql);
+    if (count($request) > 0) {
+      for ($c = 0; $c < count($request); $c++) {
+        $request[$c]['portada'] = media() . '/img/imgUploads/imgCategorias/'
+          . $request[$c]['portada'];
+      }
+    }
+    return $request;
+  }
 }

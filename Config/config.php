@@ -2,7 +2,7 @@
 const BASE_URL = "http://localhost/Sistema_Fact";
 //Conexion a la base de datos
 const DB_HOST = "localhost";
-const DB_NAME = "db_sistema";
+const DB_NAME = "db_tiendavirtual";
 const DB_USER = "root";
 const DB_PASSWORD = "";
 const DB_CHARSET = "utf8";
@@ -50,6 +50,7 @@ const URLPAYPAL = "https://api-m.paypal.com";
 
 //Productos
 
-const CANTIDADPRODUCTOSHOME = 12;
+const CANTIDADPRODUCTOSHOME = 8;
 const PORPAGINA = 8;
 const PORCATEGORIA = 4;
+const PORBUSQUEDA = 4;
