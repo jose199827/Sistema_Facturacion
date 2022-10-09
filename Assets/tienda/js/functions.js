@@ -25,10 +25,10 @@
   $('.js-addwish-b2').each(function() {
       var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
       $(this).on('click', function() {
-          swal(nameProduct, "is added to wishlist !", "success");
+          swal(nameProduct, "¡Se ha agregado al carrito!", "success");
 
-          $(this).addClass('js-addedwish-b2');
-          $(this).off('click');
+          /* $(this).addClass('js-addedwish-b2');
+          $(this).off('click'); */
       });
   });
 
@@ -47,15 +47,19 @@
 
   $('.js-addcart-detail').each(function() {
       var nameProduct = $(this).parent().parent().parent().parent().parent().find('.js-name-detail').html();
+      let cant = 1;
       $(this).on('click', function() {
           let id = this.getAttribute('id');
-          let cant = document.querySelector('#cant-product').value;
-
+          if (document.querySelector('#cant-product')) {
+              cant = document.querySelector('#cant-product').value;
+          }
+          if (this.getAttribute('pr')) {
+              cant = this.getAttribute('pr');
+          }
           if (isNaN(cant) || cant < 1) {
               swal("Error", "La cantidad debe ser mayor a 0", "error");
               return;
           }
-
           let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
           let ajaxUrl = base_url + '/Tienda/addCarrito';
           let forData = new FormData();
@@ -100,7 +104,6 @@
           ps.update();
       })
   });
-
 
   $('.btn-num-product-down').on('click', function() {
       let numProduct = Number($(this).next().val());
@@ -348,4 +351,84 @@
               document.querySelector('#optMetodoPago').classList.add("notblock");
           }
       });
+  }
+  if (document.querySelector("#frmSubscripcion")) {
+      let frmSubscribcion = document.querySelector("#frmSubscripcion");
+      frmSubscribcion.addEventListener('submit', function(e) {
+          e.preventDefault();
+          let nombreSubcripcion = document.querySelector("#nombreSubcripcion").value;
+          let emailSubcripcion = document.querySelector("#emailSubcripcion").value;
+          if (nombreSubcripcion == "") {
+              swal("Error de Datos", "El nombre es obligatorio", "error");
+              return;
+          }
+          if (!fntEmailValidate(emailSubcripcion)) {
+              swal("Error de Datos", "El email no es válido", "error");
+              return;
+          }
+          divLoading.style.display = "flex";
+          let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+          let ajaxUrl = base_url + '/Tienda/suscripcion';
+          let formData = new FormData(frmSubscribcion);
+          request.open("POST", ajaxUrl, true);
+          request.send(formData);
+          request.onreadystatechange = function() {
+              if (request.readyState != 4) return;
+              if (request.status == 200) {
+                  /* console.log(request.responseText); */
+                  let objData = JSON.parse(request.responseText);
+                  if (objData.status) {
+                      swal("Suscripción", objData.msg, "success");
+                      document.querySelector("#frmSubscripcion").reset();
+                  } else {
+                      swal("Suscripción", objData.msg, "error");
+                  }
+              }
+              divLoading.style.display = "none";
+              return false
+          }
+      }, false);
+  }
+
+  if (document.querySelector("#frmContacto")) {
+      let frmContacto = document.querySelector("#frmContacto");
+      frmContacto.addEventListener('submit', function(e) {
+          e.preventDefault();
+          let nombrecontancto = document.querySelector("#nombrecontancto").value;
+          let emailcontancto = document.querySelector("#emailcontancto").value;
+          let msgcontancto = document.querySelector("#msgcontancto").value;
+          if (nombrecontancto == "") {
+              swal("Error de Datos", "El nombre es obligatorio", "error");
+              return;
+          }
+          if (!fntEmailValidate(emailcontancto)) {
+              swal("Error de Datos", "El email no es válido", "error");
+              return;
+          }
+          if (msgcontancto == "") {
+              swal("Error de Datos", "El mensaje es obligatorio", "error");
+              return;
+          }
+          divLoading.style.display = "flex";
+          let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+          let ajaxUrl = base_url + '/Tienda/contancto';
+          let formData = new FormData(frmContacto);
+          request.open("POST", ajaxUrl, true);
+          request.send(formData);
+          request.onreadystatechange = function() {
+              if (request.readyState != 4) return;
+              if (request.status == 200) {
+                  /* console.log(request.responseText); */
+                  let objData = JSON.parse(request.responseText);
+                  if (objData.status) {
+                      swal("Suscripción", objData.msg, "success");
+                      document.querySelector("#frmSubscripcion").reset();
+                  } else {
+                      swal("Suscripción", objData.msg, "error");
+                  }
+              }
+              divLoading.style.display = "none";
+              return false
+          }
+      }, false);
   }

@@ -91,6 +91,7 @@ class Usuarios extends Controllers
         $btnView = '';
         $btnEdit = '';
         $btnDel = '';
+        $btnRes = '';
         if ($arrData[$i]['status'] == 1) {
           $arrData[$i]['status'] = '<span class="badge badge-success badge-pill">Activo</span>';
         } else {
@@ -105,23 +106,22 @@ class Usuarios extends Controllers
             ($_SESSION['userData']['idrol'] == 1 and $arrData[$i]['idrol'] != 1)
           ) {
             $btnEdit = '<a class="dropdown-item btnEditUsuario" href="javascript:;" onClick="fntEditUsuario(this,' . $arrData[$i]['idpersona'] . ')"><i class="dw dw-edit2"></i> Editar</a>';
-          } else {
+          } /* else {
             $btnEdit = '<a class="dropdown-item btnEditUsuario" disabled "><i class="dw dw-edit2"></i> Editar</a>';
-          }
+          } */
         }
         if ($_SESSION['permisosMod']['d']) {
-
-
           if ((($_SESSION['idUser'] == 1 and $_SESSION['userData']['idrol'] == 1) or
               ($_SESSION['userData']['idrol'] == 1) and ($arrData[$i]['idrol'] != 1)) and
             (($_SESSION['userData']['idpersona'] != $arrData[$i]['idpersona']))
           ) {
             $btnDel = '<a class="dropdown-item btnDelUsuario" href="javascript:;" onClick="fntDelUsuario(' . $arrData[$i]['idpersona'] . ')"><i class="dw dw-delete-3"></i> Eliminar</a>';
-          } else {
+          } /* Si el usuario es el primero administrador no podrá eliminar su propio usuario
+          else {
             $btnDel = '<a class="dropdown-item btnDelUsuario" disabled "><i class="dw dw-delete-3"></i> Eliminar</a>';
-          }
+          } */
         }
-
+        $btnRes = '<a class="dropdown-item btnEditUsuario" href="javascript:;" onClick="fntResetPass(' . $arrData[$i]['idpersona'] . ')"><i class="dw dw-password"></i> Resetear pass</a>';
         $arrData[$i]['nombres'] = $arrData[$i]['nombres'] . " " . $arrData[$i]['apellidos'];
 
         $arrData[$i]['options'] = '<div class="dropdown ">
@@ -132,7 +132,8 @@ class Usuarios extends Controllers
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                                   ' . $btnView . '
                                                   ' . $btnEdit . '
-                                                  ' . $btnDel . '                                                 
+                                                  ' . $btnRes . '                                                
+                                                  ' . $btnDel . '  
                                                 </div>
                                               </div>';
       }

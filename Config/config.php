@@ -15,6 +15,9 @@ const CURRENCY = "USD";
 //Modulos
 const MPEDIDOS = 5;
 const MCLIENTES = 3;
+const MSUSCIPTORES = 8;
+const MCONTACTO = 9;
+const MPAGINAS = 10;
 
 //Roles
 const RADMINISTRADOR = 1;
@@ -24,16 +27,22 @@ const NOMBRE_REMITENTE = "Tienda Virtual";
 const NOMBRE_EMPRESA = "Tienda Virtual";
 const WEB_EMPRESA = BASE_URL;
 const EMAIL_EMPRESA = "josedesarrollop@gmail.com";
+const DESCRIPCION = "La mejora tienda de articulos de venta";
+const HASHTAGS = "TiendaVirtual";
 
 // Variables para las conversion de modeda
 const DIRECCION = "Honduras, Tegucigalpa";
 const TELEFONO = "(504) 9874-8587";
 const EMAIL_PEDIDO = "josedesarrollop@gmail.com";
+const EMAIL_SUSCRIPCION = "josedesarrollop@gmail.com";
+const FACEBOOK = "https://facebook.com/abelosh";
+const INSTAGRAM = "https://instagram.com/febel24";
 
 //Variable para la Zona horaria 
 date_default_timezone_set("America/Tegucigalpa");
 const CAT_SLIDER = "1,2,3";
 const CAT_BANNER = "1,4,5";
+const CAT_FOOTER = "3,1,8,7";
 
 const KEY = "desarrollo";
 const METHODENCRIPT = "AES-128-ECB";

@@ -342,9 +342,41 @@ function fntDelUsuario(idpersona) {
         text: "¿Realmente quiere eliminar este usuario?",
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
         confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "No, cancelar!",
+        preConfirm: false
+    }).then((result) => {
+        if (result.value) {
+            let request = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            let ajaxUrl = base_url + '/Usuarios/delUsuario/';
+            let strData = "idUsuario=" + idpersona;
+            request.open("POST", ajaxUrl, true);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send(strData);
+            request.onreadystatechange = function() {
+                if (request.readyState == 4 && request.status == 200) {
+                    let objData = JSON.parse(request.responseText);
+                    if (objData.status) {
+                        swal("Eliminado!", objData.msg, "success");
+                        tableUsuarios.api().ajax.reload(function() {
+                            fntRolesUsurios();
+                        });
+                    } else {
+                        swal("Atención!", objData.msg, "error");
+                    }
+                }
+            }
+        }
+    })
+}
+
+function fntResetPass(idpersona) {
+    swal({
+        title: 'Restablecer contraseña',
+        text: "¿Realmente quiere restablecer la contraseña de este usuario?",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: "Si, restablecer!",
         cancelButtonText: "No, cancelar!",
         preConfirm: false
     }).then((result) => {

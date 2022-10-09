@@ -310,3 +310,18 @@ function months()
   $months = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
   return $months;
 }
+function getcatergoriasFooter()
+{
+  require_once("Models/CategoriasModel.php");
+  $objCategoria = new CategoriasModel();
+  $request = $objCategoria->getCategoriasFooter();
+  return $request;
+}
+function getInfoPagina(int $id)
+{
+  require_once("Libraries/Core/Mysql.php");
+  $con = new Mysql();
+  $sql = "SELECT * FROM `post` WHERE Id=$id;";
+  $request = $con->select($sql);
+  return $request;
+}

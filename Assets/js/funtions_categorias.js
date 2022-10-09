@@ -278,8 +278,6 @@ function fntDelCategoria(idcategoria) {
         text: "¿Realmente quieres eliminar esta categoría?",
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
         confirmButtonText: "Si, eliminar!",
         cancelButtonText: "No, cancelar!",
         preConfirm: false

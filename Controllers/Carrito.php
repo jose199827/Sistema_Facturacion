@@ -35,7 +35,7 @@ class Carrito extends Controllers
       $data['page_title'] = 'Procesar Pago';
       $data['page_name'] = "Procesar Pago";
       $data['tiposPago'] = $this->getTiposPagoT();
-      $this->views->getView($this, "Procesarpago", $data);
+      $this->views->getView($this, "procesarpago", $data);
    }
    /*    public function setDetalleTemp()
    {

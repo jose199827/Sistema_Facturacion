@@ -445,8 +445,6 @@ function fntDelProducto(idProducto) {
         text: "¿Realmente quieres eliminar este Producto?",
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#1b00ff',
-        cancelButtonColor: '#dc3545',
         confirmButtonText: "Si, eliminar!",
         cancelButtonText: "No, cancelar!",
         preConfirm: false

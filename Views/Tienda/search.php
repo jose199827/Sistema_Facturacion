@@ -189,23 +189,28 @@ $arrProductos = $data['productos'];
                         </div>
 
                         <div class="flex-w p-t-4 m-r--5">
-                            <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                            <a href="#"
+                                class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                 Fashion
                             </a>
 
-                            <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                            <a href="#"
+                                class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                 Lifestyle
                             </a>
 
-                            <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                            <a href="#"
+                                class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                 Denim
                             </a>
 
-                            <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                            <a href="#"
+                                class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                 Streetstyle
                             </a>
 
-                            <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                            <a href="#"
+                                class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
                                 Crafts
                             </a>
                         </div>
@@ -226,35 +231,44 @@ $arrProductos = $data['productos'];
                         $portada = media() . '/img/imgUploads/imgProductos/Producto_Default.png';
                     }
             ?>
-                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-                        <!-- Block2 -->
-                        <div class="block2">
-                            <div class="block2-pic hov-img0">
-                                <img src="<?= $portada; ?>" alt="<?= $arrProductos[$i]['nombre']; ?>">
-                                <a href="<?= base_url() . '/Tienda/Producto/' . $arrProductos[$i]['idproducto'] . '/' . $ruta; ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                                    Ver Producto
-                                </a>
-                            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                <!-- Block2 -->
+                <div class="block2">
+                    <div class="block2-pic hov-img0">
+                        <img src="<?= $portada; ?>" alt="<?= $arrProductos[$i]['nombre']; ?>">
+                        <a href="<?= base_url() . '/Tienda/Producto/' . $arrProductos[$i]['idproducto'] . '/' . $ruta; ?>"
+                            class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
+                            Ver Producto
+                        </a>
+                    </div>
 
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                                <div class="block2-txt-child1 flex-col-l ">
-                                    <a href="<?= base_url() . '/Tienda/Producto/' . $arrProductos[$i]['idproducto'] . '/' . $ruta; ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        <?= $arrProductos[$i]['nombre']; ?>
-                                    </a>
+                    <div class="block2-txt flex-w flex-t p-t-14">
+                        <div class="block2-txt-child1 flex-col-l ">
+                            <a href="<?= base_url() . '/Tienda/Producto/' . $arrProductos[$i]['idproducto'] . '/' . $ruta; ?>"
+                                class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                <?= $arrProductos[$i]['nombre']; ?>
+                            </a>
 
-                                    <span class="stext-105 cl3">
-                                        <?= SMONEY . formatMoney($arrProductos[$i]['precio']); ?>
-                                    </span>
+                            <span class="stext-105 cl3">
+                                <?= SMONEY . formatMoney($arrProductos[$i]['precio']); ?>
+                            </span>
 
-                                </div>
-                            </div>
+                        </div>
+                        <div class="block2-txt-child2 flex-r p-t-3">
+                            <a href="#"
+                                id="<?= openssl_encrypt($arrProductos[$i]['idproducto'], METHODENCRIPT, KEY); ?>"
+                                class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 js-addcart-detail cantCarrito icon-header-item cl2 hov-cl1 trans-04 p-l-22">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            </a>
                         </div>
                     </div>
-                <?php
+                </div>
+            </div>
+            <?php
                 }
             } else {
                 ?>
-                <p>No hay productos para mostrar <a href="<?= base_url() . '/Tienda' ?>">Ver Productos</a></p>
+            <p>No hay productos para mostrar <a href="<?= base_url() . '/Tienda' ?>">Ver Productos</a></p>
             <?php
                 /* echo "No tenemos productos relacionados a esta Categoría " . $data['page_title']; */
             }
@@ -266,20 +280,22 @@ $arrProductos = $data['productos'];
             $prevPagina = $data['pagina'] - 1;
             $nextPagina = $data['pagina'] + 1;
         ?>
-            <div class="flex-c-m flex-w w-full p-t-45">
-                <?php if ($data['pagina'] > 1) {
+        <div class="flex-c-m flex-w w-full p-t-45">
+            <?php if ($data['pagina'] > 1) {
                 ?>
-                    <a href="<?= Base_URL(); ?>/Tienda/search?p=<?= $prevPagina . '&s=' . $data['busqueda']; ?>" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                        Anterior
-                    </a>
-                    &nbsp;&nbsp; &nbsp;&nbsp;
-                <?php      }
+            <a href="<?= Base_URL(); ?>/Tienda/search?p=<?= $prevPagina . '&s=' . $data['busqueda']; ?>"
+                class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                Anterior
+            </a>
+            &nbsp;&nbsp; &nbsp;&nbsp;
+            <?php      }
                 if ($data['pagina'] != $data['totalPaginas']) { ?>
-                    <a href="<?= Base_URL(); ?>/Tienda/search?p=<?= $nextPagina . '&s=' . $data['busqueda']; ?>" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                        Siguiente
-                    </a>
-                <?php      } ?>
-            </div>
+            <a href="<?= Base_URL(); ?>/Tienda/search?p=<?= $nextPagina . '&s=' . $data['busqueda']; ?>"
+                class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                Siguiente
+            </a>
+            <?php      } ?>
+        </div>
         <?php      } ?>
     </div>
 </div>

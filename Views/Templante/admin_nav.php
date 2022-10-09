@@ -131,7 +131,7 @@
                 <li><a href="<?= Base_URL(); ?>/Productos">Productos</a></li>
               <?php } ?>
               <?php if (!empty($_SESSION['permisos'][6]['r'])) { ?>
-                <li><a href="<?= Base_URL(); ?>/Categorias">Categorias</a></li>
+                <li><a href="<?= Base_URL(); ?>/Categorias">Categorías</a></li>
               <?php } ?>
             </ul>
           </li>
@@ -143,6 +143,27 @@
             </a>
           </li>
         <?php } ?>
+        <?php if (!empty($_SESSION['permisos'][MSUSCIPTORES]['r'])) { ?>
+          <li>
+            <a href="<?= Base_URL(); ?>/Suscripciones" class="dropdown-toggle no-arrow">
+              <span class="micon dw dw-email1"></span><span class="mtext">Suscripciones</span>
+            </a>
+          </li>
+        <?php } ?>
+        <?php if (!empty($_SESSION['permisos'][MCONTACTO]['r'])) { ?>
+          <li>
+            <a href="<?= Base_URL(); ?>/contactos" class="dropdown-toggle no-arrow">
+              <span class="micon dw dw-notification1"></span><span class="mtext">Contactos</span>
+            </a>
+          </li>
+        <?php } ?>
+        <?php if (!empty($_SESSION['permisos'][MPAGINAS]['r'])) { ?>
+          <li>
+            <a href="<?= Base_URL(); ?>/Paginas" class="dropdown-toggle no-arrow">
+              <span class="micon dw dw-edit-file"></span><span class="mtext">Páginas</span>
+            </a>
+          </li>
+        <?php } ?>
         <li class="dropdown">
           <a href="javascript:;" class="dropdown-toggle">
             <span class="micon dw dw-settings1"></span><span class="mtext">Configuración</span>
@@ -150,10 +171,13 @@
           <ul class="submenu">
             <li><a href="<?= Base_URL(); ?>/msg">Mesajes de Bienvenida</a></li>
           </ul>
+          <ul class="submenu">
+            <li><a href="<?= Base_URL(); ?>/msg">Mesajes de Bienvenida</a></li>
+          </ul>
         </li>
         <li>
           <a href="<?= Base_URL(); ?>/logout" class="dropdown-toggle no-arrow">
-            <span class="micon dw dw-logout1"></span><span class="mtext">Cerrar Sección</span>
+            <span class="micon dw dw-logout1"></span><span class="mtext">Cerrar sesión</span>
           </a>
         </li>
       </ul>

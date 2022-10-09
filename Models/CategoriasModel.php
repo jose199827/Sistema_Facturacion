@@ -105,4 +105,16 @@ class CategoriasModel extends Mysql
     $request = $this->select($sql);
     return $request;
   }
+  public function getCategoriasFooter()
+  {
+    $sql = "SELECT * FROM categoria WHERE status=1 AND idcategoria IN(" . CAT_FOOTER . ");";
+    $request = $this->selectAll($sql);
+    if (count($request) > 0) {
+      for ($c = 0; $c < count($request); $c++) {
+        $request[$c]['portada'] = media() . '/img/imgUploads/imgCategorias/'
+          . $request[$c]['portada'];
+      }
+    }
+    return $request;
+  }
 }

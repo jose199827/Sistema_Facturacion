@@ -1,3 +1,6 @@
+<?php
+$categoriasFooter = getcatergoriasFooter();
+?>
 <!-- Footer -->
 <footer class="bg3 p-t-75 p-b-32">
   <div class="container">
@@ -6,32 +9,18 @@
         <h4 class="stext-301 cl0 p-b-30">
           Categorías
         </h4>
-
-        <ul>
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Women
-            </a>
-          </li>
-
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Men
-            </a>
-          </li>
-
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Shoes
-            </a>
-          </li>
-
-          <li class="p-b-10">
-            <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-              Watches
-            </a>
-          </li>
-        </ul>
+        <?php
+        if (count($categoriasFooter) > 0) { ?>
+          <ul>
+            <?php foreach ($categoriasFooter as $categoria) { ?>
+              <li class="p-b-10">
+                <a href="<?= Base_URL() ?>/Tienda/categoria/<?= $categoria['idcategoria'] . '/' . $categoria['ruta'] ?>" class="stext-107 cl7 hov-cl1 trans-04">
+                  <?= $categoria["nombre"] ?>
+                </a>
+              </li>
+            <?php } ?>
+          </ul>
+        <?php } ?>
       </div>
 
       <div class="col-sm-6 col-lg-4 p-b-50">
@@ -40,16 +29,19 @@
         </h4>
 
         <p class="stext-107 cl7 size-201">
-          Av. Las Américas Zona 13 <br>
-          Tel: (+52) 242424-2424
+          <?= DIRECCION ?>
+          <br>
+          Tel: <a class="stext-107 cl7 hov-cl1 trans-04" href="tel:<?= TELEFONO ?>"><?= TELEFONO ?></a>
+          <br>
+          Email: <a class="stext-107 cl7 hov-cl1 trans-04" href="mailto:<?= EMAIL_EMPRESA ?>"><?= EMAIL_EMPRESA ?></a>
         </p>
 
         <div class="p-t-27">
-          <a href="https://facebook.com/abelosh" target="_blanck" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+          <a href="<?= FACEBOOK ?>" target="_blanck" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
             <i class="fa fa-facebook"></i>
           </a>
 
-          <a href="https://instagram.com/febel24" target="_blanck" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+          <a href="<?= INSTAGRAM ?>" target="_blanck" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
             <i class="fa fa-instagram"></i>
           </a>
         </div>
@@ -60,9 +52,13 @@
           Suscríbete
         </h4>
 
-        <form>
+        <form id="frmSubscripcion" name="frmSubscripcion">
           <div class="wrap-input1 w-full p-b-4">
-            <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+            <input class="input1 bg-none plh1 stext-107 cl7" type="text" id="nombreSubcripcion" name="nombreSubcripcion" placeholder="Nombre" required>
+            <div class="focus-input1 trans-04"></div>
+          </div><br>
+          <div class="wrap-input1 w-full p-b-4">
+            <input class="input1 bg-none plh1 stext-107 cl7" type="email" id="emailSubcripcion" name="emailSubcripcion" placeholder="email@ejemplo.com" required>
             <div class="focus-input1 trans-04"></div>
           </div>
 

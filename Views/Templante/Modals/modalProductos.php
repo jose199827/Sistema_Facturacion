@@ -101,7 +101,7 @@
   </div>
 </div>
 
-<!-- Modal de Ver Usuarios -->
+<!-- Modal de Ver Datos del Producto -->
 <div class="modal fade" id="viewproductos-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog  modal-xl  modal-dialog-centered">
     <div class="modal-content">
