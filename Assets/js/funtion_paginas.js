@@ -114,7 +114,9 @@ if (document.querySelector("#foto")) {
 if (document.querySelector(".delPhoto")) {
     let delPhoto = document.querySelector(".delPhoto");
     delPhoto.onclick = function(e) {
-        document.querySelector("#fotoRemover").value = 1;
+        if (document.querySelector("#fotoRemover")) {
+            document.querySelector("#fotoRemover").value = 1;
+        }
         removePhoto();
     }
 }

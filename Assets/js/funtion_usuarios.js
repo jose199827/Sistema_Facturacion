@@ -245,7 +245,46 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+
+    /* Codigo de para la contraseña robusta */
+    $('#txtPassword').keyup(function() {
+        $('#msgPass').html(passSegura($('#txtPassword').val()))
+    })
+
+    $("#txtPassword").blur(function() {
+        $('#msgPass').removeClass()
+        $('#msgPass').addClass('notBlock')
+    });
+
+    function passSegura(password) {
+        var contadorFuerza = 0
+        if (password.length < 6) {
+            $('#msgPass').removeClass()
+            $('#msgPass').addClass('corta')
+            return 'Muy corta'
+        }
+        if (password.length > 7) contadorFuerza += 1
+        if (password.match(/([a-z].*[A-Z])|([A-Z].*[a-z])/)) contadorFuerza += 1
+        if (password.match(/([a-zA-Z])/) && password.match(/([0-9])/)) contadorFuerza += 1
+        if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) contadorFuerza += 1
+        if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,%,&,@,#,$,^,*,?,_,~])/)) contadorFuerza += 1
+        if (contadorFuerza < 2) {
+            $('#msgPass').removeClass()
+            $('#msgPass').addClass('debil')
+            return 'Débil'
+        } else if (contadorFuerza == 2) {
+            $('#msgPass').removeClass()
+            $('#msgPass').addClass('buena')
+            return 'Buena'
+        } else {
+            $('#msgPass').removeClass()
+            $('#msgPass').addClass('fuerte')
+            return 'Fuerte'
+        }
+    }
 }, false);
+
+
 $(document).ready(function() {
     $('#tableUsuarios').DataTable();
 });

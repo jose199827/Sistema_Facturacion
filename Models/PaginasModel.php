@@ -18,6 +18,16 @@ class PaginasModel extends Mysql
     $request = $this->selectAll($sql);
     return $request;
   }
+  public function insertPagina(string $strTitulo, string $strContenido, string $imgPortada, string $ruta, int $intStatus)
+  {
+    $this->strTitulo = $strTitulo;
+    $this->strContenido = $strContenido;
+    $this->strPortada = $imgPortada;
+    $this->srtRuta = $ruta;
+    $this->intStatus = $intStatus;
+    $sql = "SELECT * FROM ";
+    return $request;
+  }
   public function updatePagina(int $intIdPost, string $strTitulo, string $strContenido, string $imgPortada, int $intStatus)
   {
     $this->idPagina = $intIdPost;

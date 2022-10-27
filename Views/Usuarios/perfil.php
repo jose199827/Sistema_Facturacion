@@ -127,12 +127,15 @@
                             <div class="form-group">
                               <label>Password:</label>
                               <input type="password" id="txtPassword" name="txtPassword" placeholder="Password" class=" form-control">
+
+                              <div id="msgPass"><br></div>
                             </div>
                           </div>
                           <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                               <label>Confirmar Password:</label>
                               <input type="password" id="txtPasswordConfirm" name="txtPasswordConfirm" placeholder="Confirmar Password" class=" form-control">
+                              <div id="msgPass"></div>
                             </div>
                           </div>
                         </div>

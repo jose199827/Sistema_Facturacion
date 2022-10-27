@@ -110,12 +110,13 @@ class Paginas extends Controllers
   public function setPagina()
   {
     if ($_POST) {
-      /* dep($_POST);
-      dep($_FILES); */
+      /*  dep($_POST);
+      dep($_FILES);
+      die(); */
       if (empty($_POST['txtTitulo']) || empty($_POST['txtContenido']) || empty($_POST['listStatus'])) {
         $arrResponse = array('status' => false, 'msg' => 'Datos incorrectos.');
       } else {
-        $intIdPost = intval($_POST['idPost']);
+        $intIdPost = empty($_POST['idPost']) ? 0 : intval($_POST['idPost']);
         $strTitulo = strClean($_POST['txtTitulo']);
         $strContenido = strClean($_POST['txtContenido']);
         $intStatus = intval($_POST['listStatus']);
@@ -138,8 +139,8 @@ class Paginas extends Controllers
         if ($intIdPost == 0) {
           /* Crear */
           if ($_SESSION['permisosMod']['w']) {
-            /* $request = $this->model->insertCategoria($strCategoria, $strDescripcion, $intStatus, $imgPortada, $ruta);
-            $option = 1; */
+            $request = $this->model->insertPagina($strTitulo, $strContenido, $imgPortada, $ruta, $intStatus);
+            $option = 1;
           }
         } else {
           if ($_SESSION['permisosMod']['u']) {

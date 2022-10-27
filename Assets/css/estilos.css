@@ -193,6 +193,45 @@ textarea.form-control {
 }
 
 
+/* Constraseña segura */
+
+.corta {
+    border-top-style: solid;
+    width: 100%;
+    margin-top: 5px;
+    color: #dc3545;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.debil {
+    width: 100%;
+    border-top-style: solid;
+    margin-top: 5px;
+    color: #ffc107;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.buena {
+    width: 100%;
+    border-top-style: solid;
+    margin-top: 5px;
+    color: #28a745;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.fuerte {
+    width: 100%;
+    border-top-style: solid;
+    margin-top: 5px;
+    color: #1b00ff;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+
 /*     subir foto de productos */
 
 #containerImages {
